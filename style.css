@@ -1,0 +1,36 @@
+.contents {
+  padding-left: 260px;
+}
+
+.container {
+    padding: 10px;
+}
+
+.overview {
+    background-color: rgba(245, 245, 245, 0.8);
+    width: 180px;
+    padding: 15px 20px;
+    border-radius: 10px;
+    text-align: justify;
+    font-size: 19px;
+    display: inline-block;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+p, h5 {
+    padding: 5px;
+    margin : 0px;
+}
+
+h2 {
+  padding: 0px 40px;
+  margin: 30px 10px 10px 10px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.photo{
+    display: inline-block;
+    background-color: rgba(225, 221, 223, 0.8);
+    padding: 5px;
+    border-radius: 5px;
+}
