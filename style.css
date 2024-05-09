@@ -194,3 +194,16 @@ h2 {
     padding: 5px;
     border-radius: 5px;
 }
+
+footer{
+    background-color: black;
+}
+
+.copyright{
+    font-size: 12px;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 5px 0;
+    text-align: center;
+    background-color: lightgrey;
+}
+
