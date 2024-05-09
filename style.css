@@ -1,3 +1,52 @@
+/* header mulai */
+.header {
+  overflow: hidden;
+  background-color: #f1f1f1;
+  padding: 15px 10px;
+}
+
+.header a {
+  float: left;
+  color: rgb(174, 0, 249);
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 12px;
+  border-radius: 7px;
+}
+
+.header a.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.header a:hover {
+  background-color: #8686863a;
+  color: black;
+}
+
+.header a.active {
+  background-color: purple;
+  color: white;
+}
+
+.header-right {
+  float: right;
+}
+
+@media screen and (max-width: 500px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .header-right {
+    float: none;
+  }
+}
+/* header selesai */
+
 .contents {
   padding-left: 260px;
 }
