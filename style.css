@@ -160,41 +160,94 @@ aside .sidebar a:hover span{
   transition: .4s ease;
 }
 
-.contents {
-  padding-left: none;
+/* Sidebar end */
+
+/* Content Start */
+
+.dashboard{
+    position: relative;
+    background-color: #FFF;
+    min-height: 100vh;
+    width: 100% - 250px;
+    padding: 10px 14px;
 }
 
-.kotak {
-    padding: 10px;
+.dash-content .title{
+    display: flex;
+    align-items: center;
 }
 
-.overview {
-    background-color: rgba(245, 245, 245, 0.8);
-    width: 180px;
-    padding: 15px 20px;
-    border-radius: 10px;
-    text-align: justify;
-    font-size: 19px;
-    display: inline-block;
+.dash-content .title .text{
+    font-size: 24px;
+    font-weight: 500;
+    margin-left: 10px;
+}
+.dash-content .filter{
+    display: flex;
+    margin-left: auto;
 }
 
-p, h5 {
-    padding: 5px;
-    margin : 0px;
+.dash-content select,
+.dash-content input{
+    background-color: #f6f6f6;
+    border: 0;
+    outline: 0;
+    color: #707070;
+    margin: 10px;
+    padding: 10px 25px;
 }
 
-h2 {
-  padding: 0px 40px;
-  margin: 30px 10px 10px 10px;
+.dash-content .cards{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-wrap: wrap;
+}
+.dash-content .cards .card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 12px;
+    width: calc(100% / 4 - 15px);
+    padding: 5px 5px;
+    margin: 10px;
+    background-color: rgb(101, 150, 241);
+    transition: var(--tran-05);
+}
+.cards .card .icons{
+    font-size: 35px;
+}
+.cards .card .text{
+    white-space: nowrap;
+    font-size: 18px;
+    font-weight: 500;
+}
+.cards .card .number{
+    font-size: 40px;
+    font-weight: 500;
+}
+@media (max-width: 780px) {
+    .dash-content .cards .card{
+        width: calc(100% / 2 - 15px);
+        margin-top: 15px;
+    }
+}
+@media (max-width: 730px) {
+    
+    .dash-content .title{
+        flex-wrap: wrap;
+    }
+    .dash-content .filter{
+        flex-wrap: wrap;
+    }
+}
+@media (max-width: 560px) {
+    .dash-content .cards .card{
+        width: 100% ;
+    } 
 }
 
-.photo{
-    display: inline-block;
-    background-color: rgba(225, 221, 223, 0.8);
-    padding: 5px;
-    border-radius: 5px;
-}
-
+/* Content End */
 footer{
     background-color: black;
 }
