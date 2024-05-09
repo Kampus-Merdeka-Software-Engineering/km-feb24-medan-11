@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
 /* header mulai */
 .header {
   overflow: hidden;
@@ -47,11 +49,122 @@
 }
 /* header selesai */
 
-.contents {
-  padding-left: 260px;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: 0;
+  list-style: none;
+  appearance: none;
 }
 
-.container {
+
+
+body{
+  font-family: "Poppins", sans-serif;
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+  user-select: none;
+  overflow-x: hidden;
+  background-color: #f6f6f9;
+}
+
+.container{
+  display: grid;
+  width: 96%;
+  gap: 29px;
+  grid-template-columns: 224px auto;
+  margin: 0 auto;
+}
+
+aside{
+  height: 100vh;
+  background-color: #541ff4;
+}
+
+aside .head{
+  /* background-color: #fff; */
+  color: #ffffff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 23px;
+}
+aside .logo{
+  display: flex;
+  gap: 16px;
+}
+
+aside .head div.tutup{
+  display: none;
+}
+
+/* sidebar */
+
+aside .sidebar{
+  background-color: #541ff4;
+  display: flex;
+  flex-direction: column;
+  height: 85vh;
+  position: relative;
+  top: 16px;
+}
+
+aside .h3{
+  font-weight: 400;
+}
+
+aside .sidebar a{
+  display: flex;
+  color: #ffffff;
+  margin-left: 32px;
+  gap: 16px;
+  align-items: center;
+  height: 51px;
+  transition: all .1s ease-in;
+}
+
+aside .sidebar a span{
+  font-size: 26px;
+  transition: all .1s ease-in;
+}
+
+aside .sidebar a:last-child{
+  position: absolute;
+  bottom: 16px;
+  width: 100%;
+}
+
+aside .sidebar a.active{
+  background: #848bc82e;
+  color: #7380ec;
+  margin-left: 0;
+  border-left: 5px solid #7380ec;
+}
+
+aside .sidebar a.active::before{
+  content: '';
+  width: 6px;
+  height: 100%;
+  background-color: #7380ec;
+}
+
+aside .sidebar a:hover{
+  color: black;
+}
+
+aside .sidebar a:hover span{
+  margin-left: 16px;
+  transition: .4s ease;
+}
+
+.contents {
+  padding-left: none;
+}
+
+.kotak {
     padding: 10px;
 }
 
@@ -63,7 +176,6 @@
     text-align: justify;
     font-size: 19px;
     display: inline-block;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 p, h5 {
@@ -74,7 +186,6 @@ p, h5 {
 h2 {
   padding: 0px 40px;
   margin: 30px 10px 10px 10px;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .photo{
