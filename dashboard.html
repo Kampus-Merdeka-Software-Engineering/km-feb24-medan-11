@@ -5,115 +5,119 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
     <link href="style.css" rel="stylesheet" />
+    <link href="style-mobile.css" rel="stylesheet" />
 
-     <!-- icon -->
-     <link rel="stylesheet"
-     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@24,400,0,0" />
- 
-    </head>
+    <!-- icon -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+  </head>
   <body>
     <div class="container">
       <!-- aside start -->
       <aside>
-          <div class="head">
-              <div class="logo">
-                  <h2>MEDAN</h2>
-              </div>
-              <div class="tutup">
-                  <span class="material-symbols-sharp">close</span>
-              </div>
+        <div class="head">
+          <div class="logo">
+            <h2>MEDAN</h2>
           </div>
-          <!-- end top -->
-          <div class="sidebar">
-              <a href="#">
-                  <span class="material-symbols-sharp">home </span>
-                  <h3>Dashboard</h3>
-              </a>
-              <a href="#" class="tekan">
-                  <span class="material-symbols-sharp">equalizer </span>
-                  <h3>Properties</h3>
-              </a>
-              <a href="#">
-                  <span class="material-symbols-sharp">pie_chart </span>
-                  <h3>Statistics</h3>
-              </a>
-              <a href="#">
-                  <span class="material-symbols-sharp">groups </span>
-                  <h3>Clients</h3>
-              <a href="#">
-                  <span class="material-symbols-sharp">settings </span>
-                  <h3>Settings</h3>
-              <a href="#">
-                  <span class="material-symbols-sharp">logout </span>
-                  <h3>Logout</h3>
-                  
-              </a>
+          <div class="tutup">
+            <span class="material-symbols-sharp">close</span>
           </div>
+        </div>
+        <!-- end top -->
+        <div class="sidebar">
+          <a href="#">
+            <span class="material-symbols-sharp">home </span>
+            <h3>Dashboard</h3>
+          </a>
+          <a href="#" class="tekan">
+            <span class="material-symbols-sharp">equalizer </span>
+            <h3>Properties</h3>
+          </a>
+          <a href="#">
+            <span class="material-symbols-sharp">pie_chart </span>
+            <h3>Statistics</h3>
+          </a>
+          <a href="#">
+            <span class="material-symbols-sharp">groups </span>
+            <h3>Clients</h3>
+            <a href="#">
+              <span class="material-symbols-sharp">settings </span>
+              <h3>Settings</h3>
+            </a>
+            <a href="#">
+              <span class="material-symbols-sharp">logout </span>
+              <h3>Logout</h3>
+            </a>
+          </a>
+        </div>
       </aside>
       <!-- aside end -->
 
-<!--    Content Start    -->
-    <section class="dashboard">
-      <header>
-        <div class="header">
-          <a href="#team11" class="Team11">Medan Team 11</a>
-          <div class="header-right">
-            <a class="active" href="#share">Share</a>
-            <a href="#contact">Contact</a>
-            <a href="#about">About</a>
+      <!--    Content Start    -->
+      <section class="dashboard">
+        <header>
+          <div class="header">
+            <a href="#team11" class="Team11">Medan Team 11</a>
+            <div class="header-right">
+              <a class="active" href="#share">Share</a>
+              <a href="#contact">Contact</a>
+              <a href="#about">About</a>
+            </div>
           </div>
         </header>
-      <div class="dash-content">
-            <div class="overview">
-                <div class="title">
-                    <span class="text">Overview</span>
-                    <div class="filter">
-                    <div class="borough">
-                        <div class="choose">
-                            <select name="borough" id="borough">
-                                <option value="queens">Queens</option>
-                                <option value="brooklyn">Brooklyn</option>
-                                <option value="manhattan">Manhattan</option>
-                                <option value="ronx">Bronx</option>
-                                <option value="statenIsland">Staten Island</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="neighborhood">
-                        <div class="neighborhood">
-                            <select name="neighborhood" id="neighborhood">
-                                <option value="upperEast">Upper East Side</option>
-                                <option value="chelsea">Chelsea</option>
-                                <option value="greenwich">Greenwich</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="date">
-                        <input type="date">
-                    </div>
-                    </div>
+        <div class="dash-content">
+          <div class="overview">
+            <div class="title">
+              <span class="text">Overview</span>
+              <div class="filter">
+                <div class="borough">
+                  <div class="choose">
+                    <select name="borough" id="borough">
+                      <option value="queens">Queens</option>
+                      <option value="brooklyn">Brooklyn</option>
+                      <option value="manhattan">Manhattan</option>
+                      <option value="ronx">Bronx</option>
+                      <option value="statenIsland">Staten Island</option>
+                    </select>
+                  </div>
                 </div>
-
-                    <div class="cards">
-                        <div class="card">
-                            <span class="material-symbols-sharp icons">insights</span>
-                            <span class="text">Total Sales Price</span>
-                            <span class="number">$50,120</span>
-                        </div>
-                        <div class="card">
-                            <span class="material-symbols-sharp icons">apartment</span>
-                            <span class="text">Total Unit Sales</span>
-                            <span class="number">2,520</span>
-                        </div>
-                    </div>
-                
+                <div class="neighborhood">
+                  <div class="neighborhood">
+                    <select name="neighborhood" id="neighborhood">
+                      <option value="upperEast">Upper East Side</option>
+                      <option value="chelsea">Chelsea</option>
+                      <option value="greenwich">Greenwich</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="date">
+                  <input type="date" />
+                </div>
+              </div>
             </div>
+
+            <div class="cards">
+              <div class="card">
+                <span class="material-symbols-sharp icons">insights</span>
+                <span class="text">Total Sales Price</span>
+                <span class="number">$50,120</span>
+              </div>
+              <div class="card">
+                <span class="material-symbols-sharp icons">apartment</span>
+                <span class="text">Total Unit Sales</span>
+                <span class="number">2,520</span>
+              </div>
+            </div>
+          </div>
         </div>
         <footer>
           <div class="copyright">
             <p>© COPYRIGHT 2024 DASHBOARD-MEDAN 11 ALL RIGHTS RESERVED.</p>
           </div>
-      </footer>
-    </section>
+        </footer>
+      </section>
+    </div>
   </body>
 </html>

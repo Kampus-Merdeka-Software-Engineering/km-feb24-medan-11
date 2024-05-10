@@ -1,0 +1,25 @@
+/* Mobile Media Query */
+@media screen and (max-width: 767px){
+    .container{
+      width: 100%;
+      grid-template-columns: 100%;
+    }
+  
+    aside{
+      height: auto;
+    }
+  
+    aside .sidebar{
+      height: auto;
+    }
+  
+    aside .sidebar a:last-child{
+      position: unset;
+      bottom: unset;
+      width: 100%;
+    }
+  
+    .title .text{
+      color: red;
+    }  
+  }
