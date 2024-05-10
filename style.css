@@ -47,30 +47,13 @@
     float: none;
   }
 }
-/* header selesai */
 
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  text-decoration: none;
-  border: 0;
-  list-style: none;
-  appearance: none;
+/* Desktop Styling */
+.title .text{
+  color:green
 }
 
-
-
-body{
-  font-family: "Poppins", sans-serif;
-  width: 100%;
-  height: 100%;
-  font-size: 14px;
-  user-select: none;
-  overflow-x: hidden;
-  background-color: #f6f6f9;
-}
-
+/* Container class selector dipindah di atas media query*/
 .container{
   display: grid;
   width: 96%;
@@ -161,6 +144,39 @@ aside .sidebar a:hover span{
 }
 
 /* Sidebar end */
+
+/* Tablet Media Query */
+@media screen and (min-width: 768px) and (max-width: 1199px){
+  .title .text{
+    color: blue;
+  }  
+}
+
+/* header selesai */
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: 0;
+  list-style: none;
+  appearance: none;
+}
+
+
+
+body{
+  font-family: "Poppins", sans-serif;
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+  user-select: none;
+  overflow-x: hidden;
+  background-color: #f6f6f9;
+}
+
+
 
 /* Content Start */
 
