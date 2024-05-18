@@ -26,6 +26,7 @@ body {
     background-color: var(--body-color);
     transition: var(--tran-02);
 }
+
 /* Dark Mode Colors */
 body.dark {
     --body-color: #18191a;
@@ -45,7 +46,7 @@ body.dark {
 
 .header a {
     float: left;
-    color: var(--text-color);
+    color: rgb(174, 0, 249);
     text-align: center;
     padding: 14px;
     text-decoration: none;
@@ -65,7 +66,7 @@ body.dark {
 }
 
 .header a.active {
-    background-color: var(--text-color);
+    background-color: purple;
     color: white;
 }
 
@@ -89,6 +90,7 @@ body.dark {
 .sidebar-container {
     position: relative;
 }
+
 .sidebar {
     position: fixed;
     top: 0;
@@ -100,10 +102,12 @@ body.dark {
     transition: var(--tran-04);
     z-index: 100;
 }
+
 .sidebar.close {
     width: 70px;
     padding: 10px 20px;
 }
+
 .sidebar.close .text {
     visibility: hidden;
 }
@@ -115,6 +119,7 @@ body.dark {
     display: flex;
     align-items: center;
 }
+
 .sidebar li a {
     width: 100%;
     height: 100%;
@@ -125,20 +130,25 @@ body.dark {
     border-radius: 10px;
     transition: var(--tran-04);
 }
+
 .sidebar li .icon,
 .sidebar li .text {
     color: var(--text-color);
 }
+
 .sidebar li a:hover {
     background-color: var(--primary-color);
 }
+
 .sidebar li a:hover .icon,
 .sidebar li a:hover .text {
     color: var(--toggle-color);
 }
+
 .sidebar .image img {
     width: 40px;
 }
+
 .sidebar-container .image-text {
     display: flex;
     align-items: center;
@@ -151,9 +161,11 @@ body.dark {
     justify-content: center;
     transition: var(--tran-04);
 }
+
 .sidebar.close .sidebar-container .image {
     padding-left: 11px;
 }
+
 .sidebar .text {
     font-size: 16px;
     font-weight: 500;
@@ -161,16 +173,20 @@ body.dark {
     transition: var(--tran-01);
     white-space: nowrap;
 }
+
 .header-text {
     display: flex;
     flex-direction: column;
 }
+
 .header-text .title {
     font-weight: 700;
 }
+
 .header-text .subtitle {
     margin-top: -2px;
 }
+
 .header-text .title,
 .header-text .subtitle {
     color: var(--text-color);
@@ -192,16 +208,19 @@ body.dark {
     transition: var(--tran-02);
     cursor: pointer;
 }
+
 .sidebar.close .sidebar-container .toggle {
     transform: translateY(-50%);
     right: -30px;
 }
+
 .sidebar .icon {
     min-width: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .sidebar .menu-bar {
     margin-top: 35px;
     height: calc(100% - 100px);
@@ -215,6 +234,7 @@ body.dark {
     border-radius: 10px;
     background: var(--primary-color-light);
 }
+
 .menu-bar .mode .mode-gelap {
     height: 50px;
     width: 60px;
@@ -226,15 +246,19 @@ body.dark {
     position: absolute;
     transition: var(--tran-02);
 }
+
 .menu-bar .mode .light {
     opacity: 0;
 }
+
 body.dark .menu-bar .mode .light {
     opacity: 1;
 }
+
 body.dark .menu-bar .mode .dark {
     opacity: 0;
 }
+
 .menu-bar .mode .toggle-switch {
     position: absolute;
     right: 0;
@@ -244,6 +268,7 @@ body.dark .menu-bar .mode .dark {
     align-items: center;
     cursor: pointer;
 }
+
 .toggle-switch .switch {
     position: relative;
     height: 23px;
@@ -253,6 +278,7 @@ body.dark .menu-bar .mode .dark {
     display: flex;
     align-items: center;
 }
+
 .switch::before {
     content: "";
     position: absolute;
@@ -270,16 +296,16 @@ body.dark .switch::before {
 /* Sidebar end */
 
 /* Content Start */
-
 .dashboard {
     position: relative;
     background-color: #fff;
     left: 250px;
-    height: 100vh;
+    height: auto;
     width: calc(100%-100px);
     transition: var(--tran-04);
     min-height: 100vh;
 }
+
 .sidebar.close ~ .dashboard {
     left: 100px;
     width: calc(100% - 100px);
@@ -313,39 +339,123 @@ body.dark .switch::before {
 .dash-content .cards {
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: stretch;
     flex-wrap: wrap;
 }
+
 .dash-content .cards .card {
     display: flex;
-    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
     align-items: center;
     border-radius: 12px;
-    width: calc(100% / 4 - 15px);
+    width: calc(100% / 6 - 5px);
     padding: 5px 5px;
     margin: 10px;
-    background-color: var(--sidebar-color);
-    transition: var(--tran-05);
+    background-color: rgba(101,150,241);
 }
+
 .cards .card .icons {
-    font-size: 35px;
-    color: var(--text-color);
-}
-.cards .card .text {
-    white-space: nowrap;
-    font-size: 18px;
-    font-weight: 500;
-}
-.cards .card .number {
     font-size: 40px;
+}
+
+.txt{
+    display: block;
+    text-align: center;
+}
+
+.cards .card .text {
+    display: block;
+    font-size: 11px;
     font-weight: 500;
 }
+
+.cards .card .number {
+    display: block;
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.chart-container{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    column-gap: 15px;
+    row-gap: 30px;
+    justify-content: space-evenly;
+}
+
+.chart-label{
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+}
+
+.chart{
+    display: flex;
+    align-items: stretch
+}
+
+.sales-growth{
+    width: 45%;
+    background-color: #f9f9f9;
+    padding: 14px;
+    height: 300px;
+    border: 1px solid #ddd;
+}
+
+.top-sales{
+    width: 45%;
+    background-color: #f9f9f9;
+    padding: 14px;
+    height: 300px;
+    border: 1px solid #ddd;
+}
+
+.unit-comparison{
+    width: 45%;
+    background-color: #f9f9f9;
+    padding: 14px;
+    height: 300px;
+    border: 1px solid #ddd;
+}
+
+.daily-sales{
+    width: 45%;
+    background-color: #f9f9f9;
+    padding: 14px;
+    height: 300px;
+    border: 1px solid #ddd;
+}
+
+@media (max-width: 425px) {
+    .sidebar.close{
+        width: 10px;
+        padding: 0;
+        visibility: hidden;
+    }
+    .sidebar-container.toggle{
+        visibility: visible;
+    }
+    .sidebar{
+        padding: 0;
+    }
+}
+
+@media (max-width: 425px) {
+    .dashboard{
+        display: contents;
+    }
+}
+
 @media (max-width: 780px) {
     .dash-content .cards .card {
         width: calc(100% / 2 - 15px);
         margin-top: 15px;
     }
 }
+
 @media (max-width: 730px) {
     .dash-content .title {
         flex-wrap: wrap;
@@ -354,6 +464,7 @@ body.dark .switch::before {
         flex-wrap: wrap;
     }
 }
+
 @media (max-width: 560px) {
     .dash-content .cards .card {
         width: 100%;
