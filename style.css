@@ -45,7 +45,7 @@ body.dark {
 
 .header a {
     float: left;
-    color: rgb(174, 0, 249);
+    color: var(--text-color);
     text-align: center;
     padding: 14px;
     text-decoration: none;
@@ -65,7 +65,7 @@ body.dark {
 }
 
 .header a.active {
-    background-color: purple;
+    background-color: var(--text-color);
     color: white;
 }
 
@@ -324,11 +324,12 @@ body.dark .switch::before {
     width: calc(100% / 4 - 15px);
     padding: 5px 5px;
     margin: 10px;
-    background-color: rgb(101, 150, 241);
+    background-color: var(--sidebar-color);
     transition: var(--tran-05);
 }
 .cards .card .icons {
     font-size: 35px;
+    color: var(--text-color);
 }
 .cards .card .text {
     white-space: nowrap;
