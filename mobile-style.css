@@ -21,4 +21,8 @@
     .title .text{
       color: red;
     }  
-  }
+
+    .dash-content .cards{
+        flex-wrap: nowrap;
+    }
+}

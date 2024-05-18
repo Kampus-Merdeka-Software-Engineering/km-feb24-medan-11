@@ -103,6 +103,7 @@ body.dark {
     background-color: var(--sidebar-color);
     transition: var(--tran-04);
     z-index: 100;
+    box-shadow: -1rem -4rem 4rem;
 }
 
 .sidebar.close {
