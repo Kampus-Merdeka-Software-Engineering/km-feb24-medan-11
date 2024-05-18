@@ -9,7 +9,7 @@
     /* Colors */
     --body-color: #e4e9f7;
     --sidebar-color: #fff;
-    --primary-color: #695cfe;
+    --primary-color: #6596f1;
     --primary-color-light: #f6f5ff;
     --toggle-color: #ddd;
     --text-color: #707070;
@@ -46,7 +46,7 @@ body.dark {
 
 .header a {
     float: left;
-    color: rgb(174, 0, 249);
+    color: var(--text-color);
     text-align: center;
     padding: 14px;
     text-decoration: none;
@@ -54,7 +54,9 @@ body.dark {
     line-height: 12px;
     border-radius: 7px;
 }
-
+.header a.Team11 {
+    padding: 14px 24px;
+}
 .header a.team11 {
     font-size: 24px;
     font-weight: bold;
@@ -66,7 +68,7 @@ body.dark {
 }
 
 .header a.active {
-    background-color: purple;
+    background-color: var(--text-color);
     color: white;
 }
 
@@ -314,6 +316,7 @@ body.dark .switch::before {
 .dash-content .title {
     display: flex;
     align-items: center;
+    padding-left: 24px;
 }
 
 .dash-content .title .text {
@@ -341,6 +344,7 @@ body.dark .switch::before {
     align-items: center;
     justify-content: stretch;
     flex-wrap: wrap;
+    padding-left: 24px;
 }
 
 .dash-content .cards .card {
@@ -349,10 +353,10 @@ body.dark .switch::before {
     justify-content: space-evenly;
     align-items: center;
     border-radius: 12px;
-    width: calc(100% / 6 - 5px);
+    width: 200px;
     padding: 5px 5px;
     margin: 10px;
-    background-color: rgba(101,150,241);
+    background-color: #6596f1;
 }
 
 .cards .card .icons {
@@ -403,6 +407,7 @@ body.dark .switch::before {
     padding: 14px;
     height: 300px;
     border: 1px solid #ddd;
+    border-radius: 12px;
 }
 
 .top-sales{
@@ -411,6 +416,7 @@ body.dark .switch::before {
     padding: 14px;
     height: 300px;
     border: 1px solid #ddd;
+    border-radius: 12px;
 }
 
 .unit-comparison{
@@ -419,6 +425,7 @@ body.dark .switch::before {
     padding: 14px;
     height: 300px;
     border: 1px solid #ddd;
+    border-radius: 12px;
 }
 
 .daily-sales{
@@ -427,6 +434,7 @@ body.dark .switch::before {
     padding: 14px;
     height: 300px;
     border: 1px solid #ddd;
+    border-radius: 12px;
 }
 
 @media (max-width: 425px) {
