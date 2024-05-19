@@ -406,7 +406,7 @@ body.dark .switch::before {
     width: 45%;
     background-color: #f9f9f9;
     padding: 14px;
-    height: 300px;
+    min-height: 300px;
     border: 1px solid #ddd;
     border-radius: 12px;
 }
