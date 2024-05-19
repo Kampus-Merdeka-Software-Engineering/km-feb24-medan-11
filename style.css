@@ -302,7 +302,7 @@ body.dark .switch::before {
 .dashboard {
     position: relative;
     background-color: #fff;
-    left: 250px;
+    left: 280px;
     height: auto;
     width: calc(100%-100px);
     transition: var(--tran-04);
@@ -310,7 +310,7 @@ body.dark .switch::before {
 }
 
 .sidebar.close ~ .dashboard {
-    left: 100px;
+    left: 110px;
     width: calc(100% - 100px);
 }
 
@@ -355,7 +355,7 @@ body.dark .switch::before {
     align-items: center;
     border-radius: 12px;
     width: 200px;
-    padding: 5px 5px;
+    padding: 15px 15px;
     margin: 10px;
     background-color: #6596f1;
 }
