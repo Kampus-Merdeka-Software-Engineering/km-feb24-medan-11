@@ -1,4 +1,4 @@
-@media screen and (min-width: 420px) and (max-width: 850px){
+@media screen and (min-width: 769px) and (max-width: 1119px){
     .container{
         width: 100%;
         grid-template-columns: 7rem auto 23rem;
@@ -45,7 +45,7 @@
         margin-left: 0;
     }
     .dash-content .cards .card {
-        width: calc(100% / 2 - 15px);
+        /* width: calc(100% / 2 - 15px); */
     }
     .dash-content .title {
         flex-wrap: wrap;
