@@ -53,7 +53,4 @@
     .dash-content .filter {
         flex-wrap: wrap;
     }
-    .sidebar.close ~ .dashboard {
-        left: 110px;
-    }
 }
