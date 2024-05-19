@@ -1,6 +1,6 @@
-@media screen and (min-width: 768px) and (max-width: 1199px){
+@media screen and (min-width: 420px) and (max-width: 850px){
     .container{
-        width: 94%;
+        width: 100%;
         grid-template-columns: 7rem auto 23rem;
     }
     .header-text .title, .header-text .subtitle{
@@ -45,7 +45,16 @@
         margin-left: 0;
     }
     .dash-content .cards .card {
-        margin-left: 0;
+        width: calc(100% / 2 - 15px);
+    }
+    .dash-content .title {
+        flex-wrap: wrap;
+    }
+    .dash-content .filter {
+        flex-wrap: wrap;
+    }
+    .sidebar.close ~ .dashboard {
+        left: 110px;
     }
     .sidebar.close .sidebar-container .toggle {
         display: none;

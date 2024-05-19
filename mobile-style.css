@@ -1,28 +1,31 @@
-@media screen and (max-width: 767px){
-    .container{
-      width: 100%;
-      grid-template-columns: 100%;
-    }
-  
-    aside{
-      height: auto;
-    }
-  
-    aside .sidebar{
-      height: auto;
-    }
-  
-    aside .sidebar a:last-child{
-      position: unset;
-      bottom: unset;
-      width: 100%;
-    }
-  
-    .title .text{
-      color: red;
-    }  
-
-    .dash-content .cards{
-        flex-wrap: nowrap;
-    }
+@media screen and (max-width: 390px){
+    .dash-content .title {
+    flex-wrap: wrap;
+  }
+  .dash-content .filter {
+      flex-wrap: wrap;
+  }
+  .dash-content .cards{
+    flex-wrap: nowrap;
+  }
+  .dash-content .cards .card {
+    width: 100%;
+  }
+  .cards .card .icons {
+      font-size: 20px;
+  }
+  .cards .card .text {
+      font-size: 9px;
+  }
+  .cards .card .number {
+      font-size: 10px;
+  }
+  .dash-content select,
+  .dash-content input {
+      font-size: 10px;
+  }
+  .sales-growth, .top-sales, .unit-comparison, .daily-sales
+  {
+      width: 85%;
+  }
 }
