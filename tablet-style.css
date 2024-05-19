@@ -47,4 +47,7 @@
     .dash-content .cards .card {
         margin-left: 0;
     }
+    .sidebar.close .sidebar-container .toggle {
+        display: none;
+    }
 }
