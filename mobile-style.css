@@ -20,6 +20,12 @@
   .cards .card .number {
       font-size: 10px;
   }
+  
+  .dash-content .title {
+    display: block;
+    padding-top: 12px;
+  }
+
   .dash-content select,
   .dash-content input {
       font-size: 10px;
