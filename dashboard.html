@@ -13,6 +13,7 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -141,7 +142,7 @@
                                 </div>
                                 <div class="txt">
                                     <span class="text">Total Sales Price</span>
-                                    <span class="number">$50,120</span>
+                                    <span class="number" id="total-sales-price">$50,120</span>
                                 </div>
                             </div>
                             <div class="card">
@@ -150,7 +151,7 @@
                                 </div>
                                 <div class="txt">
                                     <span class="text">Total Unit Sales</span>
-                                    <span class="number">2,520</span>
+                                    <span class="number" id="total-unit-sales">2,520</span>
                                 </div>
                             </div>
                         </div>
@@ -160,17 +161,13 @@
                             <div class="chart-label">
                                 Sales Growth
                             </div>
-                            <div class="chart">
-                                chart
-                            </div>
+                            <canvas id="sales-growth-chart"></canvas>
                         </div>
                         <div class="top-sales">
                             <div class="chart-label">
                                 Top Sold Property
                             </div>
-                            <div class="chart">
-                                chart
-                            </div>
+                            <canvas id="unit-sales-chart"></canvas>
                         </div>
                         <div class="unit-comparison">
                             <div class="chart-label">
