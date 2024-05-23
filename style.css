@@ -362,6 +362,7 @@ body.dark .switch::before {
 .aboutUs {
     width: 100%;
     min-height: 500px;
+    padding-left: 40px;
 }
 /* About Us End */
 /* Footer Start */
@@ -396,7 +397,7 @@ body.dark .switch::before {
     }
 }
 /* Potrait Tablet Device */
-@media (max-width: 768px) {
+@media (min-width: 768px) and (max-width: 1119px) {
     .dashboard .summaryBox {
         grid-template-columns: 1fr 1fr;
     }
@@ -405,7 +406,7 @@ body.dark .switch::before {
     }
 }
 /* Mobile Device */
-@media (max-width: 576px) {
+@media (max-width: 767px) {
     .sidebar.close {
         width: 100%;
         left: -110%;
@@ -432,5 +433,8 @@ body.dark .switch::before {
     }
     .dashboard .summaryBox .box .icon {
         font-size: 40px;
+    }
+    .dashboard .chartBox {
+        grid-template-columns: 1fr;
     }
 }
