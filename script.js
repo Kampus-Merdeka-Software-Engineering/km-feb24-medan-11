@@ -4,6 +4,13 @@ const body = document.querySelector("body"),
     modeSwitch = body.querySelector(".toggle-switch"),
     modeText = body.querySelector(".mode-text"),
     toggle_top = body.querySelector(".toggleTop");
+
+//Variabel penampung chart
+var salesGrowthChart = null;
+var totalUnitSalesChart = null;
+var dataSalesGrowth = null;
+var dataTotalUnitSales = null;
+
 // Sidebar Section
 toggle.addEventListener("click", () => {
     sidebar.classList.toggle("close");
@@ -116,7 +123,9 @@ function displaySalesGrowthChart(arrSalesGrowth) {
         });
     });
 
-    new Chart(ctx, {
+    window.dataSalesGrowth = datasets;
+
+    window.salesGrowthChart = new Chart(ctx, {
         type: "line",
         data: {
             labels: arrSaleDate,
@@ -164,7 +173,7 @@ function displayTotalUnitSalesChart(arrTotalUnitSales) {
     // console.log(arrBorough);
     // console.log(arrTotalUnit);
 
-    new Chart(ctx, {
+    window.totalUnitSalesChart = new Chart(ctx, {
         type: "bar",
         data: {
             labels: arrBorough,
@@ -223,3 +232,14 @@ fetch("JSON-file/chart-unite-sale-borough.json")
     .then((data) => {
         displayTotalUnitSalesChart(data);
     });
+
+function onSelectFilterBoroughSalesGrowth(borough){
+    var filteredDataset = window.dataSalesGrowth.filter((dataset) => {
+        return dataset.label === borough;
+    });
+    if(filteredDataset.length === 0){
+        filteredDataset = window.dataSalesGrowth;
+    }
+    window.salesGrowthChart.data.datasets = filteredDataset;
+    window.salesGrowthChart.update();
+};
