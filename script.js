@@ -148,10 +148,22 @@ function displaySalesGrowthChart(arrSalesGrowth) {
       },
       scales: {
         y: {
-          type: "linear",
-          display: true,
-          position: "left",
+          title: {
+            type: "linear",
+            display: true,
+            position: "left",
+            text: 'Total Sales'
+          }
+          
         },
+        x: {
+          title: {
+            type: "linear",
+            display: true,
+            position: "bottom",
+            text: 'Year Quarter',
+          }
+        }
       },
     },
   });
@@ -194,11 +206,24 @@ function displayTotalUnitSalesChart(arrTotalUnitSales) {
       indexAxis: "y",
       scales: {
         y: {
-          beginAtZero: true,
+          title: {
+            type: "linear",
+            display: true,
+            position: "left",
+            text: 'Borough'
+          }
         },
-      },
+        x: {
+          title: {
+            type: "linear",
+            display: true,
+            position: "bottom",
+            text: 'Total Units Sold'
+          }
+        }
     },
-  });
+    }
+  },);
 }
 
 //function total sales based on neighborhood
@@ -273,10 +298,21 @@ function displayNeighborhoodSalesChart(arrNeighborhoodSales){
           },
           scales: {
               y: {
+                title: {
                   type: "linear",
                   display: true,
                   position: "left",
+                  text: 'Total Sales'
+                }
               },
+              x: {
+                title: {
+                  type: "linear",
+                  display: true,
+                  position: "bottom",
+                  text: 'Year Quarter'
+                }
+              }
           },
       },
   });
