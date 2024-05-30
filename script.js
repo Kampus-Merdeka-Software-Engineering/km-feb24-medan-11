@@ -201,6 +201,87 @@ function displayTotalUnitSalesChart(arrTotalUnitSales) {
   });
 }
 
+//function total sales based on neighborhood
+function displayNeighborhoodSalesChart(arrNeighborhoodSales){
+  var ctx = document.getElementById("neighborhood-sales").getContext("2d");
+  var arrSaleDate = [];
+  var neighborhoodSalesData = {};
+
+  // Menghitung total sales ditiap neighborhood
+  var totalSalesPerNeighborhood = {};
+
+  arrNeighborhoodSales. forEach((item) => {
+      if (!arrSaleDate.includes(item.sale_date)){
+          arrSaleDate.push(item.sale_date);
+      }
+      if(!totalSalesPerNeighborhood[item.neighborhood]){
+          totalSalesPerNeighborhood[item.neighborhood] = 0;
+      }
+
+      totalSalesPerNeighborhood[item.neighborhood] += parseFloat(item.sale_price);
+  });
+
+  // Mengurutkan dan ambil top 5
+  var top5Neighborhoods = Object.keys(totalSalesPerNeighborhood)
+      .sort((a, b) => totalSalesPerNeighborhood[b] - totalSalesPerNeighborhood[a])
+      .slice(0, 5);
+      
+  top5Neighborhoods.forEach((neighborhood) => {
+      neighborhoodSalesData[neighborhood] = Array(arrSaleDate.length).fill(0);
+  });
+
+  // Urutkan arrSaleDate berdasarkan kuartal dan tahun
+  arrSaleDate.sort(compareQuarterAndYear);
+
+  arrNeighborhoodSales.forEach((item) => {
+      if (top5Neighborhoods.includes(item.neighborhood)) {
+          var dateIndex = arrSaleDate.indexOf(item.sale_date);
+          neighborhoodSalesData[item.neighborhood][dateIndex] += parseFloat(item.sale_price);
+      }
+  });
+
+  var datasets =[];
+  top5Neighborhoods.forEach((neighborhood) => {
+      datasets.push({
+          label: neighborhood,
+          data: neighborhoodSalesData[neighborhood],
+          borderWidth: 1,
+          fill: false,
+          yAxisID: "y",
+      });
+  });
+
+  new Chart(ctx, {
+      type: "line",
+      data: {
+          labels: arrSaleDate,
+          datasets: datasets,
+      },
+      options: {
+          maintainAspectRatio: false,
+          responsive: true,
+          interaction: {
+              mode: "index",
+              intersect: false,
+          },
+          stacked: false,
+          plugins: {
+              // title: {
+              //   display: true,
+              //   text: 'Chart.js Line Chart - Multi Axis'
+              // }
+          },
+          scales: {
+              y: {
+                  type: "linear",
+                  display: true,
+                  position: "left",
+              },
+          },
+      },
+  });
+}
+
 // narik data scorecard-total-sales-price.json
 fetch("JSON-file/scorecard.json")
   .then((response) => {
@@ -236,6 +317,15 @@ fetch("JSON-file/chart-unite-sale-borough.json")
   .then((data) => {
     displayTotalUnitSalesChart(data);
   });
+
+//narik data chart-sales-neighborhood.json
+fetch("JSON-file/chart-sales-neighborhood.json")
+.then((response) => {
+    return response.json();
+})
+.then((data) => {
+    displayNeighborhoodSalesChart(data);
+});
 
 function onSelectFilterBoroughSalesGrowth(borough) {
   var filteredDataset = window.dataSalesGrowth.filter((dataset) => {
