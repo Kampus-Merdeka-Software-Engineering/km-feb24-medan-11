@@ -392,13 +392,31 @@ body.dark .switch::before {
 }
 
 /* Dashboard End */
-/* Abous Us Start */
+
+/* Properties Us Start */
+.Properties {
+  width: 100%;
+  min-height: 500px;
+  padding-left: 40px;
+}
+/* Properties Us End */
+
+/* Statistic Start */
+.Statistic {
+  width: 100%;
+  min-height: 500px;
+  padding-left: 40px;
+}
+/* Statistic End */
+
+/* About Us Start */
 .aboutUs {
   width: 100%;
   min-height: 500px;
   padding-left: 40px;
 }
 /* About Us End */
+
 /* Footer Start */
 .footer {
   position: relative;
