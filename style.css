@@ -155,7 +155,7 @@ body.dark {
 }
 .sidebar .menu-bar {
   margin-top: 35px;
-  height: calc(100% - 100px);
+  height: calc(85% - 100px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
