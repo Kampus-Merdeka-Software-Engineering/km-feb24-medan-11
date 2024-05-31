@@ -392,25 +392,20 @@ body.dark .switch::before {
 }
 
 /* Dashboard End */
-/* Properties Start */
-.properties {
+/* Insight Start */
+.insight {
   width: 100%;
   min-height: 500px;
   padding-left: 40px;
 }
-/* Statistic Start */
-.statistic {
+/* Insight End */
+/* Teams Start */
+.teams {
   width: 100%;
   min-height: 500px;
   padding-left: 40px;
 }
-/* Abous Us Start */
-.aboutUs {
-  width: 100%;
-  min-height: 500px;
-  padding-left: 40px;
-}
-/* About Us End */
+/* Teams End */
 /* Footer Start */
 .footer {
   position: relative;
@@ -446,6 +441,7 @@ body.dark .switch::before {
 @media (min-width: 768px) and (max-width: 1119px) {
   .dashboard .summaryBox {
     grid-template-columns: 1fr 1fr;
+    display: flex;
   }
   .dashboard .chartBox {
     grid-template-columns: 1fr;
@@ -476,6 +472,10 @@ body.dark .switch::before {
   }
   .main .top-main .toggleTop {
     display: block;
+  }
+  .dashboard .summaryBox{
+    display: flex;
+    flex-wrap: wrap;
   }
   .dashboard .summaryBox .box .icon {
     font-size: 40px;
