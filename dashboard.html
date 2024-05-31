@@ -1,233 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
-    <!-- Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-      rel="stylesheet"
-    />
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
-    />
-  </head>
-  <body>
-    <!-- Navigation Start -->
-    <nav class="sidebar close">
-      <div class="sidebar-container">
-        <div class="image-text">
-          <div class="image">
-            <img src="/image/logo-revou.png" alt="Logo Revou" />
-          </div>
-          <div class="text header-text">
-            <span class="title">Dashboard</span>
-            <span class="subtitle">Team 11 Medan</span>
-          </div>
-        </div>
-        <div class="toggle">
-          <span class="material-symbols-outlined"> chevron_right </span>
-        </div>
-      </div>
-      <div class="menu-bar">
-        <div class="menu">
-          <ul class="menu-links">
-            <li class="nav-link">
-              <a href="#dashboard">
-                <span class="material-symbols-outlined icon">Dashboard </span>
-                <span class="text nav-text">Dashboard</span>
-              </a>
-            </li>
-            <li class="nav-link">
-              <a href="#insight">
-                <span class="material-symbols-outlined icon">Pie_chart </span>
-                <span class="text nav-text">Insight</span>
-              </a>
-            </li>
-            <li class="nav-link">
-              <a href="#teams">
-                <span class="material-symbols-outlined icon">Groups </span>
-                <span class="text nav-text">Teams</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div class="bottom-content">
-          <ul>
-            <li>
-              <a href="#logout">
-                <span class="material-symbols-outlined icon">Logout</span>
-                <span class="text nav-text">Logout</span>
-              </a>
-            </li>
-            <li class="mode">
-              <div class="mode-gelap">
-                <span class="material-symbols-outlined icon light"
-                  >light_mode</span
-                >
-                <span class="material-symbols-outlined icon dark"
-                  >dark_mode</span
-                >
-              </div>
-              <span class="mode-text text">Dark Mode</span>
-              <div class="toggle-switch">
-                <span class="switch"></span>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <!-- Navigation End -->
-    <!-- Main Start -->
-    <main class="main">
-      <header class="top-main">
-        <a href=""></a>
-        <span class="material-symbols-outlined toggleTop"> menu </span>
-        <h2 id="dashboard">NYC Property Sales</h2>
-      </header>
-      <!-- Dashboard Start -->
-      <section class="dashboard">
-        <div class="filter">
-          <div class="box">
-            <select class="select" name="neighborhood" id="neighborhood">
-              <option value="all">Choose A Neighborhood</option>
-              <option value="upperEast">Upper East Side</option>
-              <option value="chelsea">Chelsea</option>
-              <option value="greenwich">Greenwich</option>
-            </select>
-          </div>
-          <div class="box">
-            <select class="select" name="borough" id="borough">
-              <option value="all">Choose A Borough</option>
-              <option value="queens">Queens</option>
-              <option value="brooklyn">Brooklyn</option>
-              <option value="manhattan">Manhattan</option>
-              <option value="ronx">Bronx</option>
-              <option value="statenIsland">Staten Island</option>
-            </select>
-          </div>
-          <div class="box">
-            <input class="select" type="date" />
-          </div>
-        </div>
-        <div class="summaryBox">
-          <div class="box">
-            <span class="material-symbols-outlined icon">
-              Pie_chart
-            </span>
-            <div class="summary-text">
-              <span class="text-head">Total Sales</span
-              ><span class="text" id="total-sales-price">$1.1M</span>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dashboard</title>
+        <!-- Font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet"
+        />
+        <!-- CSS -->
+        <link rel="stylesheet" href="style.css" />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+        />
+    </head>
+    <body>
+        <!-- Navigation Start -->
+        <nav class="sidebar close">
+            <div class="sidebar-container">
+                <div class="image-text">
+                    <div class="image">
+                        <img src="/image/logo-revou.png" alt="Logo Revou" />
+                    </div>
+                    <div class="text header-text">
+                        <span class="title">Dashboard</span>
+                        <span class="subtitle">Team 11 Medan</span>
+                    </div>
+                </div>
+                <div class="toggle">
+                    <span class="material-symbols-outlined">
+                        chevron_right
+                    </span>
+                </div>
             </div>
-          </div>
-          <div class="box">
-            <span class="material-symbols-outlined icon">
-              data_thresholding
-            </span>
-            <div class="summary-text">
-              <span class="text-head">Average Sales</span
-              ><span class="text" id="total-sales-price">$ 50.120</span>
+            <div class="menu-bar">
+                <div class="menu">
+                    <ul class="menu-links">
+                        <li class="nav-link">
+                            <a href="#dashboard">
+                                <span class="material-symbols-outlined icon"
+                                    >Dashboard
+                                </span>
+                                <span class="text nav-text">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="#insight">
+                                <span class="material-symbols-outlined icon"
+                                    >Pie_chart
+                                </span>
+                                <span class="text nav-text">Insight</span>
+                            </a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="#teams">
+                                <span class="material-symbols-outlined icon"
+                                    >Groups
+                                </span>
+                                <span class="text nav-text">Teams</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bottom-content">
+                    <ul>
+                        <li class="mode">
+                            <div class="mode-gelap">
+                                <span
+                                    class="material-symbols-outlined icon light"
+                                    >light_mode</span
+                                >
+                                <span
+                                    class="material-symbols-outlined icon dark"
+                                    >dark_mode</span
+                                >
+                            </div>
+                            <span class="mode-text text">Dark Mode</span>
+                            <div class="toggle-switch">
+                                <span class="switch"></span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
-          </div>
-          <div class="box">
-            <span class="material-symbols-outlined icon"> apartment </span>
-            <div class="summary-text">
-              <span class="text-head">Total Unit Sales</span
-              ><span class="text" id="total-unit-sales">2.520</span>
-            </div>
-          </div>
-        </div>
-        <div class="chartBox">
-          <div class="box">
-            <form id="sales-growth-form-filter">
-              <div class="chart-title"> Sales Growth Based On Borought per quarter </div>
-              <select
-                onchange="onSelectFilterBoroughSalesGrowth(this.value)"
-                name="sales-growth-borough"
-                id="sales-growth-borough"
-                class="select"
-              >
-                <option value="All">All</option>
-                <option value="Queens">Queens</option>
-                <option value="Brooklyn">Brooklyn</option>
-                <option value="Manhattan">Manhattan</option>
-                <option value="Bronx">Bronx</option>
-                <option value="Staten Island">Staten Island</option>
-              </select>
-            </form>
-            <div class="chart-container">
-              <canvas id="sales-growth-chart"></canvas>
-            </div>
-          </div>
-          <div class="box">
-            <form id="sales-unite-form-filter">
-              <div class="chart-title"> Total Unit Sales </div>
-              <select
-                onchange="onSelectFilterBoroughUniteSalesChart(this.value)"
-                name="unite-sale-borough"
-                id="unite-sale-borough"
-                class="select"
-              >
-                <option value="All">All</option>
-                <option value="Queens">Queens</option>
-                <option value="Brooklyn">Brooklyn</option>
-                <option value="Manhattan">Manhattan</option>
-                <option value="Bronx">Bronx</option>
-                <option value="Staten Island">Staten Island</option>
-              </select>
-            </form>
-            <div class="chart-container">
-              <canvas id="unit-sales-chart"></canvas>
-            </div>
-          </div>
-          <div class="box">
-            <canvas id="neighborhood-sales"></canvas>
-          </div>
-          <div class="box">
-          </div>
-          <div class="box">
-          </div>
-          <div class="box">
-          </div>
-          <div class="box">
-          </div>
-          <div class="box">
-          </div>
-        </div>
-      </section>
-      <!-- Dashboard End -->
-      <!-- Insight  Start-->
-      <section class="insight">
-        <h2 id="insight">Insight</h2>
-      </section>
-      <!-- Insight End -->
-      <!-- Teams  Start-->
-      <section class="teams">
-        <h2 id="teams">Teams</h2>
-      </section>
-      <!-- Teams End -->
-      <!-- Footer Start -->
-      <footer class="footer">
-        <div class="copyright">
-          <div class="text">
-            © COPYRIGHT 2024 DASHBOARD-MEDAN 11 ALL RIGHTS RESERVED.
-          </div>
-        </div>
-      </footer>
-      <!-- Footer End -->
-    </main>
-    <!-- Main End -->
+        </nav>
+        <!-- Navigation End -->
+        <!-- Main Start -->
+        <main class="main">
+            <header class="top-main">
+                <a href=""></a>
+                <span class="material-symbols-outlined toggleTop"> menu </span>
+                <h2 id="dashboard">NYC Property Sales</h2>
+            </header>
+            <!-- Dashboard Start -->
+            <section class="dashboard">
+                <div class="filter">
+                    <div class="box">
+                        <select
+                            class="select"
+                            name="neighborhood"
+                            id="neighborhood"
+                        >
+                            <option value="all">Choose A Neighborhood</option>
+                            <option value="upperEast">Upper East Side</option>
+                            <option value="chelsea">Chelsea</option>
+                            <option value="greenwich">Greenwich</option>
+                        </select>
+                    </div>
+                    <div class="box">
+                        <select class="select" name="borough" id="borough">
+                            <option value="all">Choose A Borough</option>
+                            <option value="queens">Queens</option>
+                            <option value="brooklyn">Brooklyn</option>
+                            <option value="manhattan">Manhattan</option>
+                            <option value="ronx">Bronx</option>
+                            <option value="statenIsland">Staten Island</option>
+                        </select>
+                    </div>
+                    <div class="box">
+                        <input class="select" type="date" />
+                    </div>
+                </div>
+                <div class="summaryBox">
+                    <div class="box">
+                        <span class="material-symbols-outlined icon">
+                            Pie_chart
+                        </span>
+                        <div class="summary-text">
+                            <span class="text-head">Total Sales</span
+                            ><span class="text" id="total-sales-price"
+                                >$1.1M</span
+                            >
+                        </div>
+                    </div>
+                    <div class="box">
+                        <span class="material-symbols-outlined icon">
+                            data_thresholding
+                        </span>
+                        <div class="summary-text">
+                            <span class="text-head">Average Sales</span
+                            ><span class="text" id="total-sales-price"
+                                >$ 50.120</span
+                            >
+                        </div>
+                    </div>
+                    <div class="box">
+                        <span class="material-symbols-outlined icon">
+                            apartment
+                        </span>
+                        <div class="summary-text">
+                            <span class="text-head">Total Unit Sales</span
+                            ><span class="text" id="total-unit-sales"
+                                >2.520</span
+                            >
+                        </div>
+                    </div>
+                </div>
+                <div class="chartBox">
+                    <div class="box">
+                        <form id="sales-growth-form-filter">
+                            <div class="chart-title">
+                                Sales Growth Based On Borought per quarter
+                            </div>
+                            <select
+                                onchange="onSelectFilterBoroughSalesGrowth(this.value)"
+                                name="sales-growth-borough"
+                                id="sales-growth-borough"
+                                class="select"
+                            >
+                                <option value="All">All</option>
+                                <option value="Queens">Queens</option>
+                                <option value="Brooklyn">Brooklyn</option>
+                                <option value="Manhattan">Manhattan</option>
+                                <option value="Bronx">Bronx</option>
+                                <option value="Staten Island">
+                                    Staten Island
+                                </option>
+                            </select>
+                        </form>
+                        <div class="chart-container">
+                            <canvas id="sales-growth-chart"></canvas>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <form id="sales-unite-form-filter">
+                            <div class="chart-title">Total Unit Sales</div>
+                            <select
+                                onchange="onSelectFilterBoroughUniteSalesChart(this.value)"
+                                name="unite-sale-borough"
+                                id="unite-sale-borough"
+                                class="select"
+                            >
+                                <option value="All">All</option>
+                                <option value="Queens">Queens</option>
+                                <option value="Brooklyn">Brooklyn</option>
+                                <option value="Manhattan">Manhattan</option>
+                                <option value="Bronx">Bronx</option>
+                                <option value="Staten Island">
+                                    Staten Island
+                                </option>
+                            </select>
+                        </form>
+                        <div class="chart-container">
+                            <canvas id="unit-sales-chart"></canvas>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <canvas id="neighborhood-sales"></canvas>
+                    </div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                </div>
+            </section>
+            <!-- Dashboard End -->
+            <!-- Insight  Start-->
+            <section class="insight">
+                <h2 id="insight">Insight</h2>
+            </section>
+            <!-- Insight End -->
+            <!-- Teams  Start-->
+            <section class="teams">
+                <h2 id="teams">Teams</h2>
+            </section>
+            <!-- Teams End -->
+            <!-- Footer Start -->
+            <footer class="footer">
+                <div class="copyright">
+                    <div class="text">
+                        © COPYRIGHT 2024 DASHBOARD-MEDAN 11 ALL RIGHTS RESERVED.
+                    </div>
+                </div>
+            </footer>
+            <!-- Footer End -->
+        </main>
+        <!-- Main End -->
 
-    <!-- Script -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="script.js"></script>
-    <!-- Script End -->
-  </body>
+        <!-- Script -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="script.js"></script>
+        <!-- Script End -->
+    </body>
 </html>
