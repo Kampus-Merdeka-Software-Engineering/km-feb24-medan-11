@@ -155,7 +155,7 @@ body.dark {
 }
 .sidebar .menu-bar {
   margin-top: 35px;
-  height: calc(85% - 100px);
+  height: calc(100% - 100px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -392,31 +392,25 @@ body.dark .switch::before {
 }
 
 /* Dashboard End */
-
-/* Properties Us Start */
-.Properties {
+/* Properties Start */
+.properties {
   width: 100%;
   min-height: 500px;
   padding-left: 40px;
 }
-/* Properties Us End */
-
 /* Statistic Start */
-.Statistic {
+.statistic {
   width: 100%;
   min-height: 500px;
   padding-left: 40px;
 }
-/* Statistic End */
-
-/* About Us Start */
+/* Abous Us Start */
 .aboutUs {
   width: 100%;
   min-height: 500px;
   padding-left: 40px;
 }
 /* About Us End */
-
 /* Footer Start */
 .footer {
   position: relative;
