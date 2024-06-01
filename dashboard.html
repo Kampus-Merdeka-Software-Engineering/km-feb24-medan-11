@@ -100,29 +100,44 @@
             <section class="dashboard">
                 <div class="filter">
                     <div class="box">
+                        <span class="text">Neighborhood Filter</span>
                         <select
                             class="select"
                             name="neighborhood"
                             id="neighborhood"
                         >
-                            <option value="all">Choose A Neighborhood</option>
+                            <option value="All">ALL</option>
                             <option value="upperEast">Upper East Side</option>
                             <option value="chelsea">Chelsea</option>
                             <option value="greenwich">Greenwich</option>
                         </select>
                     </div>
                     <div class="box">
-                        <select class="select" name="borough" id="borough">
-                            <option value="all">Choose A Borough</option>
-                            <option value="queens">Queens</option>
-                            <option value="brooklyn">Brooklyn</option>
-                            <option value="manhattan">Manhattan</option>
-                            <option value="ronx">Bronx</option>
-                            <option value="statenIsland">Staten Island</option>
+                        <span class="text">Borough Filter</span>
+                        <select
+                            onchange="onSelectFilterBoroughSalesGrowth(this.value), onSelectFilterBoroughUniteSalesChart(this.value), onSelectFilterBoroughNeighborhoodSales(this.value)"
+                            class="select"
+                            name="borough"
+                            id="borough"
+                        >
+                            <option value="All">ALL</option>
+                            <option value="Queens">Queens</option>
+                            <option value="Brooklyn">Brooklyn</option>
+                            <option value="Manhattan">Manhattan</option>
+                            <option value="Bronx">Bronx</option>
+                            <option value="Staten Island">Staten Island</option>
                         </select>
                     </div>
                     <div class="box">
-                        <input class="select" type="date" />
+                        <span class="text">Quarter Filter</span>
+                        <select class="select" name="quarter" id="quarter">
+                            <option value="All">ALL</option>
+                            <option value="Q3, 2016">Q3, 2016</option>
+                            <option value="Q4, 2016">Q4, 2016</option>
+                            <option value="Q1, 2017">Q1, 2017</option>
+                            <option value="Q2, 2017">Q2, 2017</option>
+                            <option value="Q3, 2017">Q3, 2017</option>
+                        </select>
                     </div>
                 </div>
                 <div class="summaryBox">
@@ -132,9 +147,7 @@
                         </span>
                         <div class="summary-text">
                             <span class="text-head">Total Sales</span
-                            ><span class="text" id="total-sales-price"
-                                >$1.1M</span
-                            >
+                            ><span class="text" id="totalsales">$1.1M</span>
                         </div>
                     </div>
                     <div class="box">
@@ -143,9 +156,7 @@
                         </span>
                         <div class="summary-text">
                             <span class="text-head">Average Sales</span
-                            ><span class="text" id="total-sales-price"
-                                >$ 50.120</span
-                            >
+                            ><span class="text" id="avgSales">$ 50.120</span>
                         </div>
                     </div>
                     <div class="box">
@@ -154,60 +165,16 @@
                         </span>
                         <div class="summary-text">
                             <span class="text-head">Total Unit Sales</span
-                            ><span class="text" id="total-unit-sales"
-                                >2.520</span
-                            >
+                            ><span class="text" id="totalUnit">2.520</span>
                         </div>
                     </div>
                 </div>
                 <div class="chartBox">
                     <div class="box">
-                        <form id="sales-growth-form-filter">
-                            <div class="chart-title">
-                                Sales Growth Based On Borought per quarter
-                            </div>
-                            <select
-                                onchange="onSelectFilterBoroughSalesGrowth(this.value)"
-                                name="sales-growth-borough"
-                                id="sales-growth-borough"
-                                class="select"
-                            >
-                                <option value="All">All</option>
-                                <option value="Queens">Queens</option>
-                                <option value="Brooklyn">Brooklyn</option>
-                                <option value="Manhattan">Manhattan</option>
-                                <option value="Bronx">Bronx</option>
-                                <option value="Staten Island">
-                                    Staten Island
-                                </option>
-                            </select>
-                        </form>
-                        <div class="chart-container">
-                            <canvas id="sales-growth-chart"></canvas>
-                        </div>
+                        <canvas id="sales-growth-chart"></canvas>
                     </div>
                     <div class="box">
-                        <form id="sales-unite-form-filter">
-                            <div class="chart-title">Total Unit Sales</div>
-                            <select
-                                onchange="onSelectFilterBoroughUniteSalesChart(this.value)"
-                                name="unite-sale-borough"
-                                id="unite-sale-borough"
-                                class="select"
-                            >
-                                <option value="All">All</option>
-                                <option value="Queens">Queens</option>
-                                <option value="Brooklyn">Brooklyn</option>
-                                <option value="Manhattan">Manhattan</option>
-                                <option value="Bronx">Bronx</option>
-                                <option value="Staten Island">
-                                    Staten Island
-                                </option>
-                            </select>
-                        </form>
-                        <div class="chart-container">
-                            <canvas id="unit-sales-chart"></canvas>
-                        </div>
+                        <canvas id="unit-sales-chart"></canvas>
                     </div>
                     <div class="box">
                         <canvas id="neighborhood-sales"></canvas>

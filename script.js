@@ -1,403 +1,405 @@
 const body = document.querySelector("body"),
-  sidebar = body.querySelector(".sidebar"),
-  toggle = body.querySelector(".toggle"),
-  modeSwitch = body.querySelector(".toggle-switch"),
-  modeText = body.querySelector(".mode-text"),
-  toggle_top = body.querySelector(".toggleTop");
-
-// Variabel penampung chart
-var salesGrowthChart = null;
-var totalUnitSalesChart = null;
-var dataSalesGrowth = null;
-var dataUniteSaleBoroughChart = null;
-var uniteSaleBoroughChart = null;
-
+    sidebar = body.querySelector(".sidebar"),
+    toggle = body.querySelector(".toggle"),
+    modeSwitch = body.querySelector(".toggle-switch"),
+    modeText = body.querySelector(".mode-text"),
+    toggle_top = body.querySelector(".toggleTop");
 // Sidebar Section
 toggle.addEventListener("click", () => {
-  sidebar.classList.toggle("close");
+    sidebar.classList.toggle("close");
 });
 toggle_top.addEventListener("click", () => {
-  sidebar.classList.toggle("close");
+    sidebar.classList.toggle("close");
 });
 modeSwitch.addEventListener("click", () => {
-  body.classList.toggle("dark");
+    body.classList.toggle("dark");
 
-  if (body.classList.contains("dark")) {
-    modeText.innerText = "Light Mode";
-  } else {
-    modeText.innerText = "Dark Mode";
-  }
+    if (body.classList.contains("dark")) {
+        modeText.innerText = "Light Mode";
+    } else {
+        modeText.innerText = "Dark Mode";
+    }
 });
 
-// Fungsi untuk meringkas angka menjadi format ribuan (k) atau miliaran (b)
 function formatNumber(num) {
-  if (num >= 1000000000) {
-    return (num / 1000000000).toFixed(1) + "B";
-  } else if (num >= 1000000) {
-    return (num / 1000000).toFixed(1) + "M";
-  } else if (num >= 1000) {
-    return (num / 1000).toFixed(1) + "K";
-  } else {
-    return num.toString();
-  }
+    if (num >= 1000000000) {
+        return (num / 1000000000).toFixed(1) + "B";
+    } else if (num >= 1000000) {
+        return (num / 1000000).toFixed(1) + "M";
+    } else if (num >= 1000) {
+        return (num / 1000).toFixed(1) + "K";
+    } else {
+        return num.toString();
+    }
 }
-
-// function total-sales-price
+// Function Summary Total Sales Price
 function displayTotalSalesPrice(arrTotalSalesPrice) {
-  var numTotalSalesPrice = 0;
-  arrTotalSalesPrice.forEach((item) => {
-    numTotalSalesPrice += parseInt(item.sale_price);
-  });
-  var formattedTotalSalesPrice = formatNumber(numTotalSalesPrice);
-  document.getElementById("total-sales-price").textContent =
-    "$" + formattedTotalSalesPrice;
+    var numTotalSalesPrice = 0;
+    arrTotalSalesPrice.forEach((item) => {
+        numTotalSalesPrice += parseInt(item.SALE_PRICE);
+    });
+    var formattedTotalSalesPrice = formatNumber(numTotalSalesPrice);
+    document.getElementById("totalsales").textContent =
+        "$" + formattedTotalSalesPrice;
 }
-
-// function total-unit-sales
+// Function Sumary Average Sales Price
+function displayAvgSalesPrice(arrAvgSalesPrice) {
+    var totalUnitSales = arrAvgSalesPrice.length;
+    var numAvgSalesPrice = 0;
+    arrAvgSalesPrice.forEach((item) => {
+        numAvgSalesPrice += parseInt(item.SALE_PRICE);
+    });
+    let avgSalesPrice = numAvgSalesPrice / totalUnitSales;
+    let formattedAvgSalesPrice = formatNumber(avgSalesPrice);
+    document.getElementById("avgSales").textContent =
+        "$" + formattedAvgSalesPrice;
+}
+// Function Summary Total Unit Sales
 function displayTotalUnitSales(arrTotalUnitSales) {
-  var numTotalUnitSales = 0;
-  arrTotalUnitSales.forEach((item) => {
-    numTotalUnitSales = parseInt(arrTotalUnitSales.length);
-  });
-  var formattedTotalUnitSales = formatNumber(numTotalUnitSales);
-  document.getElementById("total-unit-sales").textContent =
-    formattedTotalUnitSales;
+    var numTotalUnitSales = arrTotalUnitSales.length;
+    var formattedTotalUnitSales = formatNumber(numTotalUnitSales);
+    document.getElementById("totalUnit").textContent = formattedTotalUnitSales;
 }
-
 // Fungsi untuk mengurai kuartal dan tahun dari string
 function parseQuarterAndYear(quarterYear) {
-  const [quarter, year] = quarterYear.split(" ");
-  const quarterNumber = parseInt(quarter.replace("Q", ""));
-  return { quarterNumber, year: parseInt(year) };
+    const [quarter, year] = quarterYear.split(" ");
+    const quarterNumber = parseInt(quarter.replace("Q", ""));
+    return { quarterNumber, year: parseInt(year) };
 }
 
 // Fungsi untuk membandingkan kuartal dan tahun
 function compareQuarterAndYear(a, b) {
-  const parsedA = parseQuarterAndYear(a);
-  const parsedB = parseQuarterAndYear(b);
+    const parsedA = parseQuarterAndYear(a);
+    const parsedB = parseQuarterAndYear(b);
 
-  if (parsedA.year !== parsedB.year) {
-    return parsedA.year - parsedB.year;
-  } else {
-    return parsedA.quarterNumber - parsedB.quarterNumber;
-  }
+    if (parsedA.year !== parsedB.year) {
+        return parsedA.year - parsedB.year;
+    } else {
+        return parsedA.quarterNumber - parsedB.quarterNumber;
+    }
 }
 
-// function sales growth
+// Function Chart Sales Growth
 function displaySalesGrowthChart(arrSalesGrowth) {
-  var ctx = document.getElementById("sales-growth-chart").getContext("2d");
-  var arrSaleDate = [];
-  var boroughSalesData = {};
+    var ctx = document.getElementById("sales-growth-chart").getContext("2d");
+    var arrSaleDate = [];
+    var boroughSalesData = {};
 
-  arrSalesGrowth.forEach((item) => {
-    if (!arrSaleDate.includes(item.sale_date)) {
-      arrSaleDate.push(item.sale_date);
-    }
-    if (!boroughSalesData[item.borough]) {
-      boroughSalesData[item.borough] = Array(arrSaleDate.length).fill(0);
-    }
-  });
-
-  // Urutkan arrSaleDate berdasarkan kuartal dan tahun
-  arrSaleDate.sort(compareQuarterAndYear);
-
-  // Perbarui panjang array boroughSalesData setelah pengurutan
-  Object.keys(boroughSalesData).forEach((borough) => {
-    boroughSalesData[borough] = Array(arrSaleDate.length).fill(0);
-  });
-
-  arrSalesGrowth.forEach((item) => {
-    var dateIndex = arrSaleDate.indexOf(item.sale_date);
-    boroughSalesData[item.borough][dateIndex] =
-      (boroughSalesData[item.borough][dateIndex] || 0) +
-      parseFloat(item.sale_price);
-  });
-
-  var datasets = [];
-  Object.keys(boroughSalesData).forEach((borough) => {
-    datasets.push({
-      label: borough,
-      data: boroughSalesData[borough],
-      borderWidth: 1,
-      fill: false,
-      yAxisID: "y",
-    });
-  });
-
-  window.dataSalesGrowth = datasets;
-
-  window.salesGrowthChart = new Chart(ctx, {
-    type: "line",
-    data: {
-      labels: arrSaleDate,
-      datasets: datasets,
-    },
-    options: {
-      maintainAspectRatio: false,
-      responsive: true,
-      interaction: {
-        mode: "index",
-        intersect: false,
-      },
-      stacked: false,
-      plugins: {
-        // title: {
-        //   display: true,
-        //   text: 'Chart.js Line Chart - Multi Axis'
-        // }
-      },
-      scales: {
-        y: {
-          title: {
-            type: "linear",
-            display: true,
-            position: "left",
-            text: 'Total Sales'
-          }
-          
-        },
-        x: {
-          title: {
-            type: "linear",
-            display: true,
-            position: "bottom",
-            text: 'Year Quarter',
-          }
+    arrSalesGrowth.forEach((item) => {
+        if (!arrSaleDate.includes(item.SALE_DATE)) {
+            arrSaleDate.push(item.SALE_DATE);
         }
-      },
-    },
-  });
+        if (!boroughSalesData[item.BOROUGH]) {
+            boroughSalesData[item.BOROUGH] = Array(arrSaleDate.length).fill(0);
+        }
+    });
+
+    // Urutkan arrSaleDate berdasarkan kuartal dan tahun
+    arrSaleDate.sort(compareQuarterAndYear);
+
+    // Perbarui panjang array boroughSalesData setelah pengurutan
+    Object.keys(boroughSalesData).forEach((BOROUGH) => {
+        boroughSalesData[BOROUGH] = Array(arrSaleDate.length).fill(0);
+    });
+
+    arrSalesGrowth.forEach((item) => {
+        var dateIndex = arrSaleDate.indexOf(item.SALE_DATE);
+        boroughSalesData[item.BOROUGH][dateIndex] =
+            (boroughSalesData[item.BOROUGH][dateIndex] || 0) +
+            parseFloat(item.SALE_PRICE);
+    });
+
+    var datasets = [];
+    Object.keys(boroughSalesData).forEach((BOROUGH) => {
+        datasets.push({
+            label: BOROUGH,
+            data: boroughSalesData[BOROUGH],
+            borderWidth: 1,
+            fill: false,
+            yAxisID: "y",
+        });
+    });
+
+    window.dataSalesGrowth = datasets;
+
+    window.salesGrowthChart = new Chart(ctx, {
+        type: "line",
+        data: {
+            labels: arrSaleDate,
+            datasets: datasets,
+        },
+        options: {
+            maintainAspectRatio: false,
+            responsive: true,
+            interaction: {
+                mode: "index",
+                intersect: false,
+            },
+            stacked: false,
+            plugins: {
+                // title: {
+                //   display: true,
+                //   text: 'Chart.js Line Chart - Multi Axis'
+                // }
+            },
+            scales: {
+                y: {
+                    title: {
+                        type: "linear",
+                        display: true,
+                        position: "left",
+                        text: "Total Sales",
+                    },
+                },
+                x: {
+                    title: {
+                        type: "linear",
+                        display: true,
+                        position: "bottom",
+                        text: "Year Quarter",
+                    },
+                },
+            },
+        },
+    });
 }
 
-// function total unit sales
+// Function Total Unit Sales
 function displayTotalUnitSalesChart(arrTotalUnitSales) {
-  var ctx = document.getElementById("unit-sales-chart");
-  var arrBorough = [];
-  var arrTotalUnit = [];
-  arrTotalUnitSales.forEach((item) => {
-    if (!arrBorough.includes(item.borough)) {
-      arrBorough.push(item.borough);
-      arrTotalUnit.push(parseInt(item.total_unit_sale));
-    } else {
-      var index = arrBorough.indexOf(item.borough);
-      arrTotalUnit[index] += parseInt(item.total_unit_sale);
-    }
-  });
-
-  var datasets = [
-    {
-      label: "Total of Unit Sales",
-      data: arrTotalUnit,
-      borderWidth: 1,
-    },
-  ];
-
-  // Simpan dataset asli untuk referensi
-  window.dataUniteSaleBoroughChart = arrTotalUnitSales;
-
-  window.uniteSaleBoroughChart = new Chart(ctx, {
-    type: "bar",
-    data: {
-      labels: arrBorough,
-      datasets: datasets,
-    },
-    options: {
-      maintainAspectRatio: false,
-      indexAxis: "y",
-      scales: {
-        y: {
-          title: {
-            type: "linear",
-            display: true,
-            position: "left",
-            text: 'Borough'
-          }
-        },
-        x: {
-          title: {
-            type: "linear",
-            display: true,
-            position: "bottom",
-            text: 'Total Units Sold'
-          }
+    var ctx = document.getElementById("unit-sales-chart");
+    var arrBorough = [];
+    var arrTotalUnit = [];
+    arrTotalUnitSales.forEach((item) => {
+        if (!arrBorough.includes(item.BOROUGH)) {
+            arrBorough.push(item.BOROUGH);
+            arrTotalUnit.push(parseInt(item.SALE_PRICE * 0 + 1));
+        } else {
+            var index = arrBorough.indexOf(item.BOROUGH);
+            arrTotalUnit[index] += parseInt(item.SALE_PRICE * 0 + 1);
         }
-    },
-    }
-  },);
-}
-
-//function total sales based on neighborhood
-function displayNeighborhoodSalesChart(arrNeighborhoodSales){
-  var ctx = document.getElementById("neighborhood-sales").getContext("2d");
-  var arrSaleDate = [];
-  var neighborhoodSalesData = {};
-
-  // Menghitung total sales ditiap neighborhood
-  var totalSalesPerNeighborhood = {};
-
-  arrNeighborhoodSales. forEach((item) => {
-      if (!arrSaleDate.includes(item.sale_date)){
-          arrSaleDate.push(item.sale_date);
-      }
-      if(!totalSalesPerNeighborhood[item.neighborhood]){
-          totalSalesPerNeighborhood[item.neighborhood] = 0;
-      }
-
-      totalSalesPerNeighborhood[item.neighborhood] += parseFloat(item.sale_price);
-  });
-
-  // Mengurutkan dan ambil top 5
-  var top5Neighborhoods = Object.keys(totalSalesPerNeighborhood)
-      .sort((a, b) => totalSalesPerNeighborhood[b] - totalSalesPerNeighborhood[a])
-      .slice(0, 5);
-      
-  top5Neighborhoods.forEach((neighborhood) => {
-      neighborhoodSalesData[neighborhood] = Array(arrSaleDate.length).fill(0);
-  });
-
-  // Urutkan arrSaleDate berdasarkan kuartal dan tahun
-  arrSaleDate.sort(compareQuarterAndYear);
-
-  arrNeighborhoodSales.forEach((item) => {
-      if (top5Neighborhoods.includes(item.neighborhood)) {
-          var dateIndex = arrSaleDate.indexOf(item.sale_date);
-          neighborhoodSalesData[item.neighborhood][dateIndex] += parseFloat(item.sale_price);
-      }
-  });
-
-  var datasets =[];
-  top5Neighborhoods.forEach((neighborhood) => {
-      datasets.push({
-          label: neighborhood,
-          data: neighborhoodSalesData[neighborhood],
-          borderWidth: 1,
-          fill: false,
-          yAxisID: "y",
-      });
-  });
-
-  new Chart(ctx, {
-      type: "line",
-      data: {
-          labels: arrSaleDate,
-          datasets: datasets,
-      },
-      options: {
-          maintainAspectRatio: false,
-          responsive: true,
-          interaction: {
-              mode: "index",
-              intersect: false,
-          },
-          stacked: false,
-          plugins: {
-              // title: {
-              //   display: true,
-              //   text: 'Chart.js Line Chart - Multi Axis'
-              // }
-          },
-          scales: {
-              y: {
-                title: {
-                  type: "linear",
-                  display: true,
-                  position: "left",
-                  text: 'Total Sales'
-                }
-              },
-              x: {
-                title: {
-                  type: "linear",
-                  display: true,
-                  position: "bottom",
-                  text: 'Year Quarter'
-                }
-              }
-          },
-      },
-  });
-}
-
-// narik data scorecard-total-sales-price.json
-fetch("JSON-file/scorecard.json")
-  .then((response) => {
-    return response.json();
-  })
-  .then((data) => {
-    displayTotalSalesPrice(data);
-  });
-
-// narik data scorecard-total-unit-sales.json
-fetch("JSON-file/scorecard.json")
-  .then((response) => {
-    return response.json();
-  })
-  .then((data) => {
-    displayTotalUnitSales(data);
-  });
-
-// narik data chart-sales-growth.json
-fetch("JSON-file/scorecard.json")
-  .then((response) => {
-    return response.json();
-  })
-  .then((data) => {
-    displaySalesGrowthChart(data);
-  });
-
-// narik data chart-unite-sale-borough.json
-fetch("JSON-file/chart-unite-sale-borough.json")
-  .then((response) => {
-    return response.json();
-  })
-  .then((data) => {
-    displayTotalUnitSalesChart(data);
-  });
-
-//narik data chart-sales-neighborhood.json
-fetch("JSON-file/chart-sales-neighborhood.json")
-.then((response) => {
-    return response.json();
-})
-.then((data) => {
-    displayNeighborhoodSalesChart(data);
-});
-
-function onSelectFilterBoroughSalesGrowth(borough) {
-  var filteredDataset = window.dataSalesGrowth.filter((dataset) => {
-    return dataset.label === borough;
-  });
-  if (borough === "All" || filteredDataset.length === 0) {
-    filteredDataset = window.dataSalesGrowth;
-  }
-  window.salesGrowthChart.data.datasets = filteredDataset;
-  window.salesGrowthChart.update();
-}
-
-function onSelectFilterBoroughUniteSalesChart(borough) {
-  var filteredData = [];
-
-  if (borough === "All") {
-    filteredData = window.dataUniteSaleBoroughChart;
-  } else {
-    filteredData = window.dataUniteSaleBoroughChart.filter((item) => {
-      return item.borough === borough;
     });
-  }
+    //Melakukan transformasi array 1 dimensi menjadi array 2 dimensi
+    var objArrTotalUnitSales = [];
+    arrBorough.forEach((item, index) => {
+        objArrTotalUnitSales.push({
+            borough: item,
+            unit: arrTotalUnit[index],
+        });
+    });
 
-  var arrBorough = [];
-  var arrTotalUnit = [];
-  filteredData.forEach((item) => {
-    if (!arrBorough.includes(item.borough)) {
-      arrBorough.push(item.borough);
-      arrTotalUnit.push(parseInt(item.total_unit_sale));
-    } else {
-      var index = arrBorough.indexOf(item.borough);
-      arrTotalUnit[index] += parseInt(item.total_unit_sale);
-    }
-  });
+    //Mengurutkan data berdasarkan sale price lewat array 2 dimensi
+    objArrTotalUnitSales.sort((a, b) => b.unit - a.unit);
 
-  window.uniteSaleBoroughChart.data.labels = arrBorough;
-  window.uniteSaleBoroughChart.data.datasets[0].data = arrTotalUnit;
-  window.uniteSaleBoroughChart.update();
+    //Mengembalikan data yang sudah diurutkan (sort) dari array 2 dimensi ke array 1 dimensi
+    objArrTotalUnitSales.forEach((item, index) => {
+        arrBorough[index] = item.borough;
+        arrTotalUnit[index] = item.unit;
+    });
+    var datasets = [
+        {
+            label: "Total of Unit Sales",
+            data: arrTotalUnit,
+            borderWidth: 1,
+        },
+    ];
+
+    // Simpan dataset asli untuk referensi
+    window.dataUniteSaleBoroughChart = arrTotalUnitSales;
+
+    window.uniteSaleBoroughChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: arrBorough,
+            datasets: datasets,
+        },
+        options: {
+            maintainAspectRatio: false,
+            indexAxis: "y",
+            scales: {
+                y: {
+                    title: {
+                        type: "linear",
+                        display: true,
+                        position: "left",
+                        text: "Borough",
+                    },
+                },
+                x: {
+                    title: {
+                        type: "linear",
+                        display: true,
+                        position: "bottom",
+                        text: "Total Units Sold",
+                    },
+                },
+            },
+        },
+    });
 }
+// Function Total Sales by Neighborhood
+function displayNeighborhoodSalesChart(arrNeighborhoodSales) {
+    var ctx = document.getElementById("neighborhood-sales").getContext("2d");
+    var arrSaleDate = [];
+    var neighborhoodSalesData = {};
+    // Menghitung total sales ditiap neighborhood
+    var totalSalesPerNeighborhood = {};
+
+    arrNeighborhoodSales.forEach((item) => {
+        if (!arrSaleDate.includes(item.SALE_DATE)) {
+            arrSaleDate.push(item.SALE_DATE);
+        }
+        if (!totalSalesPerNeighborhood[item.NEIGHBORHOOD]) {
+            totalSalesPerNeighborhood[item.NEIGHBORHOOD] = 0;
+        }
+
+        totalSalesPerNeighborhood[item.NEIGHBORHOOD] += parseFloat(
+            item.SALE_PRICE
+        );
+    });
+    // Mengurutkan dan ambil top 5
+    var top5Neighborhoods = Object.keys(totalSalesPerNeighborhood)
+        .sort(
+            (a, b) =>
+                totalSalesPerNeighborhood[b] - totalSalesPerNeighborhood[a]
+        )
+        .slice(0, 5);
+
+    top5Neighborhoods.forEach((NEIGHBORHOOD) => {
+        neighborhoodSalesData[NEIGHBORHOOD] = Array(arrSaleDate.length).fill(0);
+    });
+    // Urutkan arrSaleDate berdasarkan kuartal dan tahun
+    arrSaleDate.sort(compareQuarterAndYear);
+
+    arrNeighborhoodSales.forEach((item) => {
+        if (top5Neighborhoods.includes(item.NEIGHBORHOOD)) {
+            var dateIndex = arrSaleDate.indexOf(item.SALE_DATE);
+            neighborhoodSalesData[item.NEIGHBORHOOD][dateIndex] += parseFloat(
+                item.SALE_PRICE
+            );
+        }
+    });
+
+    var datasets = [];
+    top5Neighborhoods.forEach((NEIGHBORHOOD) => {
+        datasets.push({
+            label: NEIGHBORHOOD,
+            data: neighborhoodSalesData[NEIGHBORHOOD],
+            borderWidth: 1,
+            fill: false,
+            yAxisID: "y",
+        });
+    });
+
+    window.dataNeighborhoodSales = datasets;
+
+    window.salesNeighborhoodChart = new Chart(ctx, {
+        type: "line",
+        data: {
+            labels: arrSaleDate,
+            datasets: datasets,
+        },
+        options: {
+            maintainAspectRatio: false,
+            responsive: true,
+            interaction: {
+                mode: "index",
+                intersect: false,
+            },
+            stacked: false,
+            plugins: {
+                // title: {
+                //   display: true,
+                //   text: 'Chart.js Line Chart - Multi Axis'
+                // }
+            },
+            scales: {
+                y: {
+                    title: {
+                        type: "linear",
+                        display: true,
+                        position: "left",
+                        text: "Total Sales",
+                    },
+                },
+                x: {
+                    title: {
+                        type: "linear",
+                        display: true,
+                        position: "bottom",
+                        text: "Year Quarter",
+                    },
+                },
+            },
+        },
+    });
+}
+// Filter Chart Sales Growth By Borough
+function onSelectFilterBoroughSalesGrowth(BOROUGH) {
+    var filteredDataset = window.dataSalesGrowth.filter((dataset) => {
+        return dataset.label === BOROUGH;
+    });
+    if (BOROUGH === "All" || filteredDataset.length === 0) {
+        filteredDataset = window.dataSalesGrowth;
+    }
+    window.salesGrowthChart.data.datasets = filteredDataset;
+    window.salesGrowthChart.update();
+}
+// Filter Chart Unit Sales Chart by Borough
+function onSelectFilterBoroughUniteSalesChart(BOROUGH) {
+    var filteredData = [];
+
+    if (BOROUGH === "All") {
+        filteredData = window.dataUniteSaleBoroughChart;
+    } else {
+        filteredData = window.dataUniteSaleBoroughChart.filter((item) => {
+            return item.BOROUGH === BOROUGH;
+        });
+    }
+
+    var arrBorough = [];
+    var arrTotalUnit = [];
+    filteredData.forEach((item) => {
+        if (!arrBorough.includes(item.BOROUGH)) {
+            arrBorough.push(item.BOROUGH);
+            arrTotalUnit.push(parseInt(item.SALE_PRICE * 0 + 1));
+        } else {
+            var index = arrBorough.indexOf(item.BOROUGH);
+            arrTotalUnit[index] += parseInt(item.SALE_PRICE * 0 + 1);
+        }
+    });
+    //Melakukan transformasi array 1 dimensi menjadi array 2 dimensi
+    var objArrTotalUnitSales = [];
+    arrBorough.forEach((item, index) => {
+        objArrTotalUnitSales.push({
+            borough: item,
+            unit: arrTotalUnit[index],
+        });
+    });
+
+    //Mengurutkan data berdasarkan sale price lewat array 2 dimensi
+    objArrTotalUnitSales.sort((a, b) => b.unit - a.unit);
+
+    //Mengembalikan data yang sudah diurutkan (sort) dari array 2 dimensi ke array 1 dimensi
+    objArrTotalUnitSales.forEach((item, index) => {
+        arrBorough[index] = item.borough;
+        arrTotalUnit[index] = item.unit;
+    });
+
+    window.uniteSaleBoroughChart.data.labels = arrBorough;
+    window.uniteSaleBoroughChart.data.datasets[0].data = arrTotalUnit;
+    window.uniteSaleBoroughChart.update();
+}
+
+// Ambil data Json
+fetch("JSON-file/nyc_property_sales.json")
+    .then((response) => {
+        return response.json();
+    })
+    .then((data) => {
+        displayTotalSalesPrice(data);
+        displayAvgSalesPrice(data);
+        displayTotalUnitSales(data);
+        displaySalesGrowthChart(data);
+        displayTotalUnitSalesChart(data);
+        displayNeighborhoodSalesChart(data);
+    });
