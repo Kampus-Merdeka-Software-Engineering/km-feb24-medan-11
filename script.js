@@ -32,6 +32,11 @@ function formatNumber(num) {
         return num.toString();
     }
 }
+
+function formatNumberTables(num) {
+    return "$ " + (num / 1000000000).toFixed(1) + " M";
+}
+
 // Function Summary Total Sales Price
 function displayTotalSalesPrice(arrTotalSalesPrice) {
     var numTotalSalesPrice = 0;
@@ -137,10 +142,13 @@ function displaySalesGrowthChart(arrSalesGrowth) {
             },
             stacked: false,
             plugins: {
-                // title: {
-                //   display: true,
-                //   text: 'Chart.js Line Chart - Multi Axis'
-                // }
+                title: {
+                  display: true,
+                  text: 'Total Sales Growth Based On Borough Per Quarter',
+                  font: {
+                    size: 16,
+                },
+                }
             },
             scales: {
                 y: {
@@ -215,6 +223,15 @@ function displayTotalUnitSalesChart(arrTotalUnitSales) {
         options: {
             maintainAspectRatio: false,
             indexAxis: "y",
+            plugins: {
+                title: {
+                    display: true,
+                    text: "Total Units Sold by Borough",
+                    font: {
+                        size: 16,
+                    },
+                },
+            },
             scales: {
                 y: {
                     title: {
@@ -237,102 +254,102 @@ function displayTotalUnitSalesChart(arrTotalUnitSales) {
     });
 }
 // Function Total Sales by Neighborhood
-function displayNeighborhoodSalesChart(arrNeighborhoodSales) {
-    var ctx = document.getElementById("neighborhood-sales").getContext("2d");
-    var arrSaleDate = [];
-    var neighborhoodSalesData = {};
-    // Menghitung total sales ditiap neighborhood
-    var totalSalesPerNeighborhood = {};
+// function displayNeighborhoodSalesChart(arrNeighborhoodSales) {
+//     var ctx = document.getElementById("neighborhood-sales").getContext("2d");
+//     var arrSaleDate = [];
+//     var neighborhoodSalesData = {};
+//     // Menghitung total sales ditiap neighborhood
+//     var totalSalesPerNeighborhood = {};
 
-    arrNeighborhoodSales.forEach((item) => {
-        if (!arrSaleDate.includes(item.SALE_DATE)) {
-            arrSaleDate.push(item.SALE_DATE);
-        }
-        if (!totalSalesPerNeighborhood[item.NEIGHBORHOOD]) {
-            totalSalesPerNeighborhood[item.NEIGHBORHOOD] = 0;
-        }
+//     arrNeighborhoodSales.forEach((item) => {
+//         if (!arrSaleDate.includes(item.SALE_DATE)) {
+//             arrSaleDate.push(item.SALE_DATE);
+//         }
+//         if (!totalSalesPerNeighborhood[item.NEIGHBORHOOD]) {
+//             totalSalesPerNeighborhood[item.NEIGHBORHOOD] = 0;
+//         }
 
-        totalSalesPerNeighborhood[item.NEIGHBORHOOD] += parseFloat(
-            item.SALE_PRICE
-        );
-    });
-    // Mengurutkan dan ambil top 5
-    var top5Neighborhoods = Object.keys(totalSalesPerNeighborhood)
-        .sort(
-            (a, b) =>
-                totalSalesPerNeighborhood[b] - totalSalesPerNeighborhood[a]
-        )
-        .slice(0, 5);
+//         totalSalesPerNeighborhood[item.NEIGHBORHOOD] += parseFloat(
+//             item.SALE_PRICE
+//         );
+//     });
+//     // Mengurutkan dan ambil top 5
+//     var top5Neighborhoods = Object.keys(totalSalesPerNeighborhood)
+//         .sort(
+//             (a, b) =>
+//                 totalSalesPerNeighborhood[b] - totalSalesPerNeighborhood[a]
+//         )
+//         .slice(0, 5);
 
-    top5Neighborhoods.forEach((NEIGHBORHOOD) => {
-        neighborhoodSalesData[NEIGHBORHOOD] = Array(arrSaleDate.length).fill(0);
-    });
-    // Urutkan arrSaleDate berdasarkan kuartal dan tahun
-    arrSaleDate.sort(compareQuarterAndYear);
+//     top5Neighborhoods.forEach((NEIGHBORHOOD) => {
+//         neighborhoodSalesData[NEIGHBORHOOD] = Array(arrSaleDate.length).fill(0);
+//     });
+//     // Urutkan arrSaleDate berdasarkan kuartal dan tahun
+//     arrSaleDate.sort(compareQuarterAndYear);
 
-    arrNeighborhoodSales.forEach((item) => {
-        if (top5Neighborhoods.includes(item.NEIGHBORHOOD)) {
-            var dateIndex = arrSaleDate.indexOf(item.SALE_DATE);
-            neighborhoodSalesData[item.NEIGHBORHOOD][dateIndex] += parseFloat(
-                item.SALE_PRICE
-            );
-        }
-    });
+//     arrNeighborhoodSales.forEach((item) => {
+//         if (top5Neighborhoods.includes(item.NEIGHBORHOOD)) {
+//             var dateIndex = arrSaleDate.indexOf(item.SALE_DATE);
+//             neighborhoodSalesData[item.NEIGHBORHOOD][dateIndex] += parseFloat(
+//                 item.SALE_PRICE
+//             );
+//         }
+//     });
 
-    var datasets = [];
-    top5Neighborhoods.forEach((NEIGHBORHOOD) => {
-        datasets.push({
-            label: NEIGHBORHOOD,
-            data: neighborhoodSalesData[NEIGHBORHOOD],
-            borderWidth: 1,
-            fill: false,
-            yAxisID: "y",
-        });
-    });
+//     var datasets = [];
+//     top5Neighborhoods.forEach((NEIGHBORHOOD) => {
+//         datasets.push({
+//             label: NEIGHBORHOOD,
+//             data: neighborhoodSalesData[NEIGHBORHOOD],
+//             borderWidth: 1,
+//             fill: false,
+//             yAxisID: "y",
+//         });
+//     });
 
-    window.dataNeighborhoodSales = datasets;
+//     window.dataNeighborhoodSales = datasets;
 
-    window.salesNeighborhoodChart = new Chart(ctx, {
-        type: "line",
-        data: {
-            labels: arrSaleDate,
-            datasets: datasets,
-        },
-        options: {
-            maintainAspectRatio: false,
-            responsive: true,
-            interaction: {
-                mode: "index",
-                intersect: false,
-            },
-            stacked: false,
-            plugins: {
-                // title: {
-                //   display: true,
-                //   text: 'Chart.js Line Chart - Multi Axis'
-                // }
-            },
-            scales: {
-                y: {
-                    title: {
-                        type: "linear",
-                        display: true,
-                        position: "left",
-                        text: "Total Sales",
-                    },
-                },
-                x: {
-                    title: {
-                        type: "linear",
-                        display: true,
-                        position: "bottom",
-                        text: "Year Quarter",
-                    },
-                },
-            },
-        },
-    });
-}
+//     window.salesNeighborhoodChart = new Chart(ctx, {
+//         type: "line",
+//         data: {
+//             labels: arrSaleDate,
+//             datasets: datasets,
+//         },
+//         options: {
+//             maintainAspectRatio: false,
+//             responsive: true,
+//             interaction: {
+//                 mode: "index",
+//                 intersect: false,
+//             },
+//             stacked: false,
+//             plugins: {
+//                 // title: {
+//                 //   display: true,
+//                 //   text: 'Chart.js Line Chart - Multi Axis'
+//                 // }
+//             },
+//             scales: {
+//                 y: {
+//                     title: {
+//                         type: "linear",
+//                         display: true,
+//                         position: "left",
+//                         text: "Total Sales",
+//                     },
+//                 },
+//                 x: {
+//                     title: {
+//                         type: "linear",
+//                         display: true,
+//                         position: "bottom",
+//                         text: "Year Quarter",
+//                     },
+//                 },
+//             },
+//         },
+//     });
+// }
 // Filter Chart Sales Growth By Borough
 function onSelectFilterBoroughSalesGrowth(BOROUGH) {
     var filteredDataset = window.dataSalesGrowth.filter((dataset) => {
@@ -390,6 +407,91 @@ function onSelectFilterBoroughUniteSalesChart(BOROUGH) {
     window.uniteSaleBoroughChart.update();
 }
 
+// Residential vs Commercial
+function displayResidentialCommercial(data){
+    var ctx = document.getElementById("residential-commercial");
+    // console.log(data);
+    var totalResidential = data.reduce((acc, curr) => acc + (+curr.RESIDENTIAL_UNITS), 0);
+    var totalCommercial = data.reduce((acc, curr) => acc + (+curr.COMMERCIAL_UNITS), 0);
+    
+    console.log("Total Residential Units:", totalResidential);
+    console.log("Total Commercial Units:", totalCommercial);
+
+    var chartData = {
+        labels: ['Residential', 'Commercial'],
+        datasets: [{
+            data: [totalResidential, totalCommercial],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.5)',
+                'rgba(54, 162, 235, 0.5)',
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+            ],
+            borderWidth: 1
+        }]
+    };
+
+    const config = {
+        type: 'pie',
+        data: chartData,
+        options: {
+          responsive: true,
+          aspectRatio: 1.5,
+          plugins: {
+            legend: {
+              position: 'top',
+            },
+            title: {
+              display: true,
+              text: 'Residential vs Commercial',
+              font: {
+                size: 16,
+            },
+            }
+          }
+        },
+      };
+
+    //   console.log(ctx);
+
+      var myChart = new Chart(ctx, config);
+}
+
+// Datatables
+function displayPropertyData(data) {
+    // Mengelompokkan dan menjumlahkan penjualan berdasarkan kelas bangunan
+    const result = {};
+    data.forEach(item => {
+      const buildingClass = item.BUILDING_CLASS_CATEGORY;
+      const salePrice = parseFloat(item.SALE_PRICE) || 0; // Mengkonversi SALE_PRICE ke float
+      if (result[buildingClass]) {
+        result[buildingClass] += salePrice;
+      } else {
+        result[buildingClass] = salePrice;
+      }
+    });
+
+    const sortedData = Object.entries(result)
+    .sort((a, b) => b[1] - a[1]) // Mengurutkan data dari yang terbesar ke yang terkecil
+    .slice(0, 10); // Mengambil 10 penjualan terbesar
+  
+    // Mengubah hasil pengelompokan menjadi array, mengurutkan, dan mengambil 10 terbesar
+    const processedData = sortedData.map(([buildingClass, totalSales]) => [buildingClass, formatNumberTables(totalSales)]);
+  
+    // Membuat DataTable dengan data yang telah diolah
+    new DataTable('#table-building-class', {
+      data: processedData,
+      columns: [
+        { title: "Building Class" },
+        { title: "Total Sales" }
+      ],
+      dom: 't',
+      ordering: false
+    });
+  }
+
 // Ambil data Json
 fetch("JSON-file/nyc_property_sales.json")
     .then((response) => {
@@ -401,5 +503,7 @@ fetch("JSON-file/nyc_property_sales.json")
         displayTotalUnitSales(data);
         displaySalesGrowthChart(data);
         displayTotalUnitSalesChart(data);
-        displayNeighborhoodSalesChart(data);
+        // displayNeighborhoodSalesChart(data);
+        displayResidentialCommercial(data);
+        displayPropertyData(data);
     });
