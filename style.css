@@ -391,12 +391,56 @@ body.dark .switch::before {
     height: 100% !important;
 }
 
+h4{
+    color: var(--text-color);
+    text-align: center;
+    padding: 7px;
+}
+.dashboard .chartBox .box table#table-building-class {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.dashboard .chartBox .box table#table-building-class th, 
+.dashboard .chartBox .box table#table-building-class td {
+    border: 1px solid #ddd;
+    padding: 3px;
+    font-size: 12px;
+}
+
+.dashboard .chartBox .box table#table-building-class th {
+    background-color: var(--table-color);
+    text-align: center;
+}
+
 /* Dashboard End */
 /* Insight Start */
 .insight {
+    justify-content: center;
+    width: 95%;
+    margin: 10px auto;
+}
+
+.insight .chartBox {
+    position: relative;
     width: 100%;
-    min-height: 500px;
-    padding-left: 40px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 30px;
+}
+
+.insight .chartBox .box {
+    position: relative;
+    background: var(--primary-color-light);
+    padding: 20px;
+    width: 100%;
+    min-height: 250px;
+    overflow: hidden;
+    box-shadow: 0 7px 15px black;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
 }
 /* Insight End */
 /* Teams Start */
@@ -445,6 +489,9 @@ body.dark .switch::before {
     .dashboard .chartBox {
         grid-template-columns: 1fr;
     }
+    .insight .chartBox {
+        grid-template-columns: 1fr;
+    }
 }
 /* Mobile Device */
 @media (max-width: 767px) {
@@ -476,6 +523,9 @@ body.dark .switch::before {
         font-size: 40px;
     }
     .dashboard .chartBox {
+        grid-template-columns: 1fr;
+    }
+    .insight .chartBox {
         grid-template-columns: 1fr;
     }
 }
