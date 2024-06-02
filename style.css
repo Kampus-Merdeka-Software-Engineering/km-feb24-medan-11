@@ -533,3 +533,12 @@ h4{
         grid-template-columns: 1fr;
     }
 }
+
+.chart-title {
+    color: var(--text-color);
+}
+
+/* Dark mode styles */
+body.dark .chart-title {
+    color: var(--toggle-color);
+}
