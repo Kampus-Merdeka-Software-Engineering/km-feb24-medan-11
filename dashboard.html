@@ -17,6 +17,7 @@
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
         />
+        <link rel="stylesheet" href="//cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css">
     </head>
     <body>
         <!-- Navigation Start -->
@@ -177,19 +178,31 @@
                         <canvas id="unit-sales-chart"></canvas>
                     </div>
                     <div class="box">
-                        <canvas id="neighborhood-sales"></canvas>
+                        <canvas id="residential-commercial"></canvas>
                     </div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
-                    <div class="box"></div>
+                    <div class="box">
+                        <table id="table-building-class">
+                            <thead>
+                                <h4>Top 10 Most Property Sold</h4>
+                                <tr>
+                                    <th>Building Class</th>
+                                    <th>Total Sales</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
                 </div>
             </section>
             <!-- Dashboard End -->
             <!-- Insight  Start-->
             <section class="insight">
                 <h2 id="insight">Insight</h2>
+                <div class="chartBox">
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                </div>
             </section>
             <!-- Insight End -->
             <!-- Teams  Start-->
@@ -212,6 +225,8 @@
         <!-- Script -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="script.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="//cdn.datatables.net/2.0.8/js/dataTables.min.js" type="text/javascript"></script>
         <!-- Script End -->
     </body>
 </html>
