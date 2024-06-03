@@ -3,13 +3,18 @@ const body = document.querySelector("body"),
     toggle = body.querySelector(".toggle"),
     modeSwitch = body.querySelector(".toggle-switch"),
     modeText = body.querySelector(".mode-text"),
-    toggle_top = body.querySelector(".toggleTop");
+    toggle_top = body.querySelector(".toggleTop"),
+    box_Desc = body.querySelector(".boxDesc"),
+    box_Arrow = body.querySelector(".boxArrow");
 // Sidebar Section
 toggle.addEventListener("click", () => {
     sidebar.classList.toggle("close");
 });
 toggle_top.addEventListener("click", () => {
     sidebar.classList.toggle("close");
+});
+box_Arrow.addEventListener("click", () => {
+    box_Desc.classList.toggle("close");
 });
 modeSwitch.addEventListener("click", () => {
     body.classList.toggle("dark");
@@ -134,7 +139,6 @@ function displaySalesGrowthChart(arrSalesGrowth) {
             datasets: datasets,
         },
         options: {
-            maintainAspectRatio: false,
             responsive: true,
             interaction: {
                 mode: "index",
@@ -143,12 +147,12 @@ function displaySalesGrowthChart(arrSalesGrowth) {
             stacked: false,
             plugins: {
                 title: {
-                  display: true,
-                  text: 'Total Sales Growth Based On Borough Per Quarter',
-                  font: {
-                    size: 16,
+                    display: true,
+                    text: "Total Sales Growth Based On Borough Per Quarter",
+                    font: {
+                        size: 16,
+                    },
                 },
-                }
             },
             scales: {
                 y: {
@@ -221,7 +225,6 @@ function displayTotalUnitSalesChart(arrTotalUnitSales) {
             datasets: datasets,
         },
         options: {
-            maintainAspectRatio: false,
             indexAxis: "y",
             plugins: {
                 title: {
@@ -384,6 +387,7 @@ function onSelectFilterBoroughUniteSalesChart(BOROUGH) {
             arrTotalUnit[index] += parseInt(item.SALE_PRICE * 0 + 1);
         }
     });
+
     //Melakukan transformasi array 1 dimensi menjadi array 2 dimensi
     var objArrTotalUnitSales = [];
     arrBorough.forEach((item, index) => {
@@ -406,91 +410,99 @@ function onSelectFilterBoroughUniteSalesChart(BOROUGH) {
     window.uniteSaleBoroughChart.data.datasets[0].data = arrTotalUnit;
     window.uniteSaleBoroughChart.update();
 }
-
+function onSelectUpdateFourCharts(BOROUGH) {
+    onSelectFilterBoroughSalesGrowth(BOROUGH);
+    onSelectFilterBoroughUniteSalesChart(BOROUGH);
+}
 // Residential vs Commercial
-function displayResidentialCommercial(data){
+function displayResidentialCommercial(data) {
     var ctx = document.getElementById("residential-commercial");
     // console.log(data);
-    var totalResidential = data.reduce((acc, curr) => acc + (+curr.RESIDENTIAL_UNITS), 0);
-    var totalCommercial = data.reduce((acc, curr) => acc + (+curr.COMMERCIAL_UNITS), 0);
-    
+    var totalResidential = data.reduce(
+        (acc, curr) => acc + +curr.RESIDENTIAL_UNITS,
+        0
+    );
+    var totalCommercial = data.reduce(
+        (acc, curr) => acc + +curr.COMMERCIAL_UNITS,
+        0
+    );
+
     console.log("Total Residential Units:", totalResidential);
     console.log("Total Commercial Units:", totalCommercial);
 
     var chartData = {
-        labels: ['Residential', 'Commercial'],
-        datasets: [{
-            data: [totalResidential, totalCommercial],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.5)',
-                'rgba(54, 162, 235, 0.5)',
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-            ],
-            borderWidth: 1
-        }]
+        labels: ["Residential", "Commercial"],
+        datasets: [
+            {
+                data: [totalResidential, totalCommercial],
+                backgroundColor: [
+                    "rgba(255, 99, 132, 0.5)",
+                    "rgba(54, 162, 235, 0.5)",
+                ],
+                borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)"],
+                borderWidth: 1,
+            },
+        ],
     };
 
     const config = {
-        type: 'pie',
+        type: "pie",
         data: chartData,
         options: {
-          responsive: true,
-          aspectRatio: 1.5,
-          plugins: {
-            legend: {
-              position: 'top',
+            responsive: true,
+            aspectRatio: 1.5,
+            plugins: {
+                legend: {
+                    position: "top",
+                },
+                title: {
+                    display: true,
+                    text: "Residential vs Commercial",
+                    font: {
+                        size: 16,
+                    },
+                },
             },
-            title: {
-              display: true,
-              text: 'Residential vs Commercial',
-              font: {
-                size: 16,
-            },
-            }
-          }
         },
-      };
+    };
 
     //   console.log(ctx);
 
-      var myChart = new Chart(ctx, config);
+    var myChart = new Chart(ctx, config);
 }
 
 // Datatables
 function displayPropertyData(data) {
     // Mengelompokkan dan menjumlahkan penjualan berdasarkan kelas bangunan
     const result = {};
-    data.forEach(item => {
-      const buildingClass = item.BUILDING_CLASS_CATEGORY;
-      const salePrice = parseFloat(item.SALE_PRICE) || 0; // Mengkonversi SALE_PRICE ke float
-      if (result[buildingClass]) {
-        result[buildingClass] += salePrice;
-      } else {
-        result[buildingClass] = salePrice;
-      }
+    data.forEach((item) => {
+        const buildingClass = item.BUILDING_CLASS_CATEGORY;
+        const salePrice = parseFloat(item.SALE_PRICE) || 0; // Mengkonversi SALE_PRICE ke float
+        if (result[buildingClass]) {
+            result[buildingClass] += salePrice;
+        } else {
+            result[buildingClass] = salePrice;
+        }
     });
 
     const sortedData = Object.entries(result)
-    .sort((a, b) => b[1] - a[1]) // Mengurutkan data dari yang terbesar ke yang terkecil
-    .slice(0, 10); // Mengambil 10 penjualan terbesar
-  
+        .sort((a, b) => b[1] - a[1]) // Mengurutkan data dari yang terbesar ke yang terkecil
+        .slice(0, 10); // Mengambil 10 penjualan terbesar
+
     // Mengubah hasil pengelompokan menjadi array, mengurutkan, dan mengambil 10 terbesar
-    const processedData = sortedData.map(([buildingClass, totalSales]) => [buildingClass, formatNumberTables(totalSales)]);
-  
+    const processedData = sortedData.map(([buildingClass, totalSales]) => [
+        buildingClass,
+        formatNumberTables(totalSales),
+    ]);
+
     // Membuat DataTable dengan data yang telah diolah
-    new DataTable('#table-building-class', {
-      data: processedData,
-      columns: [
-        { title: "Building Class" },
-        { title: "Total Sales" }
-      ],
-      dom: 't',
-      ordering: false
+    new DataTable("#table-building-class", {
+        data: processedData,
+        columns: [{ title: "Building Class" }, { title: "Total Sales" }],
+        dom: "t",
+        ordering: false,
     });
-  }
+}
 
 // Ambil data Json
 fetch("JSON-file/nyc_property_sales.json")

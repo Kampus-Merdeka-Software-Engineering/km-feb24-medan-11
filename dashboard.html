@@ -17,7 +17,10 @@
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
         />
-        <link rel="stylesheet" href="//cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css">
+        <link
+            rel="stylesheet"
+            href="//cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css"
+        />
     </head>
     <body>
         <!-- Navigation Start -->
@@ -116,7 +119,7 @@
                     <div class="box">
                         <span class="text">Borough Filter</span>
                         <select
-                            onchange="onSelectFilterBoroughSalesGrowth(this.value), onSelectFilterBoroughUniteSalesChart(this.value), onSelectFilterBoroughNeighborhoodSales(this.value)"
+                            onchange="onSelectUpdateFourCharts(this.value)"
                             class="select"
                             name="borough"
                             id="borough"
@@ -173,6 +176,12 @@
                 <div class="chartBox">
                     <div class="box">
                         <canvas id="sales-growth-chart"></canvas>
+                        <div class="boxDesc close"><p>blablabla</p></div>
+                        <div class="boxArrow">
+                            <span class="material-symbols-outlined">
+                                keyboard_arrow_down
+                            </span>
+                        </div>
                     </div>
                     <div class="box">
                         <canvas id="unit-sales-chart"></canvas>
@@ -225,8 +234,16 @@
         <!-- Script -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="script.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="//cdn.datatables.net/2.0.8/js/dataTables.min.js" type="text/javascript"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+        <script
+            src="//cdn.datatables.net/2.0.8/js/dataTables.min.js"
+            type="text/javascript"
+        ></script>
         <!-- Script End -->
     </body>
 </html>

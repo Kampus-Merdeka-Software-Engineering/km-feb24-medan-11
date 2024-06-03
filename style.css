@@ -394,7 +394,6 @@ body.dark .switch::before {
 
 .chartBox .box canvas {
     width: 100% !important;
-    height: 100% !important;
 }
 
 .chartBox .box h4 {
@@ -420,6 +419,22 @@ body.dark .switch::before {
 .dashboard .chartBox .box table#table-building-class th {
     background-color: var(--table-color);
     text-align: center;
+}
+.chartBox .box .boxDesc {
+    width: 100%;
+    height: 200px;
+}
+.chartBox .box .boxArrow {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+.chartBox .box .boxDesc.close {
+    height: 0;
+}
+.chartBox .box .boxDesc.close p {
+    height: 0;
+    display: none;
 }
 
 /* Dashboard End */
