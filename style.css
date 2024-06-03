@@ -421,7 +421,25 @@ body.dark .switch::before {
     background-color: var(--table-color);
     text-align: center;
 }
-
+.chartBox .box .boxDesc {
+    width: 100%;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+.chartBox .box .boxArrow {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    
+}
+.chartBox .box .boxDesc.close {
+    height: 0;
+}
+.chartBox .box .boxDesc.close p {
+    height: 0;
+    display:none;
+}
 /* Dashboard End */
 /* Insight Start */
 .insight {

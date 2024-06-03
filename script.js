@@ -3,13 +3,18 @@ const body = document.querySelector("body"),
     toggle = body.querySelector(".toggle"),
     modeSwitch = body.querySelector(".toggle-switch"),
     modeText = body.querySelector(".mode-text"),
-    toggle_top = body.querySelector(".toggleTop");
+    toggle_top = body.querySelector(".toggleTop"),
+    box_Desc = body.querySelector(".boxDesc"),
+    box_Arrow = body.querySelector(".boxArrow");
 // Sidebar Section
 toggle.addEventListener("click", () => {
     sidebar.classList.toggle("close");
 });
 toggle_top.addEventListener("click", () => {
     sidebar.classList.toggle("close");
+});
+box_Arrow.addEventListener("click", () => {
+    box_Desc.classList.toggle("close");
 });
 modeSwitch.addEventListener("click", () => {
     body.classList.toggle("dark");
