@@ -410,9 +410,31 @@ function onSelectFilterBoroughUniteSalesChart(BOROUGH) {
     window.uniteSaleBoroughChart.data.datasets[0].data = arrTotalUnit;
     window.uniteSaleBoroughChart.update();
 }
+
+function onSelectUpdateResidentialCommercial(BOROUGH) {
+    var filteredData = window.dataResidentialCommercial;
+    if(BOROUGH !== "All") {
+        filteredData = filteredData.filter((item) => {
+            return item.BOROUGH === BOROUGH;
+        });
+    }
+    var totalResidential = filteredData.reduce(
+        (acc, curr) => acc + +curr.RESIDENTIAL_UNITS,
+        0
+    );
+    var totalCommercial = filteredData.reduce(
+        (acc, curr) => acc + +curr.COMMERCIAL_UNITS,
+        0
+    );
+
+    window.chartResidentialCommercial.data.datasets[0].data = [totalResidential, totalCommercial];
+    window.chartResidentialCommercial.update();
+}
+
 function onSelectUpdateFourCharts(BOROUGH) {
     onSelectFilterBoroughSalesGrowth(BOROUGH);
     onSelectFilterBoroughUniteSalesChart(BOROUGH);
+    onSelectUpdateResidentialCommercial(BOROUGH);
 }
 // Residential vs Commercial
 function displayResidentialCommercial(data) {
@@ -467,8 +489,8 @@ function displayResidentialCommercial(data) {
     };
 
     //   console.log(ctx);
-
-    var myChart = new Chart(ctx, config);
+    window.dataResidentialCommercial = data;
+    window.chartResidentialCommercial = new Chart(ctx, config);
 }
 
 // Datatables
