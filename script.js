@@ -435,6 +435,10 @@ function onSelectUpdateFourCharts(BOROUGH) {
     onSelectFilterBoroughSalesGrowth(BOROUGH);
     onSelectFilterBoroughUniteSalesChart(BOROUGH);
     onSelectUpdateResidentialCommercial(BOROUGH);
+    //
+    //
+    //
+    //
 }
 // Residential vs Commercial
 function displayResidentialCommercial(data) {
