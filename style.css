@@ -423,12 +423,16 @@ body.dark .switch::before {
 }
 .chartBox .box .boxDesc {
     width: 100%;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text-color);
+    height: 200px;
+    transition: var(--tran-04);
+}
+.chartBox .box .boxDesc p {
+    padding: 15px 10px;
+    text-align: justify;
 }
 .chartBox .box .boxArrow {
     display: flex;
+    padding-top: 10px;
     justify-content: center;
     cursor: pointer;
 }
@@ -439,6 +443,7 @@ body.dark .switch::before {
     height: 0;
     display: none;
 }
+
 /* Dashboard End */
 /* Insight Start */
 .insight {
