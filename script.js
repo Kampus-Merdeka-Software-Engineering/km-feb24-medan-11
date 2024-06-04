@@ -281,9 +281,6 @@ function displayResidentialCommercial(data) {
         0
     );
 
-    console.log("Total Residential Units:", totalResidential);
-    console.log("Total Commercial Units:", totalCommercial);
-
     var chartData = {
         labels: ["Residential", "Commercial"],
         datasets: [
@@ -359,103 +356,6 @@ function displayPropertyData(data) {
     window.dataDisplayProperty = data;
     window.tableDisplayProperty = Table;
 }
-// Function Total Sales by Neighborhood
-// function displayNeighborhoodSalesChart(arrNeighborhoodSales) {
-//     var ctx = document.getElementById("neighborhood-sales").getContext("2d");
-//     var arrSaleDate = [];
-//     var neighborhoodSalesData = {};
-//     // Menghitung total sales ditiap neighborhood
-//     var totalSalesPerNeighborhood = {};
-
-//     arrNeighborhoodSales.forEach((item) => {
-//         if (!arrSaleDate.includes(item.SALE_DATE)) {
-//             arrSaleDate.push(item.SALE_DATE);
-//         }
-//         if (!totalSalesPerNeighborhood[item.NEIGHBORHOOD]) {
-//             totalSalesPerNeighborhood[item.NEIGHBORHOOD] = 0;
-//         }
-
-//         totalSalesPerNeighborhood[item.NEIGHBORHOOD] += parseFloat(
-//             item.SALE_PRICE
-//         );
-//     });
-//     // Mengurutkan dan ambil top 5
-//     var top5Neighborhoods = Object.keys(totalSalesPerNeighborhood)
-//         .sort(
-//             (a, b) =>
-//                 totalSalesPerNeighborhood[b] - totalSalesPerNeighborhood[a]
-//         )
-//         .slice(0, 5);
-
-//     top5Neighborhoods.forEach((NEIGHBORHOOD) => {
-//         neighborhoodSalesData[NEIGHBORHOOD] = Array(arrSaleDate.length).fill(0);
-//     });
-//     // Urutkan arrSaleDate berdasarkan kuartal dan tahun
-//     arrSaleDate.sort(compareQuarterAndYear);
-
-//     arrNeighborhoodSales.forEach((item) => {
-//         if (top5Neighborhoods.includes(item.NEIGHBORHOOD)) {
-//             var dateIndex = arrSaleDate.indexOf(item.SALE_DATE);
-//             neighborhoodSalesData[item.NEIGHBORHOOD][dateIndex] += parseFloat(
-//                 item.SALE_PRICE
-//             );
-//         }
-//     });
-
-//     var datasets = [];
-//     top5Neighborhoods.forEach((NEIGHBORHOOD) => {
-//         datasets.push({
-//             label: NEIGHBORHOOD,
-//             data: neighborhoodSalesData[NEIGHBORHOOD],
-//             borderWidth: 1,
-//             fill: false,
-//             yAxisID: "y",
-//         });
-//     });
-
-//     window.dataNeighborhoodSales = datasets;
-
-//     window.salesNeighborhoodChart = new Chart(ctx, {
-//         type: "line",
-//         data: {
-//             labels: arrSaleDate,
-//             datasets: datasets,
-//         },
-//         options: {
-//             maintainAspectRatio: false,
-//             responsive: true,
-//             interaction: {
-//                 mode: "index",
-//                 intersect: false,
-//             },
-//             stacked: false,
-//             plugins: {
-//                 // title: {
-//                 //   display: true,
-//                 //   text: 'Chart.js Line Chart - Multi Axis'
-//                 // }
-//             },
-//             scales: {
-//                 y: {
-//                     title: {
-//                         type: "linear",
-//                         display: true,
-//                         position: "left",
-//                         text: "Total Sales",
-//                     },
-//                 },
-//                 x: {
-//                     title: {
-//                         type: "linear",
-//                         display: true,
-//                         position: "bottom",
-//                         text: "Year Quarter",
-//                     },
-//                 },
-//             },
-//         },
-//     });
-// }
 
 // Filter By Neighborhood
 // Filter Summary Total Sales Price By Neighborhood
@@ -932,7 +832,6 @@ fetch("JSON-file/nyc_property_sales.json")
         displayTotalUnitSales(data);
         displaySalesGrowthChart(data);
         displayTotalUnitSalesChart(data);
-        // displayNeighborhoodSalesChart(data);
         displayResidentialCommercial(data);
         displayPropertyData(data);
     });
