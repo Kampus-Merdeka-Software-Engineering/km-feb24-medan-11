@@ -184,6 +184,7 @@ function displaySalesGrowthChart(arrSalesGrowth) {
                     },
                 },
             },
+            maintainAspectRatio: false
         },
     });
 }
@@ -265,6 +266,7 @@ function displayTotalUnitSalesChart(arrTotalUnitSales) {
                     },
                 },
             },
+            maintainAspectRatio: false
         },
     });
 }
@@ -415,7 +417,7 @@ function displayUnitSalesPerYearBuild(arrUnitPerYearBuild) {
             plugins: {
                 title: {
                     display: true,
-                    text: "Total Unit Sales Based On Year Built",
+                    text: "Total Units Sales Based On Year Built",
                     font: {
                         size: 16,
                     },
@@ -423,9 +425,21 @@ function displayUnitSalesPerYearBuild(arrUnitPerYearBuild) {
             },
             scales: {
                 y: {
-                    beginAtZero: true
-                }
-            }
+                    beginAtZero: true,
+                    title: {
+                        type: "linear",
+                        display: true,
+                        text: "Total Units Sold",
+                    },
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: "Year Built",
+                    },
+                },
+            },
+            maintainAspectRatio: false
         },
     });
 }
@@ -498,7 +512,7 @@ function displaySalesTrendPerTax(arrSalesPerTax){
             plugins: {
                 title: {
                     display: true,
-                    text: "Total Sales Growth Based On Borough Per Quarter",
+                    text: "Sales Trend Based On Tax per Year",
                     font: {
                         size: 16,
                     },
@@ -510,19 +524,18 @@ function displaySalesTrendPerTax(arrSalesPerTax){
                     display: true,
                     position: "left",
                     title: {
-
+                        display: true,
                         text: "Total Sales",
                     },
                 },
                 x: {
                     title: {
-                        // type: "linear",
                         display: true,
-                        // position: "bottom",
-                        text: "Year Quarter",
+                        text: "Year",
                     },
                 },
             },
+            maintainAspectRatio: false
         },
     });
 }
@@ -675,7 +688,7 @@ function onSelectFilterBorougSummaryTotalSales(BOROUGH) {
     filteredData.forEach((item) => {
         numTotalSalesPrice += parseInt(item.SALE_PRICE);
     });
-    console.log(numTotalSalesPrice);
+
     var formattedTotalSalesPrice = formatNumber(numTotalSalesPrice);
     let summaryTotalSales = (document.getElementById("totalsales").textContent =
         "$" + formattedTotalSalesPrice);
