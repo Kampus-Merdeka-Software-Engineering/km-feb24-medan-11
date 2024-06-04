@@ -268,10 +268,11 @@ function displayTotalUnitSalesChart(arrTotalUnitSales) {
         },
     });
 }
+
 // Residential vs Commercial
 function displayResidentialCommercial(data) {
     var ctx = document.getElementById("residential-commercial");
-    // console.log(data);
+
     var totalResidential = data.reduce(
         (acc, curr) => acc + +curr.RESIDENTIAL_UNITS,
         0
@@ -317,7 +318,6 @@ function displayResidentialCommercial(data) {
         },
     };
 
-    //   console.log(ctx);
     window.dataResidentialCommercial = data;
     window.chartResidentialCommercial = new Chart(ctx, config);
 }
@@ -355,6 +355,176 @@ function displayPropertyData(data) {
     });
     window.dataDisplayProperty = data;
     window.tableDisplayProperty = Table;
+}
+
+// function total unit sales based on year built
+function displayUnitSalesPerYearBuild(arrUnitPerYearBuild) {
+    var ctx = document.getElementById("total-unit-based-year-build");
+
+    // Menggabungkan jumlah unit untuk setiap tahun dibangun
+    var unitPerYear = {};
+    arrUnitPerYearBuild.forEach((item) => {
+        if (item.YEAR_BUILT) {
+            if (unitPerYear[item.YEAR_BUILT]) {
+                unitPerYear[item.YEAR_BUILT] += parseInt(item.TOTAL_UNITS);
+            } else {
+                unitPerYear[item.YEAR_BUILT] = parseInt(item.TOTAL_UNITS);
+            }
+        }
+    });
+
+    // Mengubah objek menjadi array untuk memudahkan pengurutan
+    var arrUnitPerYear = Object.keys(unitPerYear).map((key) => {
+        return {
+            YEAR_BUILT: key,
+            TOTAL_UNITS: unitPerYear[key],
+        };
+    });
+
+    // Mengurutkan data berdasarkan total unit dari yang terbesar ke yang terkecil
+    arrUnitPerYear.sort((a, b) => b.TOTAL_UNITS - a.TOTAL_UNITS);
+
+    // Mengambil 10 data pertama setelah diurutkan
+    var top10Data = arrUnitPerYear.slice(0, 10);
+
+    var arrYearBuild = [];
+    var arrTotalUnit = [];
+
+    top10Data.forEach((item) => {
+        arrYearBuild.push(item.YEAR_BUILT);
+        arrTotalUnit.push(item.TOTAL_UNITS);
+    });
+
+    var datasets = [
+        {
+            label: "Total Unit Sales Based on Year Built",
+            data: arrTotalUnit,
+            borderWidth: 1,
+        },
+    ];
+
+    window.dataUniteSaleYearBuildChart = top10Data;
+
+    window.top10UnitSaleYearBuild = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: arrYearBuild,
+            datasets: datasets,
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: "Total Unit Sales Based On Year Built",
+                    font: {
+                        size: 16,
+                    },
+                },
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        },
+    });
+}
+
+// function chart sales per tax class by year
+function displaySalesTrendPerTax(arrSalesPerTax){
+    var ctx = document.getElementById("sales-trend-per-tax").getContext("2d");
+    var arrSaleYear = [];
+    var taxSalesData = {};
+
+    //ambil tahun
+    function extractYear(saleDate) {
+        return "20" + saleDate.slice(2, 4);
+    }
+
+    arrSalesPerTax.forEach((item) => {
+        var saleYear = extractYear(item.SALE_DATE);
+        if (!arrSaleYear.includes(saleYear)) {
+            arrSaleYear.push(saleYear);
+        }
+    });
+
+    arrSaleYear.sort();
+
+    arrSalesPerTax.forEach((item) => {
+        var saleYear = extractYear(item.SALE_DATE);
+        var taxClass = item.TAX_CLASS_AT_PRESENT;
+        if(taxClass){
+            if (!taxSalesData[taxClass]) {
+                taxSalesData[taxClass] = Array(arrSaleYear.length).fill(0);
+            }
+        }
+    });
+
+    arrSalesPerTax.forEach((item) => {
+        var saleYear = extractYear(item.SALE_DATE);
+        var yearIndex = arrSaleYear.indexOf(saleYear);
+        var taxClass = item.TAX_CLASS_AT_PRESENT;
+        if (taxClass) {
+            taxSalesData[taxClass][yearIndex] += parseFloat(item.SALE_PRICE);
+        }
+    });
+
+    var datasets = [];
+    Object.keys(taxSalesData).forEach((taxClass) => {
+        datasets.push({
+            label: taxClass,
+            data: taxSalesData[taxClass],
+            borderWidth: 1,
+            fill: false,
+            yAxisID: "y",
+        });
+    });
+
+    window.dataSalesPerTax = datasets;
+
+    window.salesPerTaxChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: arrSaleYear,
+            datasets: datasets,
+        },
+        options: {
+            responsive: true,
+            interaction: {
+                mode: "index",
+                intersect: false,
+            },
+            stacked: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text: "Total Sales Growth Based On Borough Per Quarter",
+                    font: {
+                        size: 16,
+                    },
+                },
+            },
+            scales: {
+                y: {
+                    type: "linear",
+                    display: true,
+                    position: "left",
+                    title: {
+
+                        text: "Total Sales",
+                    },
+                },
+                x: {
+                    title: {
+                        // type: "linear",
+                        display: true,
+                        // position: "bottom",
+                        text: "Year Quarter",
+                    },
+                },
+            },
+        },
+    });
 }
 
 // Filter By Neighborhood
@@ -834,4 +1004,14 @@ fetch("JSON-file/nyc_property_sales.json")
         displayTotalUnitSalesChart(data);
         displayResidentialCommercial(data);
         displayPropertyData(data);
+        displayUnitSalesPerYearBuild(data);
     });
+
+
+fetch("JSON-file/property-sales.json")
+.then((response) => {
+    return response.json();
+})
+.then((data) => {
+    displaySalesTrendPerTax(data);
+});
