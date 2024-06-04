@@ -470,7 +470,7 @@ function onSelectFilterNeighborhoodSummaryTotalSales(NEIGHBORHOOD) {
     filteredData.forEach((item) => {
         numTotalSalesPrice += parseInt(item.SALE_PRICE);
     });
-    console.log(numTotalSalesPrice);
+
     var formattedTotalSalesPrice = formatNumber(numTotalSalesPrice);
     let summaryTotalSales = (document.getElementById("totalsales").textContent =
         "$" + formattedTotalSalesPrice);
@@ -498,7 +498,7 @@ function onSelectFilterNeighborhoodAvgSales(NEIGHBORHOOD) {
     window.avgSales.data = [summaryAvgSales];
 }
 // Filter Summary Total Unit Sales By Neighborhood
-function onSelectFilterBoroughTotalUnitSales(NEIGHBORHOOD) {
+function onSelectFilterNeighborhoodTotalUnitSales(NEIGHBORHOOD) {
     var filteredData = window.dataSummaryTotalUnit;
     if (NEIGHBORHOOD !== "All") {
         filteredData = filteredData.filter((item) => {
@@ -513,7 +513,7 @@ function onSelectFilterBoroughTotalUnitSales(NEIGHBORHOOD) {
     window.totalUnit = summaryTotalUnit;
 }
 // Filter Chart Sales Growth By Neighborhood
-function onSelectFilterBoroughSalesGrowth(NEIGHBORHOOD) {
+function onSelectFilterNeighborhoodSalesGrowth(NEIGHBORHOOD) {
     var filteredDataset = window.dataSalesGrowth;
 
     if (NEIGHBORHOOD === "All" || filteredDataset.length === 0) {
@@ -523,7 +523,7 @@ function onSelectFilterBoroughSalesGrowth(NEIGHBORHOOD) {
     window.salesGrowthChart.update();
 }
 // Filter Chart Unit Sales By Neighborhodo
-function onSelectFilterBoroughUniteSalesChart(NEIGHBORHOOD) {
+function onSelectFilterNeighborhoodUniteSalesChart(NEIGHBORHOOD) {
     var filteredData = [];
 
     if (NEIGHBORHOOD === "All") {
@@ -569,7 +569,7 @@ function onSelectFilterBoroughUniteSalesChart(NEIGHBORHOOD) {
     window.uniteSaleBoroughChart.update();
 }
 // Filter Chart Residential Commercial By Neighborhood
-function onSelectFilterBoroughResidentialCommercialChart(NEIGHBORHOOD) {
+function onSelectFilterNeighborhoodResidentialCommercialChart(NEIGHBORHOOD) {
     var filteredData = window.dataResidentialCommercial;
     if (NEIGHBORHOOD !== "All") {
         filteredData = filteredData.filter((item) => {
@@ -821,6 +821,52 @@ function onSelectFilterQuarterTotalUnitSales(SALE_DATE) {
 
     window.totalUnit = summaryTotalUnit;
 }
+// Filter Chart Unit Sales Chart by quarter
+function onSelectFilterQuarterUniteSalesChart(SALE_DATE) {
+    var filteredData = [];
+
+    if (SALE_DATE === "All") {
+        filteredData = window.dataUniteSaleBoroughChart;
+    } else {
+        filteredData = window.dataUniteSaleBoroughChart.filter((item) => {
+            return item.SALE_DATE === SALE_DATE;
+        });
+    }
+
+    var arrBorough = [];
+    var arrTotalUnit = [];
+    filteredData.forEach((item) => {
+        if (!arrBorough.includes(item.BOROUGH)) {
+            arrBorough.push(item.BOROUGH);
+            arrTotalUnit.push(parseInt(item.SALE_PRICE * 0 + 1));
+        } else {
+            var index = arrBorough.indexOf(item.BOROUGH);
+            arrTotalUnit[index] += parseInt(item.SALE_PRICE * 0 + 1);
+        }
+    });
+
+    //Melakukan transformasi array 1 dimensi menjadi array 2 dimensi
+    var objArrTotalUnitSales = [];
+    arrBorough.forEach((item, index) => {
+        objArrTotalUnitSales.push({
+            borough: item,
+            unit: arrTotalUnit[index],
+        });
+    });
+
+    //Mengurutkan data berdasarkan sale price lewat array 2 dimensi
+    objArrTotalUnitSales.sort((a, b) => b.unit - a.unit);
+
+    //Mengembalikan data yang sudah diurutkan (sort) dari array 2 dimensi ke array 1 dimensi
+    objArrTotalUnitSales.forEach((item, index) => {
+        arrBorough[index] = item.borough;
+        arrTotalUnit[index] = item.unit;
+    });
+
+    window.uniteSaleBoroughChart.data.labels = arrBorough;
+    window.uniteSaleBoroughChart.data.datasets[0].data = arrTotalUnit;
+    window.uniteSaleBoroughChart.update();
+}
 // Filter Chart Residential Commerceial by Quarter
 function onSelectFilterQuarterResidentialCommercialChart(SALE_DATE) {
     var filteredData = window.dataResidentialCommercial;
@@ -849,10 +895,10 @@ function onSelectFilterQuarterResidentialCommercialChart(SALE_DATE) {
 function onSelectFilterDashboardByNeighborhood(NEIGHBORHOOD) {
     onSelectFilterNeighborhoodSummaryTotalSales(NEIGHBORHOOD);
     onSelectFilterNeighborhoodAvgSales(NEIGHBORHOOD);
-    onSelectFilterBoroughTotalUnitSales(NEIGHBORHOOD);
-    onSelectFilterBoroughSalesGrowth(NEIGHBORHOOD);
-    onSelectFilterBoroughUniteSalesChart(NEIGHBORHOOD);
-    onSelectFilterBoroughResidentialCommercialChart(NEIGHBORHOOD);
+    onSelectFilterNeighborhoodTotalUnitSales(NEIGHBORHOOD);
+    onSelectFilterNeighborhoodSalesGrowth(NEIGHBORHOOD);
+    onSelectFilterNeighborhoodUniteSalesChart(NEIGHBORHOOD);
+    onSelectFilterNeighborhoodResidentialCommercialChart(NEIGHBORHOOD);
 }
 
 // Fungsi yang mengumpulkan fungsi filtering borough
@@ -871,6 +917,7 @@ function onSelectFilterDashboardByQuarter(SALE_DATE) {
     onSelectFilterQuarterSummaryTotalSales(SALE_DATE);
     onSelectFilterQuarterAvgSales(SALE_DATE);
     onSelectFilterQuarterTotalUnitSales(SALE_DATE);
+    onSelectFilterQuarterUniteSalesChart(SALE_DATE);
     onSelectFilterQuarterResidentialCommercialChart(SALE_DATE);
 }
 
