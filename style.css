@@ -469,12 +469,17 @@ body.dark .switch::before {
   background: var(--primary-color-light);
   padding: 20px;
   width: 100%;
-  min-height: 310px;
+  min-height: 340px;
   overflow: hidden;
   box-shadow: 0 7px 15px black;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
+}
+
+.insight .chartBox .box canvas {
+  width: 100% !important;
+  height: 100% !important;
 }
 /* Insight End */
 /* Teams Start */
