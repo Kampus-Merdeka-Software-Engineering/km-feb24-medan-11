@@ -184,7 +184,7 @@ function displaySalesGrowthChart(arrSalesGrowth) {
                     },
                 },
             },
-            maintainAspectRatio: false
+            maintainAspectRatio: false,
         },
     });
 }
@@ -266,7 +266,7 @@ function displayTotalUnitSalesChart(arrTotalUnitSales) {
                     },
                 },
             },
-            maintainAspectRatio: false
+            maintainAspectRatio: false,
         },
     });
 }
@@ -354,6 +354,7 @@ function displayPropertyData(data) {
         columns: [{ title: "Building Class" }, { title: "Total Sales" }],
         dom: "t",
         ordering: false,
+        responsive: true,
     });
     window.dataDisplayProperty = data;
     window.tableDisplayProperty = Table;
@@ -408,7 +409,7 @@ function displayUnitSalesPerYearBuild(arrUnitPerYearBuild) {
     window.dataUniteSaleYearBuildChart = top10Data;
 
     window.top10UnitSaleYearBuild = new Chart(ctx, {
-        type: 'bar',
+        type: "bar",
         data: {
             labels: arrYearBuild,
             datasets: datasets,
@@ -439,13 +440,13 @@ function displayUnitSalesPerYearBuild(arrUnitPerYearBuild) {
                     },
                 },
             },
-            maintainAspectRatio: false
+            maintainAspectRatio: false,
         },
     });
 }
 
 // function chart sales per tax class by year
-function displaySalesTrendPerTax(arrSalesPerTax){
+function displaySalesTrendPerTax(arrSalesPerTax) {
     var ctx = document.getElementById("sales-trend-per-tax").getContext("2d");
     var arrSaleYear = [];
     var taxSalesData = {};
@@ -467,7 +468,7 @@ function displaySalesTrendPerTax(arrSalesPerTax){
     arrSalesPerTax.forEach((item) => {
         var saleYear = extractYear(item.SALE_DATE);
         var taxClass = item.TAX_CLASS_AT_PRESENT;
-        if(taxClass){
+        if (taxClass) {
             if (!taxSalesData[taxClass]) {
                 taxSalesData[taxClass] = Array(arrSaleYear.length).fill(0);
             }
@@ -535,7 +536,7 @@ function displaySalesTrendPerTax(arrSalesPerTax){
                     },
                 },
             },
-            maintainAspectRatio: false
+            maintainAspectRatio: false,
         },
     });
 }
@@ -597,10 +598,56 @@ function onSelectFilterNeighborhoodTotalUnitSales(NEIGHBORHOOD) {
 }
 // Filter Chart Sales Growth By Neighborhood
 function onSelectFilterNeighborhoodSalesGrowth(NEIGHBORHOOD) {
-    var filteredDataset = window.dataSalesGrowth;
+    var filteredDataset = window.dataArrSalesGrowth;
 
-    if (NEIGHBORHOOD === "All" || filteredDataset.length === 0) {
+    if (NEIGHBORHOOD === "All") {
         filteredDataset = window.dataSalesGrowth;
+    } else {
+        filteredDataset = window.dataArrSalesGrowth.filter((dataset) => {
+            return dataset.NEIGHBORHOOD === NEIGHBORHOOD;
+        });
+
+        var arrSaleDate = [];
+        var boroughSalesData = {};
+
+        filteredDataset.forEach((item) => {
+            if (!arrSaleDate.includes(item.SALE_DATE)) {
+                arrSaleDate.push(item.SALE_DATE);
+            }
+            if (!boroughSalesData[item.BOROUGH]) {
+                boroughSalesData[item.BOROUGH] = Array(arrSaleDate.length).fill(
+                    0
+                );
+            }
+        });
+
+        // Urutkan arrSaleDate berdasarkan kuartal dan tahun
+        arrSaleDate.sort(compareQuarterAndYear);
+
+        // Perbarui panjang array boroughSalesData setelah pengurutan
+        Object.keys(boroughSalesData).forEach((BOROUGH) => {
+            boroughSalesData[BOROUGH] = Array(arrSaleDate.length).fill(0);
+        });
+
+        filteredDataset.forEach((item) => {
+            var dateIndex = arrSaleDate.indexOf(item.SALE_DATE);
+            boroughSalesData[item.BOROUGH][dateIndex] =
+                (boroughSalesData[item.BOROUGH][dateIndex] || 0) +
+                parseFloat(item.SALE_PRICE);
+        });
+
+        var datasets = [];
+        Object.keys(boroughSalesData).forEach((BOROUGH) => {
+            datasets.push({
+                label: BOROUGH,
+                data: boroughSalesData[BOROUGH],
+                borderWidth: 1,
+                fill: false,
+                yAxisID: "y",
+            });
+        });
+
+        filteredDataset = datasets;
     }
     window.salesGrowthChart.data.datasets = filteredDataset;
     window.salesGrowthChart.update();
@@ -673,6 +720,44 @@ function onSelectFilterNeighborhoodResidentialCommercialChart(NEIGHBORHOOD) {
         totalCommercial,
     ];
     window.chartResidentialCommercial.update();
+}
+// Filter Table Display Property By Neighborhood
+function onSelectFilterNeighborhoodTableDisplayProperty(NEIGHBORHOOD) {
+    var filteredData = window.dataDisplayProperty;
+    if (NEIGHBORHOOD !== "All") {
+        filteredData = filteredData.filter((item) => {
+            return item.NEIGHBORHOOD === NEIGHBORHOOD;
+        });
+    }
+    const result = {};
+    filteredData.forEach((item) => {
+        const buildingClass = item.BUILDING_CLASS_CATEGORY;
+        const salePrice = parseFloat(item.SALE_PRICE) || 0; // Mengkonversi SALE_PRICE ke float
+        if (result[buildingClass]) {
+            result[buildingClass] += salePrice;
+        } else {
+            result[buildingClass] = salePrice;
+        }
+    });
+
+    const sortedData = Object.entries(result)
+        .sort((a, b) => b[1] - a[1]) // Mengurutkan data dari yang terbesar ke yang terkecil
+        .slice(0, 10); // Mengambil 10 penjualan terbesar
+
+    // Mengubah hasil pengelompokan menjadi array, mengurutkan, dan mengambil 10 terbesar
+    const processedData = sortedData.map(([buildingClass, totalSales]) => [
+        buildingClass,
+        formatNumberTables(totalSales),
+    ]);
+
+    window.tableDisplayProperty.destroy();
+    window.tableDisplayProperty = new DataTable("#table-building-class", {
+        data: processedData,
+        columns: [{ title: "Building Class" }, { title: "Total Sales" }],
+        dom: "t",
+        ordering: false,
+        responsive: true,
+    });
 }
 
 // Filter By Borough
@@ -838,15 +923,15 @@ function onSelectFilterBoroughTableDisplayProperty(BOROUGH) {
         buildingClass,
         formatNumberTables(totalSales),
     ]);
-    let Table = new DataTable("#table-building-class", {
+
+    window.tableDisplayProperty.destroy();
+    window.tableDisplayProperty = new DataTable("#table-building-class", {
         data: processedData,
         columns: [{ title: "Building Class" }, { title: "Total Sales" }],
         dom: "t",
         ordering: false,
+        responsive: true,
     });
-
-    window.dataDisplayProperty.data.datasets[0].data = Table;
-    window.tableDisplayProperty.update();
 }
 
 // Filter By Quarter
@@ -903,6 +988,62 @@ function onSelectFilterQuarterTotalUnitSales(SALE_DATE) {
         formattedTotalUnitSales);
 
     window.totalUnit = summaryTotalUnit;
+}
+// Filter Chart Growth Sales By Quarter
+function onSelectFilterQuarterSalesGrowth(SALE_DATE) {
+    var filteredDataset = window.dataArrSalesGrowth;
+
+    if (SALE_DATE === "All") {
+        filteredDataset = window.dataSalesGrowth;
+    } else {
+        filteredDataset = window.dataArrSalesGrowth.filter((dataset) => {
+            return dataset.SALE_DATE === SALE_DATE;
+        });
+
+        var arrSaleDate = [];
+        var boroughSalesData = {};
+
+        filteredDataset.forEach((item) => {
+            if (!arrSaleDate.includes(item.SALE_DATE)) {
+                arrSaleDate.push(item.SALE_DATE);
+            }
+            if (!boroughSalesData[item.BOROUGH]) {
+                boroughSalesData[item.BOROUGH] = Array(arrSaleDate.length).fill(
+                    0
+                );
+            }
+        });
+
+        // Urutkan arrSaleDate berdasarkan kuartal dan tahun
+        arrSaleDate.sort(compareQuarterAndYear);
+
+        // Perbarui panjang array boroughSalesData setelah pengurutan
+        Object.keys(boroughSalesData).forEach((BOROUGH) => {
+            boroughSalesData[BOROUGH] = Array(arrSaleDate.length).fill(0);
+        });
+
+        filteredDataset.forEach((item) => {
+            var dateIndex = arrSaleDate.indexOf(item.SALE_DATE);
+            boroughSalesData[item.BOROUGH][dateIndex] =
+                (boroughSalesData[item.BOROUGH][dateIndex] || 0) +
+                parseFloat(item.SALE_PRICE);
+        });
+
+        var datasets = [];
+        Object.keys(boroughSalesData).forEach((BOROUGH) => {
+            datasets.push({
+                label: BOROUGH,
+                data: boroughSalesData[BOROUGH],
+                borderWidth: 1,
+                fill: false,
+                yAxisID: "y",
+            });
+        });
+
+        filteredDataset = datasets;
+    }
+    window.salesGrowthChart.data.datasets = filteredDataset;
+    window.salesGrowthChart.update();
 }
 // Filter Chart Unit Sales Chart by quarter
 function onSelectFilterQuarterUniteSalesChart(SALE_DATE) {
@@ -973,6 +1114,44 @@ function onSelectFilterQuarterResidentialCommercialChart(SALE_DATE) {
     ];
     window.chartResidentialCommercial.update();
 }
+// Filter Table Display Property By Quarter
+function onSelectFilterQuarterTableDisplayProperty(SALE_DATE) {
+    var filteredData = window.dataDisplayProperty;
+    if (SALE_DATE !== "All") {
+        filteredData = filteredData.filter((item) => {
+            return item.SALE_DATE === SALE_DATE;
+        });
+    }
+    const result = {};
+    filteredData.forEach((item) => {
+        const buildingClass = item.BUILDING_CLASS_CATEGORY;
+        const salePrice = parseFloat(item.SALE_PRICE) || 0; // Mengkonversi SALE_PRICE ke float
+        if (result[buildingClass]) {
+            result[buildingClass] += salePrice;
+        } else {
+            result[buildingClass] = salePrice;
+        }
+    });
+
+    const sortedData = Object.entries(result)
+        .sort((a, b) => b[1] - a[1]) // Mengurutkan data dari yang terbesar ke yang terkecil
+        .slice(0, 10); // Mengambil 10 penjualan terbesar
+
+    // Mengubah hasil pengelompokan menjadi array, mengurutkan, dan mengambil 10 terbesar
+    const processedData = sortedData.map(([buildingClass, totalSales]) => [
+        buildingClass,
+        formatNumberTables(totalSales),
+    ]);
+
+    window.tableDisplayProperty.destroy();
+    window.tableDisplayProperty = new DataTable("#table-building-class", {
+        data: processedData,
+        columns: [{ title: "Building Class" }, { title: "Total Sales" }],
+        dom: "t",
+        ordering: false,
+        responsive: true,
+    });
+}
 
 // Fungsi yang mengumpulkan fungsi filtering Neighborhood
 function onSelectFilterDashboardByNeighborhood(NEIGHBORHOOD) {
@@ -982,6 +1161,7 @@ function onSelectFilterDashboardByNeighborhood(NEIGHBORHOOD) {
     onSelectFilterNeighborhoodSalesGrowth(NEIGHBORHOOD);
     onSelectFilterNeighborhoodUniteSalesChart(NEIGHBORHOOD);
     onSelectFilterNeighborhoodResidentialCommercialChart(NEIGHBORHOOD);
+    onSelectFilterNeighborhoodTableDisplayProperty(NEIGHBORHOOD);
 }
 
 // Fungsi yang mengumpulkan fungsi filtering borough
@@ -1000,8 +1180,10 @@ function onSelectFilterDashboardByQuarter(SALE_DATE) {
     onSelectFilterQuarterSummaryTotalSales(SALE_DATE);
     onSelectFilterQuarterAvgSales(SALE_DATE);
     onSelectFilterQuarterTotalUnitSales(SALE_DATE);
+    onSelectFilterQuarterSalesGrowth(SALE_DATE);
     onSelectFilterQuarterUniteSalesChart(SALE_DATE);
     onSelectFilterQuarterResidentialCommercialChart(SALE_DATE);
+    onSelectFilterQuarterTableDisplayProperty(SALE_DATE);
 }
 
 // Ambil data Json
@@ -1020,14 +1202,13 @@ fetch("JSON-file/nyc_property_sales.json")
         displayUnitSalesPerYearBuild(data);
     });
 
-
 fetch("JSON-file/property-sales.json")
-.then((response) => {
-    return response.json();
-})
-.then((data) => {
-    displaySalesTrendPerTax(data);
-});
+    .then((response) => {
+        return response.json();
+    })
+    .then((data) => {
+        displaySalesTrendPerTax(data);
+    });
 
 const teamTemplate = document.createElement("template");
 teamTemplate.innerHTML = `
@@ -1090,16 +1271,14 @@ teamTemplate.innerHTML = `
 `;
 
 class Team extends HTMLElement {
-  constructor() {
-    super();
+    constructor() {
+        super();
 
-    const shadowRoot = this.attachShadow({ mode: "open" });
-    shadowRoot.appendChild(teamTemplate.content.cloneNode(true));
+        const shadowRoot = this.attachShadow({ mode: "open" });
+        shadowRoot.appendChild(teamTemplate.content.cloneNode(true));
 
-    shadowRoot.querySelector("img").src = this.getAttribute("image");
-
-
-  }
+        shadowRoot.querySelector("img").src = this.getAttribute("image");
+    }
 }
 
 window.customElements.define("team-card", Team);
