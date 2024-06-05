@@ -351,6 +351,7 @@ function displayPropertyData(data) {
     columns: [{ title: "Building Class" }, { title: "Total Sales" }],
     dom: "t",
     ordering: false,
+    responsive: true,
   });
   window.dataDisplayProperty = data;
   window.tableDisplayProperty = Table;
@@ -886,6 +887,7 @@ function onSelectFilterBoroughTableDisplayProperty(BOROUGH) {
     columns: [{ title: "Building Class" }, { title: "Total Sales" }],
     dom: "t",
     ordering: false,
+    responsive: true,
   });
 
 //   window.dataDisplayProperty.data.datasets[0].data = Table;
