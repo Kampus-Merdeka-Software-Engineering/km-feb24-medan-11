@@ -472,6 +472,7 @@ body.dark .switch::before {
   flex-direction: column;
 }
 /* Insight End */
+
 /* Teams Start */
 .body {
   font-family: Arial, sans-serif;
@@ -486,56 +487,25 @@ body.dark .switch::before {
   margin: 10px auto;
 }
 
-.teams .teams-container {
-  padding: 50px;
-  background-color: var(--primary-color-light);
-  border: 1px solid #ddd;
+.team-group {
   box-shadow: 0 7px 15px black;
-  width: auto;
-  margin-right: 20px;
-  margin-left: 20px;
-  margin-bottom: 50px;
-  border-radius: 10px;
-}
-
-.teams .section-title {
+  margin: 100px auto;
+  width: 99%;
   display: flex;
-  font-size: 28px;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  padding-left: 15px;
-}
-
-.team-leader {
-  text-align: center;
-  font-size: larger;
-  margin-bottom: 15px;
-}
-
-.role-project-capstone {
-  margin-bottom: 20px;
-}
-
-.team-roles-container {
-  display: flex;
+  justify-content: center;
   flex-wrap: wrap;
-  justify-content: space-around;
-  margin-bottom: 35px;
-}
-
-.team-role-wrapper {
-  width: 200px;
-  margin-bottom: 20px;
-}
-
-.team-role {
-  text-align: center;
-}
-
-.team-members {
-  list-style: none;
-  text-align: center;
-  padding: 0;
+  min-height: 100vh;
+  padding-block: 40px;
+  gap: 20px;
+  border-radius: 8px;
+  
+  & > div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
 }
 
 /* Teams End */
