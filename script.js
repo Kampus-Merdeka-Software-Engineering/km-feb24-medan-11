@@ -1100,3 +1100,5 @@ class Team extends HTMLElement {
 
   }
 }
+
+window.customElements.define("team-card", Team);
