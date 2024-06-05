@@ -1083,7 +1083,8 @@ teamTemplate.innerHTML = `
         </div>
             <div class="team-content">
                 <span><slot name="name" />Default name</span>
-                <span><slot name="role" />Default role</span>
+                <span><slot name="role1" />Default role1</span>
+                <span><slot name="role2" />Default role2</span>
             </div>
     </div>
 `;

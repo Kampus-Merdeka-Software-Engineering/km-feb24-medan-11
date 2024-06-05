@@ -490,7 +490,7 @@ body.dark .switch::before {
 .team-group {
   box-shadow: 0 7px 15px black;
   margin: 100px auto;
-  width: 99%;
+  width: 80%;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
