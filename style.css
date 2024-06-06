@@ -590,10 +590,18 @@ body.dark .switch::before {
     .dashboard .summaryBox .box .icon {
         font-size: 40px;
     }
+    #table-building-class td:nth-child(1),
+    #table-building-class td:nth-child(2) {
+        font-size: 11px !important;
+    }
 }
 
 @media (max-width: 375px) {
     .dashboard .filter {
         display: inline;
+    }
+    #table-building-class td:nth-child(1),
+    #table-building-class td:nth-child(2) {
+        font-size: 11px !important;
     }
 }
