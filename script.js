@@ -1284,6 +1284,34 @@ function onSelectFilterDashboardByQuarter(SALE_DATE) {
     onSelectFilterQuarterTableDisplayProperty(SALE_DATE);
 }
 
+//Reset Filter saat memilih filter lain
+const dropdown1 = document.getElementById("neighborhood");
+const dropdown2 = document.getElementById("borough");
+const dropdown3 = document.getElementById("quarter");
+
+const dropdownRelationships = {
+    "neighborhood": [dropdown2, dropdown3],
+    "borough": [dropdown1, dropdown3],
+    "quarter": [dropdown1, dropdown2],
+};
+  
+  Object.keys(dropdownRelationships).forEach((dropdownId) => {
+    const dropdown = document.getElementById(dropdownId);
+    const relatedDropdowns = dropdownRelationships[dropdownId];
+  
+    dropdown.addEventListener("change", () => {
+        if (dropdown.value === "ALL") {
+            relatedDropdowns.forEach((relatedDropdown) => {
+              relatedDropdown.value = "ALL";
+            });
+        } else {
+            relatedDropdowns.forEach((relatedDropdown) => {
+              relatedDropdown.value = "All";
+            });
+          }
+    });
+});
+
 // Ambil data Json
 fetch("JSON-file/nyc_property_sales.json")
     .then((response) => {
