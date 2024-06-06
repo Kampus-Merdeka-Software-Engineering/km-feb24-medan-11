@@ -236,15 +236,14 @@
                         </div>
                         <div class="boxDesc close" id="desc1">
                             <p>
-                                Manhattan stands out as the region with the highest 
-                                total revenue, likely due to the high average prices 
-                                in the area. The average total revenue in Manhattan 
-                                reaches a staggering 7,823,832,438.514, making it the 
-                                leader by a significant margin. In contrast, Staten 
-                                Island records the lowest average total revenue, 
-                                amounting to just 117,752,692.064. This notable 
-                                difference highlights the economic disparity between 
-                                these two regions.
+                                Manhattan emerges as the top-performing region in terms of 
+                                total revenue, largely attributed to its upscale property market. 
+                                With an astonishing average total revenue of 7,823,832,438.514, 
+                                Manhattan leads significantly. Conversely, Staten Island shows 
+                                the lowest average total revenue, a mere 117,752,692.064, 
+                                underscoring the economic contrast between these areas. 
+                                This disparity underscores the diverse economic landscape 
+                                across New York City's boroughs.
                             </p>
                         </div>
                         <div class="boxArrow" onclick="desc('desc1')">
@@ -259,17 +258,11 @@
                         </div>
                         <div class="boxDesc close" id="desc2">
                             <p>
-                                The bar chart illustrates the total units sold by 
-                                borough, focusing on Queens, Brooklyn, Manhattan, Staten Island, 
-                                and the Bronx. It displays the number of units sold, 
-                                with markers at 0, 5,000, 10,000, 15,000, and 20,000 units. 
-                                Queens leads with the highest total sales, reaching 18,102 units, 
-                                followed by Brooklyn with 15,273 units, and Manhattan recording 
-                                14,284 units sold. Meanwhile, Staten Island shows moderate sales 
-                                with 5,871 units, and the Bronx has the lowest sales among the boroughs, 
-                                with only 5,026 units sold. With varying levels of real estate 
-                                activity across boroughs, the chart provides a clear picture 
-                                of sales distribution in the area.
+                                The bar chart depicts total unit sales across boroughs, including Queens, 
+                                Brooklyn, Manhattan, Staten Island, and the Bronx. Queens leads with 
+                                18,102 units sold, followed by Brooklyn with 15,273, and Manhattan with 14,284. 
+                                Staten Island and the Bronx exhibit lower sales, with 5,871 and 5,026 units, respectively. 
+                                This chart succinctly portrays the distribution of real estate activity across boroughs.
                             </p>
                         </div>
                         <div class="boxArrow" onclick="desc('desc2')">
@@ -284,9 +277,13 @@
                         </div>
                         <div class="boxDesc close" id="desc3">
                             <p>
-                                In this pie chart, the residential unit type attracts 
-                                the highest number of buyers, totaling 98,661 units, 
-                                compared to commercial units which only have 9,507 units
+                                In this pie chart, we depict the distribution of property 
+                                units based on two main categories: residential and commercial. 
+                                Residential units are properties used for living purposes, such as houses, 
+                                partments, and condominiums. Commercial units, on the other hand, 
+                                are properties used for commercial activities, such as shops, offices, 
+                                and office buildings.
+                            </p>
                         </div>
                         <div class="boxArrow" onclick="desc('desc3')">
                             <span class="material-symbols-outlined">
@@ -308,16 +305,10 @@
                         </div>
                         <div class="boxDesc" id="desc4">
                             <p>
-                                The table presents the top ten properties with
-                                the highest sales. Apartments with elevators
-                                lead with sales of $18.5 million, followed by
-                                walk-up apartments and others. Commercial
-                                properties like office buildings and store
-                                buildings also recorded significant sales.
-                                Single-family homes are also listed. Other
-                                properties like three-family homes and hotels
-                                show lower sales. Thus, the table provides a
-                                clear overview of property sales trends.
+                                The building category with the highest total sales is 
+                                "13 CONDOS - ELEVATOR APARTMENTS" with total sales amounting to $18.5 million. 
+                                This category includes condominium apartments equipped with elevators, indicating 
+                                that this type of property is highly sought after in the New York City real estate market.
                             </p>
                         </div>
                         <div class="boxArrow" onclick="desc('desc4')">
@@ -334,10 +325,48 @@
                 <h2 class="section-title" id="insight">Insight</h2>
                 <div class="chartBox">
                     <div class="box">
-                        <canvas id="total-unit-based-year-build"></canvas>
+                        <div class="chartContainer">
+                            <canvas id="total-unit-based-year-build"></canvas>
+                        </div>
+                        <div class="boxDesc close" id="desc5">
+                            <p>
+                                Properties built between 1900 and 1960 yield the highest profits, 
+                                with the most lucrative sales occurring for buildings constructed in 1920, 
+                                totaling 10,052k units. This may be attributed to the structural quality 
+                                of buildings constructed during that period. Offering competitive prices 
+                                for buildings with sound structures, especially those built between 
+                                1920 and 1931, could be advantageous.
+                            </p>
+                        </div>
+                        <div class="boxArrow" onclick="desc('desc5')">
+                            <span class="material-symbols-outlined">
+                                keyboard_arrow_down
+                            </span>
+                        </div>
                     </div>
                     <div class="box">
-                        <canvas id="sales-trend-per-tax"></canvas>
+                        <div class="chartContainer">
+                            <canvas id="sales-trend-per-tax"></canvas>
+                        </div>
+                        <div class="boxDesc close" id="desc6">
+                            <p>
+                                Tax 1 refers to "ONE FAMILY DWELLINGS" or single-family homes. 
+                                This includes various types of houses, such as Cape Cod (A0), 
+                                two stories detached (A1), one-story permanent living quarter (A2), 
+                                and others. Tax 2, for example, encompasses "TWO FAMILY DWELLINGS" 
+                                or two-family homes, with variations like two-family brick (B1) 
+                                or two-family frame (B2). Tax 4, on the other hand, pertains 
+                                to "WALK UP APARTMENTS" or apartments with stair access. It also 
+                                includes variations such as three-family apartments (C3) or converted 
+                                dwellings (C5). All these tax classes represent different types 
+                                of properties subject to taxation.
+                            </p>
+                        </div>
+                        <div class="boxArrow" onclick="desc('desc6')">
+                            <span class="material-symbols-outlined">
+                                keyboard_arrow_down
+                            </span>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -403,13 +432,8 @@
                                 <span slot="name">Lutfia Tahir</span>
                                 <span slot="role1">(Data Visualization)</span>
                                 <span slot="role2">(Deployment Team)</span>
-                            </team-card>
-                            <team-card image="">
-                                <span slot="name">Altech Oktavius</span>
-                                <span slot="role1">(Data Communication)</span>
-                                <span slot="role2">(Deployment Team)</span>
-                            </team-card>
-                        </div>
+                            </team-card>git status
+                            
                         <div class="team-4">
                             <team-card image="">
                                 <span slot="name">Selva Dwi Rahmadania</span>
