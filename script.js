@@ -4,10 +4,8 @@ const body = document.querySelector("body"),
     modeSwitch = body.querySelector(".toggle-switch"),
     modeText = body.querySelector(".mode-text"),
     toggle_top = body.querySelector(".toggleTop"),
-    box_Arrow = body.querySelector(".boxArrow"),
-    neighborhood = document.getElementById("neighborhood"),
-    borough = document.getElementById("borough"),
-    quarter = document.getElementById("quarter");
+    box_Arrow = body.querySelector(".boxArrow");
+
 // Sidebar Section
 toggle.addEventListener("click", () => {
     sidebar.classList.toggle("close");
@@ -28,26 +26,6 @@ modeSwitch.addEventListener("click", () => {
     } else {
         modeText.innerText = "Dark Mode";
     }
-});
-
-// Add event listener to filter neighborhood
-neighborhood.addEventListener("change", function () {
-    // Reset select2 when an option is selected in filter neighborhood
-    borough.selectedIndex = 0; // Set it to the default option
-    quarter.selectedIndex = 0; // Set it to the default option
-});
-
-// Add event listener to filter borough
-borough.addEventListener("change", function () {
-    // Reset select1 when an option is selected in filter borough
-    neighborhood.selectedIndex = 0; // Set it to the default option
-    quarter.selectedIndex = 0; // Set it to the default option
-});
-// Add event listener to filter quarter
-quarter.addEventListener("change", function () {
-    // Reset select1 when an option is selected in filter quarter
-    neighborhood.selectedIndex = 0; // Set it to the default option
-    borough.selectedIndex = 0; // Set it to the default option
 });
 
 function formatNumber(num) {
