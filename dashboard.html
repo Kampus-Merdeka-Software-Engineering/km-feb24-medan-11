@@ -231,25 +231,10 @@
                 </div>
                 <div class="chartBox">
                     <div class="box">
-                        <canvas id="sales-growth-chart"></canvas>
-                    </div>
-                    <div class="box">
-                        <canvas id="unit-sales-chart"></canvas>
-                    </div>
-                    <div class="box">
-                        <canvas id="residential-commercial"></canvas>
-                    </div>
-                    <div class="box">
-                        <table class="text-theme" id="table-building-class">
-                            <thead>
-                                <h4>Top 10 Most Property Sold</h4>
-                                <tr>
-                                    <th>Building Class</th>
-                                    <th>Total Sales</th>
-                                </tr>
-                            </thead>
-                        </table>
-                        <div class="boxDesc close">
+                        <div class="chartContainer">
+                            <canvas id="sales-growth-chart"></canvas>
+                        </div>
+                        <div class="boxDesc close" id="desc1">
                             <p>
                                 The table presents the top ten properties with
                                 the highest sales. Apartments with elevators
@@ -263,7 +248,87 @@
                                 clear overview of property sales trends.
                             </p>
                         </div>
-                        <div class="boxArrow">
+                        <div class="boxArrow" onclick="desc('desc1')">
+                            <span class="material-symbols-outlined">
+                                keyboard_arrow_down
+                            </span>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="chartContainer">
+                            <canvas id="unit-sales-chart"></canvas>
+                        </div>
+                        <div class="boxDesc close" id="desc2">
+                            <p>
+                                The table presents the top ten properties with
+                                the highest sales. Apartments with elevators
+                                lead with sales of $18.5 million, followed by
+                                walk-up apartments and others. Commercial
+                                properties like office buildings and store
+                                buildings also recorded significant sales.
+                                Single-family homes are also listed. Other
+                                properties like three-family homes and hotels
+                                show lower sales. Thus, the table provides a
+                                clear overview of property sales trends.
+                            </p>
+                        </div>
+                        <div class="boxArrow" onclick="desc('desc2')">
+                            <span class="material-symbols-outlined">
+                                keyboard_arrow_down
+                            </span>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="chartContainer">
+                            <canvas id="residential-commercial"></canvas>
+                        </div>
+                        <div class="boxDesc close" id="desc3">
+                            <p>
+                                The table presents the top ten properties with
+                                the highest sales. Apartments with elevators
+                                lead with sales of $18.5 million, followed by
+                                walk-up apartments and others. Commercial
+                                properties like office buildings and store
+                                buildings also recorded significant sales.
+                                Single-family homes are also listed. Other
+                                properties like three-family homes and hotels
+                                show lower sales. Thus, the table provides a
+                                clear overview of property sales trends.
+                            </p>
+                        </div>
+                        <div class="boxArrow" onclick="desc('desc3')">
+                            <span class="material-symbols-outlined">
+                                keyboard_arrow_down
+                            </span>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="chartContainer">
+                            <table class="text-theme" id="table-building-class">
+                                <thead>
+                                    <h4>Top 10 Most Property Sold</h4>
+                                    <tr>
+                                        <th>Building Class</th>
+                                        <th>Total Sales</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="boxDesc" id="desc4">
+                            <p>
+                                The table presents the top ten properties with
+                                the highest sales. Apartments with elevators
+                                lead with sales of $18.5 million, followed by
+                                walk-up apartments and others. Commercial
+                                properties like office buildings and store
+                                buildings also recorded significant sales.
+                                Single-family homes are also listed. Other
+                                properties like three-family homes and hotels
+                                show lower sales. Thus, the table provides a
+                                clear overview of property sales trends.
+                            </p>
+                        </div>
+                        <div class="boxArrow" onclick="desc('desc4')">
                             <span class="material-symbols-outlined">
                                 keyboard_arrow_down
                             </span>

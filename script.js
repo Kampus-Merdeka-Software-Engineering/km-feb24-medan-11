@@ -4,7 +4,6 @@ const body = document.querySelector("body"),
     modeSwitch = body.querySelector(".toggle-switch"),
     modeText = body.querySelector(".mode-text"),
     toggle_top = body.querySelector(".toggleTop"),
-    box_Desc = body.querySelector(".boxDesc"),
     box_Arrow = body.querySelector(".boxArrow");
 // Sidebar Section
 toggle.addEventListener("click", () => {
@@ -13,9 +12,11 @@ toggle.addEventListener("click", () => {
 toggle_top.addEventListener("click", () => {
     sidebar.classList.toggle("close");
 });
-box_Arrow.addEventListener("click", () => {
-    box_Desc.classList.toggle("close");
-});
+function desc(descId) {
+    var id = document.getElementById(descId);
+    id.classList.toggle("expanded");
+}
+
 modeSwitch.addEventListener("click", () => {
     body.classList.toggle("dark");
 
@@ -151,6 +152,7 @@ function displaySalesGrowthChart(arrSalesGrowth) {
             datasets: datasets,
         },
         options: {
+            maintainAspectRatio: false,
             responsive: true,
             interaction: {
                 mode: "index",
@@ -184,7 +186,6 @@ function displaySalesGrowthChart(arrSalesGrowth) {
                     },
                 },
             },
-            maintainAspectRatio: false,
         },
     });
 }
@@ -238,6 +239,7 @@ function displayTotalUnitSalesChart(arrTotalUnitSales) {
             datasets: datasets,
         },
         options: {
+            maintainAspectRatio: false,
             indexAxis: "y",
             plugins: {
                 title: {
@@ -266,7 +268,6 @@ function displayTotalUnitSalesChart(arrTotalUnitSales) {
                     },
                 },
             },
-            maintainAspectRatio: false,
         },
     });
 }
@@ -303,6 +304,7 @@ function displayResidentialCommercial(data) {
         type: "pie",
         data: chartData,
         options: {
+            maintainAspectRatio: false,
             responsive: true,
             aspectRatio: 1.5,
             plugins: {
@@ -415,6 +417,7 @@ function displayUnitSalesPerYearBuild(arrUnitPerYearBuild) {
             datasets: datasets,
         },
         options: {
+            maintainAspectRatio: false,
             plugins: {
                 title: {
                     display: true,
@@ -440,7 +443,6 @@ function displayUnitSalesPerYearBuild(arrUnitPerYearBuild) {
                     },
                 },
             },
-            maintainAspectRatio: false,
         },
     });
 }
@@ -504,6 +506,7 @@ function displaySalesTrendPerTax(arrSalesPerTax) {
             datasets: datasets,
         },
         options: {
+            maintainAspectRatio: false,
             responsive: true,
             interaction: {
                 mode: "index",
@@ -536,7 +539,6 @@ function displaySalesTrendPerTax(arrSalesPerTax) {
                     },
                 },
             },
-            maintainAspectRatio: false,
         },
     });
 }

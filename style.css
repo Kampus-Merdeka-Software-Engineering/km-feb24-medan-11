@@ -334,7 +334,7 @@ body.dark .switch::before {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--primary-color-light);
+    background: var(--sidebar-color);
     padding: 10px;
     width: 100%;
     min-height: 100px;
@@ -370,13 +370,14 @@ body.dark .switch::before {
     width: 100%;
     padding: 20px;
     display: grid;
+    align-items: start;
     grid-template-columns: 1fr 1fr;
     grid-gap: 30px;
 }
 
 .dashboard .chartBox .box {
     position: relative;
-    background: var(--primary-color-light);
+    background: var(--sidebar-color);
     padding: 20px;
     width: 100%;
     min-height: 310px;
@@ -384,12 +385,12 @@ body.dark .switch::before {
     box-shadow: 0 7px 15px black;
     border-radius: 20px;
     display: flex;
+    align-items: center;
     flex-direction: column;
 }
-
-.chartBox .box form {
-    margin-bottom: 10px;
+.chartBox .box .chartContainer {
     width: 100%;
+    min-height: 310px;
 }
 
 .chartBox .box h4 {
@@ -417,23 +418,32 @@ body.dark .switch::before {
     text-align: center;
 }
 .chartBox .box .boxDesc {
+    margin: 15px 10px;
     width: 100%;
+    color: var(--text-color);
+    max-height: 0;
+    overflow: auto;
+    transition: max-height 0.3s ease-out;
+}
+.chartBox .box .boxDesc p {
     font-size: 13px;
     font-weight: 500;
-    color: var(--text-color);
+    text-align: center;
+}
+.chartBox .box .boxDesc.expanded {
+    max-height: 100px; /* Ubah sesuai kebutuhan */
 }
 .chartBox .box .boxArrow {
     display: flex;
+    position: absolute;
+    width: 100%;
+    font-weight: bold;
+    color: var(--text-color);
+    bottom: 0;
     justify-content: center;
     cursor: pointer;
 }
-.chartBox .box .boxDesc.close {
-    height: 0;
-}
-.chartBox .box .boxDesc.close p {
-    height: 0;
-    display: none;
-}
+
 /* Dashboard End */
 /* Insight Start */
 .insight {
@@ -460,7 +470,7 @@ body.dark .switch::before {
 
 .insight .chartBox .box {
     position: relative;
-    background: var(--primary-color-light);
+    background: var(--sidebar-color);
     padding: 20px;
     width: 100%;
     min-height: 340px;
@@ -577,58 +587,13 @@ body.dark .switch::before {
     .main .top-main .toggleTop {
         display: block;
     }
-    .dashboard .summaryBox {
-        grid-template-columns: 1fr 1fr;
-    }
     .dashboard .summaryBox .box .icon {
         font-size: 40px;
-    }
-    .dashboard .chartBox {
-        grid-template-columns: 1fr;
-    }
-    .insight .chartBox {
-        grid-template-columns: 1fr;
     }
 }
 
 @media (max-width: 375px) {
-    .sidebar.close {
-        width: 100%;
-        left: -110%;
-    }
-    .sidebar {
-        width: 95%;
-    }
-    .sidebar.close ~ .main {
-        width: 100%;
-    }
-    .main {
-        position: static;
-        left: 0;
-        width: 100%;
-        padding-top: 68px;
-    }
-    .main .top-main {
-        position: fixed;
-        top: 0;
-        z-index: 99;
-    }
-    .main .top-main .toggleTop {
-        display: block;
-    }
     .dashboard .filter {
         display: inline;
-    }
-    .dashboard .summaryBox {
-        grid-template-columns: 1fr 1fr;
-    }
-    .dashboard .summaryBox .box .icon {
-        font-size: 40px;
-    }
-    .dashboard .chartBox {
-        grid-template-columns: 1fr;
-    }
-    .insight .chartBox {
-        grid-template-columns: 1fr;
     }
 }
