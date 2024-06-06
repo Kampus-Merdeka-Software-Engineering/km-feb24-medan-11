@@ -1,456 +1,426 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Dashboard</title>
-        <!-- Font -->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-            rel="stylesheet"
-        />
-        <!-- CSS -->
-        <link rel="stylesheet" href="style.css" />
-        <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
-        />
-        <link
-            rel="stylesheet"
-            href="//cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css"
-        />
-    </head>
-    <body>
-        <!-- Navigation Start -->
-        <nav class="sidebar close">
-            <div class="sidebar-container">
-                <div class="image-text">
-                    <div class="image">
-                        <img src="/image/logo-revou.png" alt="Logo Revou" />
-                    </div>
-                    <div class="text header-text">
-                        <span class="title">Dashboard</span>
-                        <span class="subtitle">Team 11 Medan</span>
-                    </div>
-                </div>
-                <div class="toggle">
-                    <span class="material-symbols-outlined">
-                        chevron_right
-                    </span>
-                </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css"
+    />
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.2/css/responsive.dataTables.min.css"/>
+  </head>
+  <body>
+    <!-- Navigation Start -->
+    <nav class="sidebar close">
+      <div class="sidebar-container">
+        <div class="image-text">
+          <div class="image">
+            <img src="/image/logo-revou.png" alt="Logo Revou" />
+          </div>
+          <div class="text header-text">
+            <span class="title">Dashboard</span>
+            <span class="subtitle">Team 11 Medan</span>
+          </div>
+        </div>
+        <div class="toggle">
+          <span class="material-symbols-outlined"> chevron_right </span>
+        </div>
+      </div>
+      <div class="menu-bar">
+        <div class="menu">
+          <ul class="menu-links">
+            <li class="nav-link">
+              <a href="#dashboard">
+                <span class="material-symbols-outlined icon">Dashboard </span>
+                <span class="text nav-text">Dashboard</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="#insight">
+                <span class="material-symbols-outlined icon">Pie_chart </span>
+                <span class="text nav-text">Insight</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="#teams">
+                <span class="material-symbols-outlined icon">Groups </span>
+                <span class="text nav-text">Teams</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="bottom-content">
+          <ul>
+            <li class="mode">
+              <div class="mode-gelap">
+                <span class="material-symbols-outlined icon light"
+                  >light_mode</span
+                >
+                <span class="material-symbols-outlined icon dark"
+                  >dark_mode</span
+                >
+              </div>
+              <span class="mode-text text">Dark Mode</span>
+              <div class="toggle-switch">
+                <span class="switch"></span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Navigation End -->
+    <!-- Main Start -->
+    <main class="main">
+      <header class="top-main">
+        <a href=""></a>
+        <span class="material-symbols-outlined toggleTop"> menu </span>
+        <h2 id="dashboard">NYC Property Sales</h2>
+      </header>
+      <!-- Dashboard Start -->
+      <section class="dashboard">
+        <div class="filter">
+          <div class="box">
+            <span class="text">Select Neighborhood</span>
+            <select
+              class="select"
+              name="neighborhood"
+              id="neighborhood"
+              onchange="onSelectFilterDashboardByNeighborhood(this.value)"
+            >
+              <option value="All">ALL</option>
+              <option value="UPPER EAST SIDE (59-79)">
+                Upper East Side (59-79)
+              </option>
+              <option value="UPPER EAST SIDE (79-96)">
+                Upper East Side (79-96)
+              </option>
+              <option value="UPPER WEST SIDE (59-79)">
+                Upper West Side (59-79)
+              </option>
+              <option value="CHELSEA">Chelsea</option>
+              <option value="TRIBECA">Tribeca</option>
+              <option value="PARK SLOPE">Park Slop</option>
+              <option value="BEDFORD STUYVESANT">Bedford Stuyvensant</option>
+              <option value="BROOKLYN HEIGHTS">Brooklyn Heights</option>
+              <option value="DOWNTOWN-FULTON FERRY">
+                Downtown-Fulton Ferry
+              </option>
+              <option value="WILLIAMSBURG-NORTH">WilliamBurgs-North</option>
+              <option value="FLUSHING-NORTH">Flushing-North</option>
+              <option value="LONG ISLAND CITY">Long Island City</option>
+              <option value="ASTORIA">Astoria</option>
+              <option value="ELMHURST">Elmhurst</option>
+              <option value="JACKSON HEIGHTS">Jackson Heights</option>
+              <option value="MELROSE/CONCOURSE">Melrose/Concourse</option>
+              <option value="RIVERDALE">Riverdale</option>
+              <option value="KINGSBRIDGE HTS/UNIV HTS">
+                KingsBridge HTS/Univ HTS
+              </option>
+              <option value="MOTT HAVEN/PORT MORRIS">
+                Mott Haven/Port Morris
+              </option>
+              <option value="MORRISANIA/LONGWOOD">Morrisania/Longwood</option>
+              <option value="BLOOMFIELD">Bloomfield</option>
+              <option value="TRAVIS">Travis</option>
+              <option value="TOTTENVILLE">Tottenvile</option>
+              <option value="TODT HILL">Todt Hill</option>
+              <option value="PRINCES BAY">Princes Bay</option>
+            </select>
+          </div>
+          <div class="box">
+            <span class="text">Select Borough</span>
+            <select
+              onchange="onSelectFilterDashboardByBorough(this.value)"
+              class="select"
+              name="borough"
+              id="borough"
+            >
+              <option value="All">ALL</option>
+              <option value="Queens">Queens</option>
+              <option value="Brooklyn">Brooklyn</option>
+              <option value="Manhattan">Manhattan</option>
+              <option value="Bronx">Bronx</option>
+              <option value="Staten Island">Staten Island</option>
+            </select>
+          </div>
+          <div class="box">
+            <span class="text">Select a Time Period</span>
+            <select
+              class="select"
+              name="quarter"
+              id="quarter"
+              onchange="onSelectFilterDashboardByQuarter(this.value)"
+            >
+              <option value="All">ALL</option>
+              <option value="Q3, 2016">Q3, 2016</option>
+              <option value="Q4, 2016">Q4, 2016</option>
+              <option value="Q1, 2017">Q1, 2017</option>
+              <option value="Q2, 2017">Q2, 2017</option>
+              <option value="Q3, 2017">Q3, 2017</option>
+            </select>
+          </div>
+        </div>
+        <div class="summaryBox">
+          <div class="box">
+            <span class="material-symbols-outlined icon"> Pie_chart </span>
+            <div class="summary-text">
+              <span class="text-head">Total Sales</span
+              ><span class="text" id="totalsales">$1.1M</span>
             </div>
-            <div class="menu-bar">
-                <div class="menu">
-                    <ul class="menu-links">
-                        <li class="nav-link">
-                            <a href="#dashboard">
-                                <span class="material-symbols-outlined icon"
-                                    >Dashboard
-                                </span>
-                                <span class="text nav-text">Dashboard</span>
-                            </a>
-                        </li>
-                        <li class="nav-link">
-                            <a href="#insight">
-                                <span class="material-symbols-outlined icon"
-                                    >Pie_chart
-                                </span>
-                                <span class="text nav-text">Insight</span>
-                            </a>
-                        </li>
-                        <li class="nav-link">
-                            <a href="#teams">
-                                <span class="material-symbols-outlined icon"
-                                    >Groups
-                                </span>
-                                <span class="text nav-text">Teams</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="bottom-content">
-                    <ul>
-                        <li class="mode">
-                            <div class="mode-gelap">
-                                <span
-                                    class="material-symbols-outlined icon light"
-                                    >light_mode</span
-                                >
-                                <span
-                                    class="material-symbols-outlined icon dark"
-                                    >dark_mode</span
-                                >
-                            </div>
-                            <span class="mode-text text">Dark Mode</span>
-                            <div class="toggle-switch">
-                                <span class="switch"></span>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+          </div>
+          <div class="box">
+            <span class="material-symbols-outlined icon">
+              data_thresholding
+            </span>
+            <div class="summary-text">
+              <span class="text-head">Average Sales</span
+              ><span class="text" id="avgSales">$ 50.120</span>
             </div>
-        </nav>
-        <!-- Navigation End -->
-        <!-- Main Start -->
-        <main class="main">
-            <header class="top-main">
-                <a href=""></a>
-                <span class="material-symbols-outlined toggleTop"> menu </span>
-                <h2 id="dashboard">NYC Property Sales</h2>
-            </header>
-            <!-- Dashboard Start -->
-            <section class="dashboard">
-                <div class="filter">
-                    <div class="box">
-                        <span class="text">Select Neighborhood</span>
-                        <select
-                            class="select"
-                            name="neighborhood"
-                            id="neighborhood"
-                            onchange="onSelectFilterDashboardByNeighborhood(this.value)"
-                        >
-                            <option value="All">ALL</option>
-                            <option value="UPPER EAST SIDE (59-79)">
-                                Upper East Side (59-79)
-                            </option>
-                            <option value="UPPER EAST SIDE (79-96)">
-                                Upper East Side (79-96)
-                            </option>
-                            <option value="UPPER WEST SIDE (59-79)">
-                                Upper West Side (59-79)
-                            </option>
-                            <option value="CHELSEA">Chelsea</option>
-                            <option value="TRIBECA">Tribeca</option>
-                            <option value="PARK SLOPE">Park Slop</option>
-                            <option value="BEDFORD STUYVESANT">
-                                Bedford Stuyvensant
-                            </option>
-                            <option value="BROOKLYN HEIGHTS">
-                                Brooklyn Heights
-                            </option>
-                            <option value="DOWNTOWN-FULTON FERRY">
-                                Downtown-Fulton Ferry
-                            </option>
-                            <option value="WILLIAMSBURG-NORTH">
-                                WilliamBurgs-North
-                            </option>
-                            <option value="FLUSHING-NORTH">
-                                Flushing-North
-                            </option>
-                            <option value="LONG ISLAND CITY">
-                                Long Island City
-                            </option>
-                            <option value="ASTORIA">Astoria</option>
-                            <option value="ELMHURST">Elmhurst</option>
-                            <option value="JACKSON HEIGHTS">
-                                Jackson Heights
-                            </option>
-                            <option value="MELROSE/CONCOURSE">
-                                Melrose/Concourse
-                            </option>
-                            <option value="RIVERDALE">Riverdale</option>
-                            <option value="KINGSBRIDGE HTS/UNIV HTS">
-                                KingsBridge HTS/Univ HTS
-                            </option>
-                            <option value="MOTT HAVEN/PORT MORRIS">
-                                Mott Haven/Port Morris
-                            </option>
-                            <option value="MORRISANIA/LONGWOOD">
-                                Morrisania/Longwood
-                            </option>
-                            <option value="BLOOMFIELD">Bloomfield</option>
-                            <option value="TRAVIS">Travis</option>
-                            <option value="TOTTENVILLE">Tottenvile</option>
-                            <option value="TODT HILL">Todt Hill</option>
-                            <option value="PRINCES BAY">Princes Bay</option>
-                        </select>
-                    </div>
-                    <div class="box">
-                        <span class="text">Select Borough</span>
-                        <select
-                            onchange="onSelectFilterDashboardByBorough(this.value)"
-                            class="select"
-                            name="borough"
-                            id="borough"
-                        >
-                            <option value="All">ALL</option>
-                            <option value="Queens">Queens</option>
-                            <option value="Brooklyn">Brooklyn</option>
-                            <option value="Manhattan">Manhattan</option>
-                            <option value="Bronx">Bronx</option>
-                            <option value="Staten Island">Staten Island</option>
-                        </select>
-                    </div>
-                    <div class="box">
-                        <span class="text">Select a Time Period</span>
-                        <select
-                            class="select"
-                            name="quarter"
-                            id="quarter"
-                            onchange="onSelectFilterDashboardByQuarter(this.value)"
-                        >
-                            <option value="All">ALL</option>
-                            <option value="Q3, 2016">Q3, 2016</option>
-                            <option value="Q4, 2016">Q4, 2016</option>
-                            <option value="Q1, 2017">Q1, 2017</option>
-                            <option value="Q2, 2017">Q2, 2017</option>
-                            <option value="Q3, 2017">Q3, 2017</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="summaryBox">
-                    <div class="box">
-                        <span class="material-symbols-outlined icon">
-                            Pie_chart
-                        </span>
-                        <div class="summary-text">
-                            <span class="text-head">Total Sales</span
-                            ><span class="text" id="totalsales">$1.1M</span>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <span class="material-symbols-outlined icon">
-                            data_thresholding
-                        </span>
-                        <div class="summary-text">
-                            <span class="text-head">Average Sales</span
-                            ><span class="text" id="avgSales">$ 50.120</span>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <span class="material-symbols-outlined icon">
-                            apartment
-                        </span>
-                        <div class="summary-text">
-                            <span class="text-head">Total Unit Sales</span
-                            ><span class="text" id="totalUnit">2.520</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="chartBox">
-                    <div class="box">
-                        <div class="chartContainer">
-                            <canvas id="sales-growth-chart"></canvas>
-                        </div>
-                        <div class="boxDesc close" id="desc1">
-                            <p>
-                                Manhattan stands out as the region with the highest 
-                                total revenue, likely due to the high average prices 
-                                in the area. The average total revenue in Manhattan 
-                                reaches a staggering 7,823,832,438.514, making it the 
-                                leader by a significant margin. In contrast, Staten 
-                                Island records the lowest average total revenue, 
-                                amounting to just 117,752,692.064. This notable 
-                                difference highlights the economic disparity between 
-                                these two regions.
-                            </p>
-                        </div>
-                        <div class="boxArrow" onclick="desc('desc1')">
-                            <span class="material-symbols-outlined">
-                                keyboard_arrow_down
-                            </span>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="chartContainer">
-                            <canvas id="unit-sales-chart"></canvas>
-                        </div>
-                        <div class="boxDesc close" id="desc2">
-                            <p>
-                                The bar chart illustrates the total units sold by 
-                                borough, focusing on Queens, Brooklyn, Manhattan, Staten Island, 
-                                and the Bronx. It displays the number of units sold, 
-                                with markers at 0, 5,000, 10,000, 15,000, and 20,000 units. 
-                                Queens leads with the highest total sales, reaching 18,102 units, 
-                                followed by Brooklyn with 15,273 units, and Manhattan recording 
-                                14,284 units sold. Meanwhile, Staten Island shows moderate sales 
-                                with 5,871 units, and the Bronx has the lowest sales among the boroughs, 
-                                with only 5,026 units sold. With varying levels of real estate 
-                                activity across boroughs, the chart provides a clear picture 
-                                of sales distribution in the area.
-                            </p>
-                        </div>
-                        <div class="boxArrow" onclick="desc('desc2')">
-                            <span class="material-symbols-outlined">
-                                keyboard_arrow_down
-                            </span>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="chartContainer">
-                            <canvas id="residential-commercial"></canvas>
-                        </div>
-                        <div class="boxDesc close" id="desc3">
-                            <p>
-                                In this pie chart, the residential unit type attracts 
-                                the highest number of buyers, totaling 98,661 units, 
-                                compared to commercial units which only have 9,507 units
-                        </div>
-                        <div class="boxArrow" onclick="desc('desc3')">
-                            <span class="material-symbols-outlined">
-                                keyboard_arrow_down
-                            </span>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="chartContainer">
-                            <table class="text-theme" id="table-building-class">
-                                <thead>
-                                    <h4>Top 10 Most Property Sold</h4>
-                                    <tr>
-                                        <th>Building Class</th>
-                                        <th>Total Sales</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                        <div class="boxDesc" id="desc4">
-                            <p>
-                                The table presents the top ten properties with
-                                the highest sales. Apartments with elevators
-                                lead with sales of $18.5 million, followed by
-                                walk-up apartments and others. Commercial
-                                properties like office buildings and store
-                                buildings also recorded significant sales.
-                                Single-family homes are also listed. Other
-                                properties like three-family homes and hotels
-                                show lower sales. Thus, the table provides a
-                                clear overview of property sales trends.
-                            </p>
-                        </div>
-                        <div class="boxArrow" onclick="desc('desc4')">
-                            <span class="material-symbols-outlined">
-                                keyboard_arrow_down
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Dashboard End -->
-            <!-- Insight  Start-->
-            <section class="insight">
-                <h2 class="section-title" id="insight">Insight</h2>
-                <div class="chartBox">
-                    <div class="box">
-                        <canvas id="total-unit-based-year-build"></canvas>
-                    </div>
-                    <div class="box">
-                        <canvas id="sales-trend-per-tax"></canvas>
-                    </div>
-                </div>
-            </section>
-            <!-- Insight End -->
-            <!-- Teams  Start-->
-            <section class="teams">
-                <div class="panel">
-                    <button class="collapsible">Teams<span class="arrow"></span></button>
-                    <div class="team-group">
-                        <div class="team-lead">
-                            <team-card image="">
-                                <span slot="name">Rafli Rifaldi</span>
-                                <span slot="role1">(Leader Data Analyst)</span>
-                                <span slot="role2">(Front End Engineer)</span>
-                            </team-card>
-                            <team-card image="">
-                                <span slot="name">Syifa Luqyana</span>
-                                <span slot="role1">(Leader Software Engineer)</span>
-                                <span slot="role2">(Data Cleaning)</span>
-                            </team-card>
-                        </div>
-                        <div class="team-1">
-                            <team-card image="">
-                                <span slot="name">Tarasyah Faz'lin</span>
-                                <span slot="role1">(Data Cleaning)</span>
-                                <span slot="role2">(Quality Assurance)</span>
-                            </team-card>
-                            <team-card image="">
-                                <span slot="name">Vania Widyadhari A</span>
-                                <span slot="role1">(Data Cleaning)</span>
-                                <span slot="role2">(Pitch Deck Tea)</span>
-                            </team-card>
-                            <team-card image="">
-                                <span slot="name">Auliyani Abdillah Rmb</span>
-                                <span slot="role1">(Data Analyst)</span>
-                                <span slot="role2">(Pitch Deck Tea)</span>
-                            </team-card>
-                        </div>
-                        <div class="team-2">
-                            <team-card image="">
-                                <span slot="name">Surya Andriyani</span>
-                                <span slot="role1">(Data Analyst)</span>
-                                <span slot="role2">(Front End Engineer)</span>
-                            </team-card>
-                            <team-card image="">
-                                <span slot="name">Uci Ayu Lestari</span>
-                                <span slot="role1">(Data Analyst)</span>
-                                <span slot="role2">(Deployment Team)</span>
-                            </team-card>
-                            <team-card image="">
-                                <span slot="name">Dodi Pangestu</span>
-                                <span slot="role1">(Data Visualization)</span>
-                                <span slot="role2">(Front End Engineer)</span>
-                            </team-card>
-                        </div>
-                        <div class="team-3">
-                            <team-card image="">
-                                <span slot="name">Farhan Ari Nur W</span>
-                                <span slot="role1">(Data Visualization)</span>
-                                <span slot="role2">(Front End Engineer)</span>
-                            </team-card>
-                            <team-card image="">
-                                <span slot="name">Lutfia Tahir</span>
-                                <span slot="role1">(Data Visualization)</span>
-                                <span slot="role2">(Deployment Team)</span>
-                            </team-card>
-                            <team-card image="">
-                                <span slot="name">Altech Oktavius</span>
-                                <span slot="role1">(Data Communication)</span>
-                                <span slot="role2">(Deployment Team)</span>
-                            </team-card>
-                        </div>
-                        <div class="team-4">
-                            <team-card image="">
-                                <span slot="name">Selva Dwi Rahmadania</span>
-                                <span slot="role1">(Data Communication)</span>
-                                <span slot="role2">(Quality Assurance)</span>
-                            </team-card>
-                            <team-card image="">
-                                <span slot="name">Dzahwa Laely Putri R</span>
-                                <span slot="role1">(Data Communication)</span>
-                                <span slot="role2">(Quality Assurance)</span>
-                            </team-card>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Teams End -->
-            <!-- Footer Start -->
-            <footer class="footer">
-                <div class="copyright">
-                    <div class="text">
-                        © COPYRIGHT 2024 DASHBOARD-MEDAN 11 ALL RIGHTS RESERVED.
-                    </div>
-                </div>
-            </footer>
-            <!-- Footer End -->
-        </main>
-        <!-- Main End -->
-        <!-- Script -->
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"
-        ></script>
-        <script
-            src="//cdn.datatables.net/2.0.8/js/dataTables.min.js"
-            type="text/javascript"
-        ></script>
-        <script src="https://cdn.datatables.net/responsive/3.0.2/js/dataTables.responsive.min.js"></script>
-        <script src="script.js"></script>
-        <!-- Script End -->
-    </body>
+          </div>
+          <div class="box">
+            <span class="material-symbols-outlined icon"> apartment </span>
+            <div class="summary-text">
+              <span class="text-head">Total Unit Sales</span
+              ><span class="text" id="totalUnit">2.520</span>
+            </div>
+          </div>
+        </div>
+        <div class="chartBox">
+          <div class="box">
+            <div class="chartContainer">
+              <canvas id="sales-growth-chart"></canvas>
+            </div>
+            <div class="boxDesc close" id="desc1">
+              <p>
+                Manhattan stands out as the region with the highest total
+                revenue, likely due to the high average prices in the area. The
+                average total revenue in Manhattan reaches a staggering
+                7,823,832,438.514, making it the leader by a significant margin.
+                In contrast, Staten Island records the lowest average total
+                revenue, amounting to just 117,752,692.064. This notable
+                difference highlights the economic disparity between these two
+                regions.
+              </p>
+            </div>
+            <div class="boxArrow" onclick="desc('desc1')">
+              <span class="material-symbols-outlined">
+                keyboard_arrow_down
+              </span>
+            </div>
+          </div>
+          <div class="box">
+            <div class="chartContainer">
+              <canvas id="unit-sales-chart"></canvas>
+            </div>
+            <div class="boxDesc close" id="desc2">
+              <p>
+                The bar chart illustrates the total units sold by borough,
+                focusing on Queens, Brooklyn, Manhattan, Staten Island, and the
+                Bronx. It displays the number of units sold, with markers at 0,
+                5,000, 10,000, 15,000, and 20,000 units. Queens leads with the
+                highest total sales, reaching 18,102 units, followed by Brooklyn
+                with 15,273 units, and Manhattan recording 14,284 units sold.
+                Meanwhile, Staten Island shows moderate sales with 5,871 units,
+                and the Bronx has the lowest sales among the boroughs, with only
+                5,026 units sold. With varying levels of real estate activity
+                across boroughs, the chart provides a clear picture of sales
+                distribution in the area.
+              </p>
+            </div>
+            <div class="boxArrow" onclick="desc('desc2')">
+              <span class="material-symbols-outlined">
+                keyboard_arrow_down
+              </span>
+            </div>
+          </div>
+          <div class="box">
+            <div class="chartContainer">
+              <canvas id="residential-commercial"></canvas>
+            </div>
+            <div class="boxDesc close" id="desc3">
+              <p>
+                In this pie chart, the residential unit type attracts the
+                highest number of buyers, totaling 98,661 units, compared to
+                commercial units which only have 9,507 units
+              </p>
+            </div>
+
+            <div class="boxArrow" onclick="desc('desc3')">
+              <span class="material-symbols-outlined">
+                keyboard_arrow_down
+              </span>
+            </div>
+          </div>
+          <div class="box">
+            <div class="chartContainer">
+              <table class="text-theme" id="table-building-class">
+                <thead>
+                  <h4>Top 10 Most Property Sold</h4>
+                  <tr>
+                    <th>Building Class</th>
+                    <th>Total Sales</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <div class="boxDesc" id="desc4">
+              <p>
+                The table presents the top ten properties with the highest
+                sales. Apartments with elevators lead with sales of $18.5
+                million, followed by walk-up apartments and others. Commercial
+                properties like office buildings and store buildings also
+                recorded significant sales. Single-family homes are also listed.
+                Other properties like three-family homes and hotels show lower
+                sales. Thus, the table provides a clear overview of property
+                sales trends.
+              </p>
+            </div>
+            <div class="boxArrow" onclick="desc('desc4')">
+              <span class="material-symbols-outlined">
+                keyboard_arrow_down
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Dashboard End -->
+      <!-- Insight  Start-->
+      <section class="insight">
+        <h2 class="section-title" id="insight">Insight</h2>
+        <div class="chartBox">
+          <div class="box">
+            <canvas id="total-unit-based-year-build"></canvas>
+          </div>
+          <div class="box">
+            <canvas id="sales-trend-per-tax"></canvas>
+          </div>
+        </div>
+      </section>
+      <!-- Insight End -->
+      <!-- Teams  Start-->
+      <section class="teams">
+        <div class="panel">
+          <button class="collapsible">Teams<span class="arrow"></span></button>
+          <div class="team-group">
+            <div class="team-lead">
+              <team-card image="">
+                <span slot="name">Rafli Rifaldi</span>
+                <span slot="role1">(Leader Data Analyst)</span>
+                <span slot="role2">(Front End Engineer)</span>
+              </team-card>
+              <team-card image="">
+                <span slot="name">Syifa Luqyana</span>
+                <span slot="role1">(Leader Software Engineer)</span>
+                <span slot="role2">(Data Cleaning)</span>
+              </team-card>
+            </div>
+            <div class="team-1">
+              <team-card image="">
+                <span slot="name">Tarasyah Faz'lin</span>
+                <span slot="role1">(Data Cleaning)</span>
+                <span slot="role2">(Quality Assurance)</span>
+              </team-card>
+              <team-card image="">
+                <span slot="name">Vania Widyadhari A</span>
+                <span slot="role1">(Data Cleaning)</span>
+                <span slot="role2">(Pitch Deck Tea)</span>
+              </team-card>
+              <team-card image="">
+                <span slot="name">Auliyani Abdillah Rmb</span>
+                <span slot="role1">(Data Analyst)</span>
+                <span slot="role2">(Pitch Deck Tea)</span>
+              </team-card>
+            </div>
+            <div class="team-2">
+              <team-card image="">
+                <span slot="name">Surya Andriyani</span>
+                <span slot="role1">(Data Analyst)</span>
+                <span slot="role2">(Front End Engineer)</span>
+              </team-card>
+              <team-card image="">
+                <span slot="name">Uci Ayu Lestari</span>
+                <span slot="role1">(Data Analyst)</span>
+                <span slot="role2">(Deployment Team)</span>
+              </team-card>
+              <team-card image="">
+                <span slot="name">Dodi Pangestu</span>
+                <span slot="role1">(Data Visualization)</span>
+                <span slot="role2">(Front End Engineer)</span>
+              </team-card>
+            </div>
+            <div class="team-3">
+              <team-card image="">
+                <span slot="name">Farhan Ari Nur W</span>
+                <span slot="role1">(Data Visualization)</span>
+                <span slot="role2">(Front End Engineer)</span>
+              </team-card>
+              <team-card image="">
+                <span slot="name">Lutfia Tahir</span>
+                <span slot="role1">(Data Visualization)</span>
+                <span slot="role2">(Deployment Team)</span>
+              </team-card>
+              <team-card image="">
+                <span slot="name">Altech Oktavius</span>
+                <span slot="role1">(Data Communication)</span>
+                <span slot="role2">(Deployment Team)</span>
+              </team-card>
+            </div>
+            <div class="team-4">
+              <team-card image="">
+                <span slot="name">Selva Dwi Rahmadania</span>
+                <span slot="role1">(Data Communication)</span>
+                <span slot="role2">(Quality Assurance)</span>
+              </team-card>
+              <team-card image="">
+                <span slot="name">Dzahwa Laely Putri R</span>
+                <span slot="role1">(Data Communication)</span>
+                <span slot="role2">(Quality Assurance)</span>
+              </team-card>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Teams End -->
+      <!-- Footer Start -->
+      <footer class="footer">
+        <div class="copyright">
+          <div class="text">
+            © COPYRIGHT 2024 DASHBOARD-MEDAN 11 ALL RIGHTS RESERVED.
+          </div>
+        </div>
+      </footer>
+      <!-- Footer End -->
+    </main>
+    <!-- Main End -->
+    <!-- Script -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="//cdn.datatables.net/2.0.8/js/dataTables.min.js"
+      type="text/javascript"
+    ></script>
+    <script src="https://cdn.datatables.net/responsive/3.0.2/js/dataTables.responsive.min.js"></script>
+    <script src="script.js"></script>
+    <!-- Script End -->
+  </body>
 </html>

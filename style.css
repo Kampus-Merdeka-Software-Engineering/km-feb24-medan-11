@@ -676,3 +676,9 @@ body.dark .switch::before {
     font-size: 11px !important;
   }
 }
+
+#table-building-class{
+  min-width: 100%;
+  max-width: 100%;
+  width: 100% !important;
+}
