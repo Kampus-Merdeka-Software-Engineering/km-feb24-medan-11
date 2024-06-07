@@ -5,7 +5,6 @@ const body = document.querySelector("body"),
     modeText = body.querySelector(".mode-text"),
     toggle_top = body.querySelector(".toggleTop"),
     box_Arrow = body.querySelector(".boxArrow");
-
 // Sidebar Section
 toggle.addEventListener("click", () => {
     sidebar.classList.toggle("close");
@@ -187,7 +186,7 @@ function displaySalesGrowthChart(arrSalesGrowth) {
                     ticks: {
                         callback: function (value, index, values) {
                             if (value >= 1000000) {
-                                return value / 1000000;
+                                return (value / 1000000);
                             } else {
                                 return value;
                             }
@@ -374,34 +373,19 @@ function displayPropertyData(data) {
         dom: "t",
         ordering: false,
         responsive: true,
-        rowCallback: function (row, data, index) {
-            var totalSalesCell = $("td", row).eq(1);
+        rowCallback: function(row, data, index) {
+            var totalSalesCell = $('td', row).eq(1);
             if (index < 5) {
                 if (index === 0) {
-                    totalSalesCell.css(
-                        "background-color",
-                        "rgba(125, 166, 243, 1)"
-                    );
+                    totalSalesCell.css('background-color', 'rgba(125, 166, 243, 1)');
                 } else if (index === 1) {
-                    totalSalesCell.css(
-                        "background-color",
-                        "rgba(125, 166, 243, 0.8)"
-                    );
+                    totalSalesCell.css('background-color', 'rgba(125, 166, 243, 0.8)');
                 } else if (index === 2) {
-                    totalSalesCell.css(
-                        "background-color",
-                        "rgba(125, 166, 243, 0.6)"
-                    );
+                    totalSalesCell.css('background-color', 'rgba(125, 166, 243, 0.6)');
                 } else if (index === 3) {
-                    totalSalesCell.css(
-                        "background-color",
-                        "rgba(125, 166, 243, 0.4)"
-                    );
+                    totalSalesCell.css('background-color', 'rgba(125, 166, 243, 0.4)');
                 } else if (index === 4) {
-                    totalSalesCell.css(
-                        "background-color",
-                        "rgba(125, 166, 243, 0.2)"
-                    );
+                    totalSalesCell.css('background-color', 'rgba(125, 166, 243, 0.2)');
                 }
             }
         },
@@ -587,14 +571,14 @@ function displaySalesTrendPerTax(arrSalesPerTax) {
                         text: "Total Sales (in Million)",
                     },
                     ticks: {
-                        callback: function (value, index, values) {
+                        callback: function(value, index, values) {
                             if (value >= 1e6) {
-                                return value / 1e6;
+                                return (value / 1e6);
                             } else {
                                 return value;
                             }
-                        },
-                    },
+                        }
+                    }
                 },
                 x: {
                     title: {
@@ -823,34 +807,19 @@ function onSelectFilterNeighborhoodTableDisplayProperty(NEIGHBORHOOD) {
         dom: "t",
         ordering: false,
         responsive: true,
-        rowCallback: function (row, data, index) {
-            var totalSalesCell = $("td", row).eq(1);
+        rowCallback: function(row, data, index) {
+            var totalSalesCell = $('td', row).eq(1);
             if (index < 5) {
                 if (index === 0) {
-                    totalSalesCell.css(
-                        "background-color",
-                        "rgba(125, 166, 243, 1)"
-                    );
+                    totalSalesCell.css('background-color', 'rgba(125, 166, 243, 1)');
                 } else if (index === 1) {
-                    totalSalesCell.css(
-                        "background-color",
-                        "rgba(125, 166, 243, 0.8)"
-                    );
+                    totalSalesCell.css('background-color', 'rgba(125, 166, 243, 0.8)');
                 } else if (index === 2) {
-                    totalSalesCell.css(
-                        "background-color",
-                        "rgba(125, 166, 243, 0.6)"
-                    );
+                    totalSalesCell.css('background-color', 'rgba(125, 166, 243, 0.6)');
                 } else if (index === 3) {
-                    totalSalesCell.css(
-                        "background-color",
-                        "rgba(125, 166, 243, 0.4)"
-                    );
+                    totalSalesCell.css('background-color', 'rgba(125, 166, 243, 0.4)');
                 } else if (index === 4) {
-                    totalSalesCell.css(
-                        "background-color",
-                        "rgba(125, 166, 243, 0.2)"
-                    );
+                    totalSalesCell.css('background-color', 'rgba(125, 166, 243, 0.2)');
                 }
             }
         },
@@ -1028,34 +997,19 @@ function onSelectFilterBoroughTableDisplayProperty(BOROUGH) {
         dom: "t",
         ordering: false,
         responsive: true,
-        rowCallback: function (row, data, index) {
-            var totalSalesCell = $("td", row).eq(1);
+        rowCallback: function(row, data, index) {
+            var totalSalesCell = $('td', row).eq(1);
             if (index < 5) {
                 if (index === 0) {
-                    totalSalesCell.css(
-                        "background-color",
-                        "rgba(125, 166, 243, 1)"
-                    );
+                    totalSalesCell.css('background-color', 'rgba(125, 166, 243, 1)');
                 } else if (index === 1) {
-                    totalSalesCell.css(
-                        "background-color",
-                        "rgba(125, 166, 243, 0.8)"
-                    );
+                    totalSalesCell.css('background-color', 'rgba(125, 166, 243, 0.8)');
                 } else if (index === 2) {
-                    totalSalesCell.css(
-                        "background-color",
-                        "rgba(125, 166, 243, 0.6)"
-                    );
+                    totalSalesCell.css('background-color', 'rgba(125, 166, 243, 0.6)');
                 } else if (index === 3) {
-                    totalSalesCell.css(
-                        "background-color",
-                        "rgba(125, 166, 243, 0.4)"
-                    );
+                    totalSalesCell.css('background-color', 'rgba(125, 166, 243, 0.4)');
                 } else if (index === 4) {
-                    totalSalesCell.css(
-                        "background-color",
-                        "rgba(125, 166, 243, 0.2)"
-                    );
+                    totalSalesCell.css('background-color', 'rgba(125, 166, 243, 0.2)');
                 }
             }
         },
@@ -1278,34 +1232,19 @@ function onSelectFilterQuarterTableDisplayProperty(SALE_DATE) {
         dom: "t",
         ordering: false,
         responsive: true,
-        rowCallback: function (row, data, index) {
-            var totalSalesCell = $("td", row).eq(1);
+        rowCallback: function(row, data, index) {
+            var totalSalesCell = $('td', row).eq(1);
             if (index < 5) {
                 if (index === 0) {
-                    totalSalesCell.css(
-                        "background-color",
-                        "rgba(125, 166, 243, 1)"
-                    );
+                    totalSalesCell.css('background-color', 'rgba(125, 166, 243, 1)');
                 } else if (index === 1) {
-                    totalSalesCell.css(
-                        "background-color",
-                        "rgba(125, 166, 243, 0.8)"
-                    );
+                    totalSalesCell.css('background-color', 'rgba(125, 166, 243, 0.8)');
                 } else if (index === 2) {
-                    totalSalesCell.css(
-                        "background-color",
-                        "rgba(125, 166, 243, 0.6)"
-                    );
+                    totalSalesCell.css('background-color', 'rgba(125, 166, 243, 0.6)');
                 } else if (index === 3) {
-                    totalSalesCell.css(
-                        "background-color",
-                        "rgba(125, 166, 243, 0.4)"
-                    );
+                    totalSalesCell.css('background-color', 'rgba(125, 166, 243, 0.4)');
                 } else if (index === 4) {
-                    totalSalesCell.css(
-                        "background-color",
-                        "rgba(125, 166, 243, 0.2)"
-                    );
+                    totalSalesCell.css('background-color', 'rgba(125, 166, 243, 0.2)');
                 }
             }
         },
@@ -1345,31 +1284,45 @@ function onSelectFilterDashboardByQuarter(SALE_DATE) {
     onSelectFilterQuarterTableDisplayProperty(SALE_DATE);
 }
 
-//Reset Filter saat memilih filter lain
+// Fungsi untuk reset filter saat memilih filter lain
 const dropdown1 = document.getElementById("neighborhood");
 const dropdown2 = document.getElementById("borough");
 const dropdown3 = document.getElementById("quarter");
 
 const dropdownRelationships = {
-    neighborhood: [dropdown2, dropdown3],
-    borough: [dropdown1, dropdown3],
-    quarter: [dropdown1, dropdown2],
+    "neighborhood": [dropdown2, dropdown3],
+    "borough": [dropdown1, dropdown3],
+    "quarter": [dropdown1, dropdown2],
 };
-
-Object.keys(dropdownRelationships).forEach((dropdownId) => {
+  
+  Object.keys(dropdownRelationships).forEach((dropdownId) => {
     const dropdown = document.getElementById(dropdownId);
     const relatedDropdowns = dropdownRelationships[dropdownId];
-
+  
     dropdown.addEventListener("change", () => {
         if (dropdown.value === "ALL") {
             relatedDropdowns.forEach((relatedDropdown) => {
-                relatedDropdown.value = "ALL";
+              relatedDropdown.value = "ALL";
             });
         } else {
             relatedDropdowns.forEach((relatedDropdown) => {
-                relatedDropdown.value = "All";
+              relatedDropdown.value = "All";
             });
-        }
+          }
+    });
+});
+
+// Fungsi untuk menghilangkan filter saat memilih filter lain
+const boxes = document.querySelectorAll('.filter .box');
+
+boxes.forEach((box) => {
+    box.addEventListener('click', () => {
+        boxes.forEach((otherBox) => {
+            otherBox.classList.remove('selected');
+            otherBox.style.opacity = '0.5';
+        });
+        box.classList.add('selected');
+        box.style.opacity = '1';
     });
 });
 
@@ -1472,17 +1425,17 @@ class Team extends HTMLElement {
 window.customElements.define("team-card", Team);
 
 // Panel Teams
-document.addEventListener("DOMContentLoaded", function () {
-    var coll = document.getElementsByClassName("collapsible");
+document.addEventListener("DOMContentLoaded", function() {
+    var panel = document.getElementsByClassName("collapsible");
     var i;
-
-    for (i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function () {
+  
+    for (i = 0; i < panel.length; i++) {
+        panel[i].addEventListener("click", function() {
             this.classList.toggle("active");
             var content = this.nextElementSibling;
-            if (content.style.display === "block") {
+                if (content.style.display === "block") {
                 content.style.display = "none";
-            } else {
+                } else {
                 content.style.display = "block";
             }
         });
