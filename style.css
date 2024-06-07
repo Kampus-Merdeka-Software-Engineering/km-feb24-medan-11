@@ -274,9 +274,9 @@ body.dark .switch::before {
 
 /* Dashboard Start */
 .main .dashboard {
-    justify-content: center;
     width: 95%;
-    margin: 10px auto;
+    margin: auto;
+    padding-top: 20px;
 }
 .info {
     text-align: center;
@@ -453,16 +453,14 @@ body.dark .switch::before {
 /* Dashboard End */
 /* Insight Start */
 .insight {
-    justify-content: center;
     width: 95%;
-    margin: 10px auto;
+    margin: auto;
+    padding-top: 20px;
 }
 
 .insight .section-title {
     font-size: 28px;
     padding-left: 15px;
-    margin-top: 50px;
-    margin-bottom: 30px;
 }
 
 .insight .chartBox {
@@ -489,16 +487,10 @@ body.dark .switch::before {
 /* Insight End */
 
 /* Teams Start */
-.body {
-    font-family: Arial, sans-serif;
-    background-color: var(--primary-color-light);
-    margin: 0;
-    padding: 0;
-}
 .teams {
-    justify-content: center;
     width: 95%;
-    margin: 10px auto;
+    margin: auto;
+    padding-top: 20px;
 }
 .team-group {
     box-shadow: 0 7px 15px black;
