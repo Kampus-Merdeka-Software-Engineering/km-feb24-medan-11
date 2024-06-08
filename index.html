@@ -107,10 +107,10 @@
             <!-- Dashboard Start -->
             <section id="dashboard" class="dashboard">
                 <div class="info">
-                    <p>Please select only one filter for clearer results.</p>
+                    <p>*Please select only one filter for clearer results.</p>
                 </div>
                 <div class="filter">
-                    <div class="box not-selected" id="dd-neighborhood">
+                    <div class="box">
                         <span class="text">Select Neighborhood</span>
                         <select
                             class="select"
@@ -174,7 +174,7 @@
                             <option value="PRINCES BAY">Princes Bay</option>
                         </select>
                     </div>
-                    <div class="box not-selected" id="dd-borough">
+                    <div class="box">
                         <span class="text">Select Borough</span>
                         <select
                             onchange="onSelectFilterDashboardByBorough(this.value)"
@@ -190,7 +190,7 @@
                             <option value="Staten Island">Staten Island</option>
                         </select>
                     </div>
-                    <div class="box not-selected" id="dd-quarter">
+                    <div class="box">
                         <span class="text">Select a Time Period</span>
                         <select
                             class="select"
@@ -207,6 +207,7 @@
                         </select>
                     </div>
                 </div>
+                <div id="notification"></div>
                 <div class="summaryBox">
                     <div class="box">
                         <span class="material-symbols-outlined icon">
