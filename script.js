@@ -1393,6 +1393,26 @@ boxes.forEach((box) => {
     });
 });
 
+// Fungsi untuk memberi notifikasi pemilihan filter
+var filterDropdowns = document.querySelectorAll('.box select');
+var messageElement = document.getElementById('notification');
+
+filterDropdowns.forEach(function(select) {
+  select.addEventListener('change', function() {
+    var selectedValue = this.value;
+    
+    if (selectedValue === "ALL") {
+      messageElement.textContent = "";
+    } else {
+      messageElement.textContent = "Anda telah memilih filter ini untuk keseluruhan grafik berdasarkan: " + selectedValue;
+    }
+    //Set Time 3 detik
+    setTimeout(function() {
+      messageElement.textContent = "";
+    }, 3000);
+  });
+});
+
 // Ambil data Json
 fetch("JSON-file/nyc_property_sales.json")
     .then((response) => {
