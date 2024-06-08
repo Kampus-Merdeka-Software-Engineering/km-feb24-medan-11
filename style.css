@@ -317,6 +317,7 @@ body.dark .switch::before {
   position: relative;
   text-align: center;
   padding-top: 10px;
+  color: #695cfe;
 }
 .dashboard .summaryBox {
   position: relative;
