@@ -394,7 +394,7 @@ body.dark .switch::before {
 }
 .dashboard .chartBox .box table#table-building-class {
   border-collapse: collapse;
-  width: 100%;!important;
+  width: 100% !important;
 }
 .dashboard .chartBox .box table#table-building-class th,
 .dashboard .chartBox .box table#table-building-class td {
