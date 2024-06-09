@@ -19,6 +19,10 @@
         />
         <link
             rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+        />
+        <link
+            rel="stylesheet"
             href="//cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css"
         />
         <link
@@ -118,60 +122,60 @@
                             id="neighborhood"
                             onchange="onSelectFilterDashboardByNeighborhood(this.value)"
                         >
-                            <option value="ALL">ALL</option>
+                            <option value="All">ALL</option>
                             <option value="UPPER EAST SIDE (59-79)">
-                                UPPER EAST SIDE (59-79)
+                                Upper East Side (59-79)
                             </option>
                             <option value="UPPER EAST SIDE (79-96)">
-                                UPPER EAST SIDE (79-96)
+                                Upper East Side (79-96)
                             </option>
                             <option value="UPPER WEST SIDE (59-79)">
-                                UPPER WEST SIDE (59-79)
+                                Upper West Side (59-79)
                             </option>
-                            <option value="CHELSEA">CHELSEA</option>
-                            <option value="TRIBECA">TRIBECA</option>
-                            <option value="PARK SLOPE">PARK SLOPE</option>
-                            <option value="BEDFORD STUYVENSANT">
-                                BEDFORD STUYVENSANT
+                            <option value="CHELSEA">Chelsea</option>
+                            <option value="TRIBECA">Tribeca</option>
+                            <option value="PARK SLOPE">Park Slop</option>
+                            <option value="BEDFORD STUYVESANT">
+                                Bedford Stuyvensant
                             </option>
                             <option value="BROOKLYN HEIGHTS">
-                                BROOKLYN HEIGHTS
+                                Brooklyn Heights
                             </option>
                             <option value="DOWNTOWN-FULTON FERRY">
-                                DOWNTOWN-FULTON FERRY
+                                Downtown-Fulton Ferry
                             </option>
-                            <option value="WILLIAMBURGS-NORTH">
-                                WILLIAMBURGS-NORTH
+                            <option value="WILLIAMSBURG-NORTH">
+                                WilliamBurgs-North
                             </option>
                             <option value="FLUSHING-NORTH">
-                                FLUSHING-NORTH
+                                Flushing-North
                             </option>
                             <option value="LONG ISLAND CITY">
-                                LONG ISLAND CITY
+                                Long Island City
                             </option>
-                            <option value="ASTORIA">ASTORIA</option>
-                            <option value="ELMHURST">ELMHURST</option>
+                            <option value="ASTORIA">Astoria</option>
+                            <option value="ELMHURST">Elmhurst</option>
                             <option value="JACKSON HEIGHTS">
-                                JACKSON HEIGHTS
+                                Jackson Heights
                             </option>
                             <option value="MELROSE/CONCOURSE">
-                                MELROSE/CONCOURSE
+                                Melrose/Concourse
                             </option>
-                            <option value="RIVERDALE">RIVERDALE</option>
+                            <option value="RIVERDALE">Riverdale</option>
                             <option value="KINGSBRIDGE HTS/UNIV HTS">
-                                KINGSBRIDGE HTS/UNIV HTS
+                                KingsBridge HTS/Univ HTS
                             </option>
                             <option value="MOTT HAVEN/PORT MORRIS">
-                                MOTT HAVEN/PORT MORRIS
+                                Mott Haven/Port Morris
                             </option>
-                            <option value="MORRISANIA/LOWNGWOOD">
-                                MORRISANIA/LOWNGWOOD
+                            <option value="MORRISANIA/LONGWOOD">
+                                Morrisania/Longwood
                             </option>
-                            <option value="BLOOMFIELD">BLOOMFIELD</option>
-                            <option value="TRAVIS">TRAVIS</option>
-                            <option value="TOTTENVILLE">TOTTENVILLE</option>
-                            <option value="TODT HILL">TODT HILL</option>
-                            <option value="PRINCES BAY">PRINCES BAY</option>
+                            <option value="BLOOMFIELD">Bloomfield</option>
+                            <option value="TRAVIS">Travis</option>
+                            <option value="TOTTENVILLE">Tottenvile</option>
+                            <option value="TODT HILL">Todt Hill</option>
+                            <option value="PRINCES BAY">Princes Bay</option>
                         </select>
                     </div>
                     <div class="box">
@@ -182,12 +186,12 @@
                             name="borough"
                             id="borough"
                         >
-                            <option value="ALL">ALL</option>
-                            <option value="QUEENS">QUEENS</option>
-                            <option value="BROOKLYN">BROOKLYN</option>
-                            <option value="MANHATTAN">MANHATTAN</option>
-                            <option value="BRONX">BRONX</option>
-                            <option value="STATE ISLAND">STATE ISLAND</option>
+                            <option value="All">ALL</option>
+                            <option value="Queens">Queens</option>
+                            <option value="Brooklyn">Brooklyn</option>
+                            <option value="Manhattan">Manhattan</option>
+                            <option value="Bronx">Bronx</option>
+                            <option value="Staten Island">Staten Island</option>
                         </select>
                     </div>
                     <div class="box">
@@ -198,7 +202,7 @@
                             id="quarter"
                             onchange="onSelectFilterDashboardByQuarter(this.value)"
                         >
-                            <option value="ALL">ALL</option>
+                            <option value="All">ALL</option>
                             <option value="Q3, 2016">Q3, 2016</option>
                             <option value="Q4, 2016">Q4, 2016</option>
                             <option value="Q1, 2017">Q1, 2017</option>
@@ -242,7 +246,7 @@
                         <div class="chartContainer">
                             <canvas id="sales-growth-chart"></canvas>
                         </div>
-                        <div class="boxDesc close" id="desc1">
+                        <div class="boxDesc" id="desc1">
                             <p>
                                 Manhattan emerges as the top-performing region
                                 in terms of total revenue, largely attributed to
@@ -266,7 +270,7 @@
                         <div class="chartContainer">
                             <canvas id="unit-sales-chart"></canvas>
                         </div>
-                        <div class="boxDesc close" id="desc2">
+                        <div class="boxDesc" id="desc2">
                             <p>
                                 The bar chart depicts total unit sales across
                                 boroughs, including Queens, Brooklyn, Manhattan,
@@ -289,7 +293,7 @@
                         <div class="chartContainer">
                             <canvas id="residential-commercial"></canvas>
                         </div>
-                        <div class="boxDesc close" id="desc3">
+                        <div class="boxDesc" id="desc3">
                             <p>
                                 In this pie chart, we depict the distribution of
                                 property units based on two main categories:
@@ -351,7 +355,7 @@
                         <div class="chartContainer">
                             <canvas id="total-unit-based-year-build"></canvas>
                         </div>
-                        <div class="boxDesc close" id="desc5">
+                        <div class="boxDesc" id="desc5">
                             <p>
                                 Properties built between 1900 and 1960 yield the
                                 highest profits, with the most lucrative sales
@@ -374,7 +378,7 @@
                         <div class="chartContainer">
                             <canvas id="sales-trend-per-tax"></canvas>
                         </div>
-                        <div class="boxDesc close" id="desc6">
+                        <div class="boxDesc" id="desc6">
                             <p>
                                 Tax 1 refers to "ONE FAMILY DWELLINGS" or
                                 single-family homes. This includes various types
@@ -403,87 +407,396 @@
             <!-- Insight End -->
             <!-- Teams  Start-->
             <section id="teams" class="teams">
-                <div class="panel">
-                    <button class="collapsible">
-                        Teams<span class="arrow"></span>
-                    </button>
-                    <div class="team-group">
-                        <div class="team-lead">
-                            <team-card image="">
-                                <span slot="name">Rafli Rifaldi</span>
-                                <span slot="role1">(Leader Data Analyst)</span>
-                                <span slot="role2">(Front End Engineer)</span>
-                            </team-card>
-                            <team-card image="">
-                                <span slot="name">Syifa Luqyana</span>
-                                <span slot="role1"
-                                    >(Leader Software Engineer)</span
-                                >
-                                <span slot="role2">(Data Cleaning)</span>
-                            </team-card>
+                <button class="collapsible">
+                    Teams<span class="arrow"></span>
+                </button>
+                <div class="team-group">
+                    <div class="teamBox">
+                        <div class="team-content">
+                            <span class="text-head">Rafli Rifaldi</span>
+                            <img
+                                class="img-circle"
+                                src="image/Profil_Image/Raflli.jpg"
+                                alt=""
+                            />
+                            <span class="text">(Leader Data Analyst)</span>
+                            <span class="text">(Front End Engineer)</span>
+                            <div class="iconBox">
+                                <a
+                                    class="icon"
+                                    href="https://www.instagram.com/rafli_rfldii?igsh=MTFlb290Nm1jNG05aw=="
+                                    target="_blank"
+                                    ><i class="bi bi-instagram"></i
+                                ></a>
+                                <a
+                                    class="icon"
+                                    href="https://github.com/Rapply"
+                                    target="_blank"
+                                    ><i class="bi bi-github"></i
+                                ></a>
+                                <a
+                                    class="icon"
+                                    href="http://www.linkedin.com/in/raflirifaldi"
+                                    target="_blank"
+                                    ><i class="bi bi-linkedin"></i
+                                ></a>
+                            </div>
                         </div>
-                        <div class="team-1">
-                            <team-card image="">
-                                <span slot="name">Tarasyah Faz'lin</span>
-                                <span slot="role1">(Data Cleaning)</span>
-                                <span slot="role2">(Quality Assurance)</span>
-                            </team-card>
-                            <team-card image="">
-                                <span slot="name">Vania Widyadhari A</span>
-                                <span slot="role1">(Data Cleaning)</span>
-                                <span slot="role2">(Pitch Deck Tea)</span>
-                            </team-card>
-                            <team-card image="">
-                                <span slot="name">Auliyani Abdillah Rmb</span>
-                                <span slot="role1">(Data Analyst)</span>
-                                <span slot="role2">(Pitch Deck Tea)</span>
-                            </team-card>
+                        <div class="team-content">
+                            <span class="text-head">Syifa Luqyana</span>
+                            <img
+                                class="img-circle"
+                                src="image/Profil_Image/Syifa.jpg"
+                                alt=""
+                            />
+                            <span class="text">(Leader Software Engineer)</span>
+                            <span class="text">(Data Cleaning)</span>
+                            <div class="iconBox">
+                                <a
+                                    class="icon"
+                                    href="https://www.instagram.com/syifana_ilms/"
+                                    target="_blank"
+                                    ><i class="bi bi-instagram"></i
+                                ></a>
+                                <a
+                                    class="icon"
+                                    href="https://github.com/syifana28"
+                                    target="_blank"
+                                    ><i class="bi bi-github"></i
+                                ></a>
+                                <a
+                                    class="icon"
+                                    href="https://www.linkedin.com/in/syifa-luqyana-43827721a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                                    target="_blank"
+                                    ><i class="bi bi-linkedin"></i
+                                ></a>
+                            </div>
                         </div>
-                        <div class="team-2">
-                            <team-card image="">
-                                <span slot="name">Surya Andriyani</span>
-                                <span slot="role1">(Data Analyst)</span>
-                                <span slot="role2">(Front End Engineer)</span>
-                            </team-card>
-                            <team-card image="">
-                                <span slot="name">Uci Ayu Lestari</span>
-                                <span slot="role1">(Data Analyst)</span>
-                                <span slot="role2">(Deployment Team)</span>
-                            </team-card>
-                            <team-card image="">
-                                <span slot="name">Dodi Pangestu</span>
-                                <span slot="role1">(Data Visualization)</span>
-                                <span slot="role2">(Front End Engineer)</span>
-                            </team-card>
+                    </div>
+                    <div class="teamBox">
+                        <div class="team-content">
+                            <span class="text-head">Tarasyah Faz'lin</span>
+                            <img
+                                class="img-circle"
+                                src="image/Profil_Image/Tarasyah.jpg"
+                                alt=""
+                            />
+                            <span class="text">(Data Cleaning)</span>
+                            <span class="text">(Quality Assurance)</span>
+                            <div class="iconBox">
+                                <a
+                                    class="icon"
+                                    href="https://www.instagram.com/tarafazlin?igsh=YzljYTk1ODg3Zg=="
+                                    target="_blank"
+                                    ><i class="bi bi-instagram"></i
+                                ></a>
+                                <a
+                                    class="icon"
+                                    href="https://github.com/Tarasyah"
+                                    target="_blank"
+                                    ><i class="bi bi-github"></i
+                                ></a>
+                                <a
+                                    class="icon"
+                                    href="https://www.linkedin.com/in/tarasyahfazlin"
+                                    target="_blank"
+                                    ><i class="bi bi-linkedin"></i
+                                ></a>
+                            </div>
                         </div>
-                        <div class="team-3">
-                            <team-card image="">
-                                <span slot="name">Farhan Ari Nur W</span>
-                                <span slot="role1">(Data Visualization)</span>
-                                <span slot="role2">(Front End Engineer)</span>
-                            </team-card>
-                            <team-card image="">
-                                <span slot="name">Lutfia Tahir</span>
-                                <span slot="role1">(Data Visualization)</span>
-                                <span slot="role2">(Deployment Team)</span>
-                            </team-card>
-                            <team-card image="">
-                                <span slot="name">Altech Oktavius</span>
-                                <span slot="role1">(Data Communication)</span>
-                                <span slot="role2">(Deployment Team)</span>
-                            </team-card>
+                        <div class="team-content">
+                            <span class="text-head">Vania Widyadhari A</span>
+                            <img
+                                class="img-circle"
+                                src="image/Profil_Image/Vania.jpg"
+                                alt=""
+                            />
+                            <span class="text">(Data Cleaning)</span>
+                            <span class="text">(Pitch Deck Tea)</span>
+                            <div class="iconBox">
+                                <a
+                                    class="icon"
+                                    href="https://www.instagram.com/vaniawidyadhari/"
+                                    target="_blank"
+                                    ><i class="bi bi-instagram"></i
+                                ></a>
+                                <a
+                                    class="icon"
+                                    href="https://github.com/vaniawidyadhari"
+                                    target="_blank"
+                                    ><i class="bi bi-github"></i
+                                ></a>
+                                <a
+                                    class="icon"
+                                    href="https://www.linkedin.com/in/vania-widyadhari-73a6042a3"
+                                    target="_blank"
+                                    ><i class="bi bi-linkedin"></i
+                                ></a>
+                            </div>
                         </div>
-                        <div class="team-4">
-                            <team-card image="">
-                                <span slot="name">Selva Dwi Rahmadania</span>
-                                <span slot="role1">(Data Communication)</span>
-                                <span slot="role2">(Quality Assurance)</span>
-                            </team-card>
-                            <team-card image="">
-                                <span slot="name">Dzahwa Laely Putri R</span>
-                                <span slot="role1">(Data Communication)</span>
-                                <span slot="role2">(Quality Assurance)</span>
-                            </team-card>
+                        <div class="team-content">
+                            <span class="text-head">Auliyani Abdillah Rmb</span>
+                            <img
+                                class="img-circle"
+                                src="image/Profil_Image/Auliyani.jpg"
+                                alt=""
+                            />
+                            <span class="text">(Data Analyst)</span>
+                            <span class="text">(Pitch Deck Tea)</span>
+                            <div class="iconBox">
+                                <a
+                                    class="icon"
+                                    href="https://www.instagram.com/auliyaniar"
+                                    target="_blank"
+                                    ><i class="bi bi-instagram"></i
+                                ></a>
+                                <a
+                                    class="icon"
+                                    href="https://github.com/aul1234"
+                                    target="_blank"
+                                    ><i class="bi bi-github"></i
+                                ></a>
+                                <a
+                                    class="icon"
+                                    href="https://www.linkedin.com/in/auliyaniabdillahrmb"
+                                    target="_blank"
+                                    ><i class="bi bi-linkedin"></i
+                                ></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="teamBox">
+                        <div class="team-content">
+                            <span class="text-head">Surya Andriyani</span>
+                            <img
+                                class="img-circle"
+                                src="image/Profil_Image/Surya.jpg"
+                                alt=""
+                            />
+                            <span class="text">(Data Analyst)</span>
+                            <span class="text">(Front End Engineer)</span>
+                            <div class="iconBox">
+                                <a
+                                    class="icon"
+                                    href="https://www.instagram.com/surya_ndryn/"
+                                    target="_blank"
+                                    ><i class="bi bi-instagram"></i
+                                ></a>
+                                <a
+                                    class="icon"
+                                    href="https://github.com/suryandryn"
+                                    target="_blank"
+                                    ><i class="bi bi-github"></i
+                                ></a>
+                                <a
+                                    class="icon"
+                                    href="http://www.linkedin.com/in/surya-andriyani"
+                                    target="_blank"
+                                    ><i class="bi bi-linkedin"></i
+                                ></a>
+                            </div>
+                        </div>
+                        <div class="team-content">
+                            <span class="text-head">Uci Ayu Lestari</span>
+                            <img
+                                class="img-circle"
+                                src="image/no-image.png"
+                                alt=""
+                            />
+                            <span class="text">(Data Analyst)</span>
+                            <span class="text">(Deployment Team)</span>
+                            <div class="iconBox">
+                                <a
+                                    class="icon"
+                                    href="https://www.instagram.com/u_ciylstri?igsh=MWI4dDN4dzV1NnppbQ=="
+                                    target="_blank"
+                                    ><i class="bi bi-instagram"></i
+                                ></a>
+                                <a
+                                    class="icon"
+                                    href="https://github.com/Uciayulestari"
+                                    target="_blank"
+                                    ><i class="bi bi-github"></i
+                                ></a>
+                                <a
+                                    class="icon"
+                                    href="https://www.linkedin.com/in/uci-ayu-lestari-697b43221"
+                                    target="_blank"
+                                    ><i class="bi bi-linkedin"></i
+                                ></a>
+                            </div>
+                        </div>
+                        <div class="team-content">
+                            <span class="text-head">Dodi Pangestu</span>
+                            <img
+                                class="img-circle"
+                                src="image/Profil_Image/Dodi.jpg"
+                                alt=""
+                            />
+                            <span class="text">(Data Visualization)</span>
+                            <span class="text">(Front End Engineer)</span>
+                            <div class="iconBox">
+                                <a
+                                    class="icon"
+                                    href="https://www.instagram.com/dodipangestu_/"
+                                    target="_blank"
+                                    ><i class="bi bi-instagram"></i
+                                ></a>
+                                <a
+                                    class="icon"
+                                    href="https://github.com/dodi0900801"
+                                    target="_blank"
+                                    ><i class="bi bi-github"></i
+                                ></a>
+                                <a
+                                    class="icon"
+                                    href="https://www.linkedin.com/in/dodi-pangestu-7159912b1/"
+                                    target="_blank"
+                                    ><i class="bi bi-linkedin"></i
+                                ></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="teamBox">
+                        <div class="team-content">
+                            <span class="text-head">Farhan Ari Nur W</span>
+                            <img
+                                class="img-circle"
+                                src="image/Profil_Image/Farhan.jpg"
+                                alt=""
+                            />
+                            <span class="text">(Data Visualization)</span>
+                            <span class="text">(Front End Engineer)</span>
+                            <div class="iconBox">
+                                <a
+                                    class="icon"
+                                    href="https://www.instagram.com/farhanari41?igsh=MTQwOHMxZ2sxM3M1ZA=="
+                                    target="_blank"
+                                    ><i class="bi bi-instagram"></i
+                                ></a>
+                                <a
+                                    class="icon"
+                                    href="https://github.com/Derein11"
+                                    target="_blank"
+                                    ><i class="bi bi-github"></i
+                                ></a>
+                                <a
+                                    class="icon"
+                                    href="https://www.linkedin.com/in/farhan-ari"
+                                    target="_blank"
+                                    ><i class="bi bi-linkedin"></i
+                                ></a>
+                            </div>
+                        </div>
+                        <div class="team-content">
+                            <span class="text-head">Lutfia Tahir</span>
+                            <img
+                                class="img-circle"
+                                src="image/Profil_Image/Luthfia.jpg"
+                                alt=""
+                            />
+                            <span class="text">(Data Visualization)</span>
+                            <span class="text">(Deployment Team)</span>
+                            <div class="iconBox">
+                                <a
+                                    class="icon"
+                                    href="https://www.instagram.com/lt.viia?igsh=cW9yeXF3NDR6YnBk"
+                                    target="_blank"
+                                    ><i class="bi bi-instagram"></i
+                                ></a>
+                                <a
+                                    class="icon"
+                                    href="https://github.com/lutfiaaaa"
+                                    target="_blank"
+                                    ><i class="bi bi-github"></i
+                                ></a>
+                                <a
+                                    class="icon"
+                                    href="https://www.linkedin.com/in/lutfiah-tahir-291112289?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                                    target="_blank"
+                                    ><i class="bi bi-linkedin"></i
+                                ></a>
+                            </div>
+                        </div>
+                        <div class="team-content">
+                            <span class="text-head">Altech Oktavius</span>
+                            <img
+                                class="img-circle"
+                                src="image/Profil_Image/Altech.jpg"
+                                alt=""
+                            />
+                            <span class="text">(Data Communication)</span>
+                            <span class="text">(Deployment Team)</span>
+                            <div class="iconBox">
+                                <a
+                                    class="icon"
+                                    href="https://www.instagram.com/altechhh?igsh=MWhod3N2ZmV5NGJiaA=="
+                                    target="_blank"
+                                    ><i class="bi bi-instagram"></i
+                                ></a>
+                                <a
+                                    class="icon"
+                                    href="https://github.com/altechoctavius"
+                                    target="_blank"
+                                    ><i class="bi bi-github"></i
+                                ></a>
+                                <a class="icon" href="#" target="_blank"
+                                    ><i class="bi bi-linkedin"></i
+                                ></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="teamBox">
+                        <div class="team-content">
+                            <span class="text-head">Selva Dwi Rahmadania</span>
+                            <img
+                                class="img-circle"
+                                src="image/Profil_Image/Selva.jpg"
+                                alt=""
+                            />
+                            <span class="text">(Data Communication)</span>
+                            <span class="text">(Quality Assurance)</span>
+                            <div class="iconBox">
+                                <a
+                                    class="icon"
+                                    href="https://www.instagram.com/selva_rahmadania"
+                                    target="_blank"
+                                    ><i class="bi bi-instagram"></i
+                                ></a>
+                                <a
+                                    class="icon"
+                                    href="https://github.com/selvaa11"
+                                    target="_blank"
+                                    ><i class="bi bi-github"></i
+                                ></a>
+                                <a
+                                    class="icon"
+                                    href="https://www.linkedin.com/in/selva511"
+                                    target="_blank"
+                                    ><i class="bi bi-linkedin"></i
+                                ></a>
+                            </div>
+                        </div>
+                        <div class="team-content">
+                            <span class="text-head">Dzahwa Laely Putri R</span>
+                            <img
+                                class="img-circle"
+                                src="image/Profil_Image/Dzahwa.jpg"
+                                alt=""
+                            />
+                            <span class="text">(Data Communication)</span>
+                            <span class="text">(Quality Assurance)</span>
+                            <div class="iconBox">
+                                <a class="icon" href="#" target="_blank"
+                                    ><i class="bi bi-instagram"></i
+                                ></a>
+                                <a class="icon" href="#" target="_blank"
+                                    ><i class="bi bi-github"></i
+                                ></a>
+                                <a class="icon" href="#" target="_blank"
+                                    ><i class="bi bi-linkedin"></i
+                                ></a>
+                            </div>
                         </div>
                     </div>
                 </div>

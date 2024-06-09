@@ -1394,23 +1394,25 @@ boxes.forEach((box) => {
 });
 
 // Fungsi untuk memberi notifikasi pemilihan filter
-var filterDropdowns = document.querySelectorAll('.box select');
-var messageElement = document.getElementById('notification');
+var filterDropdowns = document.querySelectorAll(".box select");
+var messageElement = document.getElementById("notification");
 
-filterDropdowns.forEach(function(select) {
-  select.addEventListener('change', function() {
-    var selectedValue = this.value;
-    
-    if (selectedValue === "ALL") {
-      messageElement.textContent = "";
-    } else {
-      messageElement.textContent = "Anda telah memilih filter ini untuk keseluruhan grafik berdasarkan: " + selectedValue;
-    }
-    //Set Time 3 detik
-    setTimeout(function() {
-      messageElement.textContent = "";
-    }, 3000);
-  });
+filterDropdowns.forEach(function (select) {
+    select.addEventListener("change", function () {
+        var selectedValue = this.value;
+
+        if (selectedValue === "ALL") {
+            messageElement.textContent = "";
+        } else {
+            messageElement.textContent =
+                "You have selected this filter for the entire chart based on the following: " +
+                selectedValue;
+        }
+        //Set Time 3 detik
+        setTimeout(function () {
+            messageElement.textContent = "";
+        }, 3000);
+    });
 });
 
 // Ambil data Json
@@ -1436,80 +1438,6 @@ fetch("JSON-file/property-sales.json")
     .then((data) => {
         displaySalesTrendPerTax(data);
     });
-
-// Display Teams
-const teamTemplate = document.createElement("template");
-teamTemplate.innerHTML = `
-
-    <style>
-    .team-item{
-        display: flex;
-        flex-direction: column;
-        min-width: 280px;
-        min-height: 350px;
-        border-radius: 12px;
-        overflow: hidden;
-        background-color: #FEFEFE;
-        
-      }
-    .img-wrapper {
-        width: 100%;
-        height: 300px;
-        background-size: cover;
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: inherit;
-
-        & .img-circle{
-          background-color: #fff;
-          width: 200px;
-          height: 200px;
-          position: absolute;
-          border-radius: 50%;
-          overflow: hidden;
-          & img{
-            width: 100%;
-            height: 100%;
-          }
-        }
-    }
-    .team-content{
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        padding: 10px;
-        font-weight: 700;
-    }
-    </style>
-
-    <div class="team-item">
-        <div class="img-wrapper">
-            <div class="img-circle">
-                <img alt="team profile" />
-            </div>
-        </div>
-            <div class="team-content">
-                <span><slot name="name" />Default name</span>
-                <span><slot name="role1" />Default role1</span>
-                <span><slot name="role2" />Default role2</span>
-            </div>
-    </div>
-`;
-
-class Team extends HTMLElement {
-    constructor() {
-        super();
-
-        const shadowRoot = this.attachShadow({ mode: "open" });
-        shadowRoot.appendChild(teamTemplate.content.cloneNode(true));
-
-        shadowRoot.querySelector("img").src = this.getAttribute("image");
-    }
-}
-
-window.customElements.define("team-card", Team);
 
 // Panel Teams
 document.addEventListener("DOMContentLoaded", function () {
