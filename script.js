@@ -1129,6 +1129,7 @@ function onSelectFilterQuarterSalesGrowth(SALE_DATE) {
 
     if (SALE_DATE === "All") {
         filteredDataset = window.dataSalesGrowth;
+        window.salesGrowthChart.data.labels = ["Q3, 2016", "Q4, 2016", "Q1, 2017", "Q2, 2017", "Q3, 2017"];
     } else {
         filteredDataset = window.dataArrSalesGrowth.filter((dataset) => {
             return dataset.SALE_DATE === SALE_DATE;
@@ -1175,6 +1176,7 @@ function onSelectFilterQuarterSalesGrowth(SALE_DATE) {
         });
 
         filteredDataset = datasets;
+        window.salesGrowthChart.data.labels = [SALE_DATE];
     }
     window.salesGrowthChart.data.datasets = filteredDataset;
     window.salesGrowthChart.update();
