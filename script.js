@@ -13,6 +13,13 @@ toggle_top.addEventListener("click", () => {
     sidebar.classList.toggle("close");
 });
 
+// Sidebar close when navbar click in mobile device
+function sideClick() {
+    if (window.innerWidth <= 576) {
+        sidebar.classList.toggle("close");
+    }
+}
+// Function to expand desc box
 function desc(descId) {
     var id = document.getElementById(descId);
     id.classList.toggle("expanded");
@@ -151,6 +158,7 @@ function displaySalesGrowthChart(arrSalesGrowth) {
     });
     window.dataArrSalesGrowth = arrSalesGrowth;
     window.dataSalesGrowth = datasets;
+    window.arrSaleDate = arrSaleDate;
 
     window.salesGrowthChart = new Chart(ctx, {
         type: "line",
@@ -1125,59 +1133,22 @@ function onSelectFilterQuarterTotalUnitSales(SALE_DATE) {
 }
 // Filter Chart Growth Sales By Quarter
 function onSelectFilterQuarterSalesGrowth(SALE_DATE) {
-    var filteredDataset = window.dataArrSalesGrowth;
-
-    if (SALE_DATE === "All") {
-        filteredDataset = window.dataSalesGrowth;
-        window.salesGrowthChart.data.labels = ["Q3, 2016", "Q4, 2016", "Q1, 2017", "Q2, 2017", "Q3, 2017"];
-    } else {
-        filteredDataset = window.dataArrSalesGrowth.filter((dataset) => {
-            return dataset.SALE_DATE === SALE_DATE;
-        });
-
-        var arrSaleDate = [];
-        var boroughSalesData = {};
-
-        filteredDataset.forEach((item) => {
-            if (!arrSaleDate.includes(item.SALE_DATE)) {
-                arrSaleDate.push(item.SALE_DATE);
-            }
-            if (!boroughSalesData[item.BOROUGH]) {
-                boroughSalesData[item.BOROUGH] = Array(arrSaleDate.length).fill(
-                    0
-                );
+    var filteredDataset = window.dataSalesGrowth.map((dataset) => {
+        var data = Array(window.arrSaleDate.length).fill(0);
+        dataset.data.forEach((value, index) => {
+            if (
+                window.arrSaleDate[index] === SALE_DATE ||
+                SALE_DATE === "ALL"
+            ) {
+                data[index] = value;
             }
         });
+        return {
+            ...dataset,
+            data: data,
+        };
+    });
 
-        // Urutkan arrSaleDate berdasarkan kuartal dan tahun
-        arrSaleDate.sort(compareQuarterAndYear);
-
-        // Perbarui panjang array boroughSalesData setelah pengurutan
-        Object.keys(boroughSalesData).forEach((BOROUGH) => {
-            boroughSalesData[BOROUGH] = Array(arrSaleDate.length).fill(0);
-        });
-
-        filteredDataset.forEach((item) => {
-            var dateIndex = arrSaleDate.indexOf(item.SALE_DATE);
-            boroughSalesData[item.BOROUGH][dateIndex] =
-                (boroughSalesData[item.BOROUGH][dateIndex] || 0) +
-                parseFloat(item.SALE_PRICE);
-        });
-
-        var datasets = [];
-        Object.keys(boroughSalesData).forEach((BOROUGH) => {
-            datasets.push({
-                label: BOROUGH,
-                data: boroughSalesData[BOROUGH],
-                borderWidth: 1,
-                fill: false,
-                yAxisID: "y",
-            });
-        });
-
-        filteredDataset = datasets;
-        window.salesGrowthChart.data.labels = [SALE_DATE];
-    }
     window.salesGrowthChart.data.datasets = filteredDataset;
     window.salesGrowthChart.update();
 }
@@ -1369,11 +1340,7 @@ Object.keys(dropdownRelationships).forEach((dropdownId) => {
     const relatedDropdowns = dropdownRelationships[dropdownId];
 
     dropdown.addEventListener("change", () => {
-        if (dropdown.value === "ALL") {
-            relatedDropdowns.forEach((relatedDropdown) => {
-                relatedDropdown.value = "ALL";
-            });
-        } else {
+        if (dropdown.value !== "All") {
             relatedDropdowns.forEach((relatedDropdown) => {
                 relatedDropdown.value = "All";
             });

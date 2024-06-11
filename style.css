@@ -593,14 +593,13 @@ body.dark .switch::before {
 .footer {
     position: relative;
     width: 100%;
-    min-height: 100px;
-    background-color: #2a3439;
 }
 .footer .copyright {
     position: absolute;
     display: flex;
     justify-content: center;
     width: 100%;
+    background-color: #2a3439;
     padding: 5px;
     bottom: 0;
     border-top: 1px solid rgb(148, 148, 148);
