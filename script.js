@@ -1138,7 +1138,7 @@ function onSelectFilterQuarterSalesGrowth(SALE_DATE) {
         dataset.data.forEach((value, index) => {
             if (
                 window.arrSaleDate[index] === SALE_DATE ||
-                SALE_DATE === "ALL"
+                SALE_DATE === "All"
             ) {
                 data[index] = value;
             }
